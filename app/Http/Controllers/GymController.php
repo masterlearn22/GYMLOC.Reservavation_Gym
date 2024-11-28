@@ -27,7 +27,7 @@ class GymController extends Controller
             ->get()
             ->groupBy('gym_id'); // Mengelompokkan data berdasarkan gym_id
 
-        return view('gym', compact('gyms'));
+        return view('editgym', compact('gyms'));
     }
 
     public function store(Request $request)
@@ -80,6 +80,6 @@ class GymController extends Controller
             ]);
         }
 
-        return redirect()->intended('gyms')->with('success', 'Gym berhasil ditambahkan beserta harga!');
+        return redirect()->intended('editgyms')->with('success', 'Gym berhasil ditambahkan beserta harga!');
     }
 }
