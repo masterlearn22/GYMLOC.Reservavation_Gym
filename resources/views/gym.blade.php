@@ -201,12 +201,16 @@
                             <tr>
                                 <td colspan="7" class="text-center">Belum ada gym yang tersedia</td>
                             </tr>
+                            <tr>
+                                <td colspan="7" class="text-center">Belum ada gym yang tersedia</td>
+                            </tr>
                         @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    {{-- comments --}}
 </body>
 
 </html>
