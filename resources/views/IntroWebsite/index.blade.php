@@ -25,9 +25,8 @@
                                 <div class="p-3 text-center">
                                     <h1 class="text-gradient text-dark"><span id="state1" countTo="70">0</span>+
                                     </h1>
-                                    <h5 class="mt-3">Coded Elements</h5>
-                                    <p class="text-sm font-weight-normal">From buttons, to inputs, navbars, alerts or
-                                        cards, you are covered</p>
+                                    <h5 class="mt-3">Gym</h5>
+                                    <p class="text-sm font-weight-normal">Lebih dari (count) gym terdaftar</p>
                                 </div>
                                 <hr class="vertical dark">
                             </div>
@@ -35,18 +34,16 @@
                                 <div class="p-3 text-center">
                                     <h1 class="text-gradient text-dark"> <span id="state2"
                                             countTo="15">0</span>+</h1>
-                                    <h5 class="mt-3">Design Blocks</h5>
-                                    <p class="text-sm font-weight-normal">Mix the sections, change the colors and
-                                        unleash your creativity</p>
+                                    <h5 class="mt-3">Pelatih</h5>
+                                    <p class="text-sm font-weight-normal">dengan Pelatih yang berkualitas</p>
                                 </div>
                                 <hr class="vertical dark">
                             </div>
                             <div class="col-md-4">
                                 <div class="p-3 text-center">
                                     <h1 class="text-gradient text-dark" id="state3" countTo="4">0</h1>
-                                    <h5 class="mt-3">Pages</h5>
-                                    <p class="text-sm font-weight-normal">Save 3-4 weeks of work when you use our
-                                        pre-made pages for your website</p>
+                                    <h5 class="mt-3">Reservasi</h5>
+                                    <p class="text-sm font-weight-normal">jumlah reservasi lewat Gymloc</p>
                                 </div>
                             </div>
                         </div>
@@ -90,35 +87,8 @@
                                 <div class="info">
                                     <i
                                         class="text-3xl material-symbols-rounded text-gradient text-success">content_copy</i>
-                                    <h5 class="mt-3 font-weight-bolder">Full Documentation</h5>
-                                    <p class="pe-5">Built by developers for developers. Check the foundation and you
-                                        will find everything inside our documentation.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info">
-                                    <i
-                                        class="text-3xl material-symbols-rounded text-gradient text-success">flip_to_front</i>
-                                    <h5 class="mt-3 font-weight-bolder">Bootstrap 5 Ready</h5>
-                                    <p class="pe-3">The world’s most popular front-end open source toolkit, featuring
-                                        Sass variables and mixins.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5 row justify-content-start">
-                            <div class="mt-3 col-md-6">
-                                <i
-                                    class="text-3xl material-symbols-rounded text-gradient text-success">price_change</i>
-                                <h5 class="mt-3 font-weight-bolder">Save Time & Money</h5>
-                                <p class="pe-5">Creating your design from scratch with dedicated designers can be
-                                    very expensive. Start with our Design System.</p>
-                            </div>
-                            <div class="mt-3 col-md-6">
-                                <div class="info">
-                                    <i class="text-3xl material-symbols-rounded text-gradient text-success">devices</i>
-                                    <h5 class="mt-3 font-weight-bolder">Fully Responsive</h5>
-                                    <p class="pe-3">Regardless of the screen size, the website content will naturally
-                                        fit the given resolution.</p>
+                                    <h5 class="mt-3 font-weight-bolder">Bingung mau nyari tempat gym yang enak, nyaman, dan murah? Gymloc Memiliki Solusinya</h5>
+                                    <p class="pe-5">Dengan fitur pencarian gym berdasarkan kota, Anda dapat melihat daftar gym dan dapat memilih berdasarkan kriteria anda</p>
                                 </div>
                             </div>
                         </div>
