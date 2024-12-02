@@ -12,7 +12,7 @@ Route::get('/anjay', function () {
 
 //Dashboard Page
 Route::get('/', function () {
-    return view('partials.app');
+    return view('index');
 });
 
 
