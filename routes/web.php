@@ -30,5 +30,10 @@ Route::post('/reservations/store', [ReservationController::class, 'create']);
 Route::put('/reservations/{id}/status', [ReservationController::class, 'updateStatus']);
 Route::post('/reservations/{id}/payment', [ReservationController::class, 'addPayment']);
 
+
+Route::get('/index', function () {
+    return view('index');
+});
+
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
