@@ -22,7 +22,7 @@ class pengecekan
     }
 
     // Redirect jika user tidak memiliki akses
-    return redirect()->route('menu.dashboard')->with('error', 'Anda tidak memiliki akses ke halaman ini.');
+    return back()->with('error', 'Anda tidak memiliki akses ke halaman ini.');
 }
 
 }

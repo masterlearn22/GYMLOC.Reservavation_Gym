@@ -17,7 +17,7 @@ Route::get('/anjay', function () {
 
 //Dashboard Page
 Route::get('/', function () {
-    return view('index');
+    return view('IntroWebsite.index');
 });
 
 
@@ -48,11 +48,15 @@ Route::get('/index', function () {
 
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
-Route::middleware(['auth', 'role:user'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
-Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
-Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
+Route::middleware(['auth', 'role:1'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
+Route::middleware(['auth', 'role:1'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
+Route::middleware(['auth', 'role:2'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:2'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
+Route::middleware(['auth', 'role:2'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/user/{id}/detail', [AdminController::class, 'userDetail'])
+         ->name('admin.user.detail');
+});
 Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
 Route::post('/profile/topup', [TopupController::class, 'processTopUp']);
 Route::get('/profile/transaksi', [TransaksiController::class, 'index'])->name('profile.transaksi');
