@@ -50,9 +50,9 @@ Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
 Route::middleware(['auth', 'role:1'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
 Route::middleware(['auth', 'role:1'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-Route::middleware(['auth', 'role:2'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::middleware(['auth', 'role:2'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
-Route::middleware(['auth', 'role:2'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
+Route::middleware(['auth', 'role:3'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:3'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
+Route::middleware(['auth', 'role:3'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/user/{id}/detail', [AdminController::class, 'userDetail'])
          ->name('admin.user.detail');
@@ -68,3 +68,4 @@ Route::resource('profile', ProfileController::class);
 
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
+Route::get('/gym/detail/{id}', [GymController::class, 'show'])->name('gym.detail');

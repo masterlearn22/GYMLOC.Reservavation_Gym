@@ -9,7 +9,7 @@ class Gym extends Model
     protected $primaryKey = 'gym_id';
 
     protected $fillable = [
-        'user_id',
+        'id_user',
         'nama_gym',
         'city',
         'alamat',
@@ -27,7 +27,7 @@ class Gym extends Model
     // Relasi dengan user
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     // Relasi dengan gym prices

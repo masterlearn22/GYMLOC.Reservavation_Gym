@@ -26,7 +26,7 @@ class GymController extends Controller
     public function show($gym_id)
     {
         $gym = Gym::findOrFail($gym_id);
-        return view('gym.detail', [
+        return view('user.detailGym', [
             'gym' => $gym
         ]);
     }
