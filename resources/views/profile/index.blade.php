@@ -56,6 +56,11 @@
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+                        <div class="card-footer">
+                            <a href="{{ url()->previous() }}" class="mt-3 btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
+                        </div>
                         <h4 class="card-title">Profil Saya</h4>
 
                         <!-- Tampilkan informasi profil pengguna -->

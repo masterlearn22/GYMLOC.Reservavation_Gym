@@ -57,6 +57,17 @@ Route::middleware(['auth', 'role:3'])->group(function () {
     Route::get('/admin/user/{id}/detail', [AdminController::class, 'userDetail'])
          ->name('admin.user.detail');
 });
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'index'])
+        ->name('profile.index');
+    
+    Route::get('/profile/{id_user}/edit', [ProfileController::class, 'edit'])
+        ->name('profile.edit');
+    
+    Route::put('/profile/{id_user}/update', [ProfileController::class, 'update'])
+        ->name('profile.update');
+});
 Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
 Route::post('/profile/topup', [TopupController::class, 'processTopUp']);
 Route::get('/profile/transaksi', [TransaksiController::class, 'index'])->name('profile.transaksi');

@@ -94,6 +94,11 @@
             <div class="mx-auto col-md-8 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
+                        
+                            <a href="{{ url()->previous() }}" class="mt-3 btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
+                       
                         <h4 class="card-title">Top Up Saldo</h4>
 
                         @if(session('success'))

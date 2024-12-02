@@ -10,6 +10,11 @@
     </style>
 </head>
 <body>
+    <div class="mb-4 d-flex justify-content-between align-items-center">
+        <a href="{{ route('profile.index') }}" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Kembali
+        </a>
+    </div>
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="col-md-12 grid-margin stretch-card">
