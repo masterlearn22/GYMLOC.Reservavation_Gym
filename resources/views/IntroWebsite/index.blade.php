@@ -141,6 +141,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
@@ -150,6 +151,118 @@
                             <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
                                 <a href="#" class="d-block">
                                     <img src="{{ asset('assets/img/gym-jakarta.jpg') }}" class="shadow-lg img-fluid border-radius-lg move-on-hover">
+=======
+</header>
+
+<section class="pt-3 pb-4" id="count-stats">
+            <div class="container">
+                <div class="row">
+                    <div class="py-3 mx-auto col-lg-9">
+                        <div class="row">
+                            <div class="col-md-4 position-relative">
+                                <div class="p-3 text-center">
+                                    <h1 class="text-gradient text-dark"><span id="state1" countTo="70">0</span>+
+                                    </h1>
+                                    <h5 class="mt-3">Gym</h5>
+                                    <p class="text-sm font-weight-normal">Lebih dari (count) gym terdaftar</p>
+                                </div>
+                                <hr class="vertical dark">
+                            </div>
+                            <div class="col-md-4 position-relative">
+                                <div class="p-3 text-center">
+                                    <h1 class="text-gradient text-dark"> <span id="state2"
+                                            countTo="15">0</span>+</h1>
+                                    <h5 class="mt-3">Pelatih</h5>
+                                    <p class="text-sm font-weight-normal">dengan Pelatih yang berkualitas</p>
+                                </div>
+                                <hr class="vertical dark">
+                            </div>
+                            <div class="col-md-4">
+                                <div class="p-3 text-center">
+                                    <h1 class="text-gradient text-dark" id="state3" countTo="4">0</h1>
+                                    <h5 class="mt-3">Reservasi</h5>
+                                    <p class="text-sm font-weight-normal">jumlah reservasi lewat Gymloc</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="py-5 my-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="mt-4 col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0">
+                        <div class="rotating-card-container">
+                            <div
+                                class="mt-5 card card-rotate card-background card-background-mask-primary shadow-dark mt-md-0">
+                                <div class="front front-background"
+                                    style="background-image: url(https://asset.kompas.com/crops/MUiHPEJKwJknhjbHQTINeA3BkTI=/0x0:0x0/1200x800/data/photo/2021/05/08/60961de48b31a.jpg); background-size: cover;">
+                                    <div class="text-center card-body py-7">
+                                        <i class="my-3 text-4xl text-white material-symbols-rounded">touch_app</i>
+                                        <h3 class="text-white">Cari Gym <br /> di Kotamu</h3>
+                                        <p class="text-white opacity-8">Gymloc memudahkan anda mencari gym dengan beberapa fasilitas</p>
+                                    </div>
+                                </div>
+                                <div class="back back-background"
+                                    style="background-image: url(https://asset.kompas.com/crops/fg6z7bDQSPNA625RFOFP1ndlKac=/0x0:3000x2000/1200x800/data/photo/2024/03/26/66023bbbb5ce3.jpg); background-size: cover;">
+                                    <div class="text-center card-body pt-7">
+                                        <h3 class="text-white">Explore More</h3>
+                                        <p class="text-white opacity-8"> Kamu akan di berikan list.
+                                        </p>
+                                        <a href="(menuju ke location/list gym)" target="_blank"
+                                            class="mx-auto mt-3 btn btn-white btn-sm w-50">Start with Gymloc</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 ms-auto">
+                        <div class="row justify-content-start">
+                            <div class="col-md-6">
+                                <div class="info">
+                                    <i
+                                        class="text-3xl material-symbols-rounded text-gradient text-success">content_copy</i>
+                                    <h5 class="mt-3 font-weight-bolder">Bingung mau nyari tempat gym yang enak, nyaman, dan murah? Gymloc Memiliki Solusinya</h5>
+                                    <p class="pe-5">Dengan fitur pencarian gym berdasarkan kota, Anda dapat melihat daftar gym dan dapat memilih berdasarkan kriteria anda</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="mt-5 text-center row my-sm-5">
+                        <div class="mx-auto col-lg-6">
+                            <span class="mb-3 badge bg-success">Boost creativity</span>
+                            <h2 class="">With our coded pages</h2>
+                            <p class="lead">The easiest way to get started is to use one of our <br /> pre-built
+                                example pages. </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-5">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mt-4 row">
+                            <div class="col-md-6">
+                                <a href="./pages/about-us.html">
+                                    <div class="card move-on-hover">
+                                        <img class="w-100"
+                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/about-us.jpg"
+                                            alt="aboutus">
+                                    </div>
+                                    <div class="mt-2 ms-2">
+                                        <h6 class="mb-0">About Us Page</h6>
+                                    </div>
+>>>>>>> 3fd663ce668cd9920c419f2358599e90d9728e15
                                 </a>
                             </div>
                             <div class="pt-3 card-body">
