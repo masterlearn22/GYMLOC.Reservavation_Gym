@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
@@ -15,16 +15,16 @@ class AdminController extends Controller
         $gymRequests = User::where('is_gym_requested', true)
             ->select('id_user', 'name', 'email', 'created_at')
             ->get();
-    
+
         $gyms = DB::table('gyms')
             ->leftJoin('gym_prices', 'gyms.gym_id', '=', 'gym_prices.gym_id')
             ->leftJoin('gym_price_categories', 'gym_prices.category_id', '=', 'gym_price_categories.id')
             ->select(
                 'gyms.gym_id',
-                'gyms.nama_gym', 
-                'gyms.alamat', 
-                'gyms.fasilitas', 
-                'gyms.deskripsi', 
+                'gyms.nama_gym',
+                'gyms.alamat',
+                'gyms.fasilitas',
+                'gyms.deskripsi',
                 'gyms.jam_operasional',
                 'gym_prices.durasi',
                 'gym_prices.harga',
@@ -33,7 +33,7 @@ class AdminController extends Controller
             ->whereNull('gyms.approved_at')
             ->get()
             ->groupBy('gym_id');
-    
+
         return view('admin.dashboard', [
             'gymRequests' => $gymRequests,
             'gyms' => $gyms
@@ -70,10 +70,9 @@ class AdminController extends Controller
 
             return redirect()->route('admin.dashboard')
                 ->with('success', 'Gym berhasil disetujui.');
-
         } catch (\Exception $e) {
             DB::rollBack();
-            
+
             // Log error secara detail
             Log::error('Approve Gym Error: ' . $e->getMessage());
             Log::error('Gym ID: ' . $gymId);
@@ -97,7 +96,7 @@ class AdminController extends Controller
 
             // Hapus harga terkait
             GymPrice::where('gym_id', $gym->gym_id)->delete();
-            
+
             // Hapus gym
             $gym->delete();
 
@@ -111,10 +110,9 @@ class AdminController extends Controller
 
             return redirect()->route('admin.dashboard')
                 ->with('error', 'Permohonan gym ditolak.');
-
         } catch (\Exception $e) {
             DB::rollBack();
-            
+
             // Log error secara detail
             Log::error('Reject Gym Error: ' . $e->getMessage());
             Log::error('Gym ID: ' . $gymId);
@@ -126,8 +124,8 @@ class AdminController extends Controller
     }
 
     public function userDetail($id)
-{
-    $user = User::findOrFail($id);
-    return view('admin.user-detail', compact('user'));
-}
+    {
+        $user = User::where('id_user', $id)->firstOrFail();
+        return view('admin.user-detail', compact('user'));
+    }
 }

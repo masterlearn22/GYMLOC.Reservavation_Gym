@@ -15,7 +15,7 @@
             <div class="col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Permohonan Gym</h4>
+                        <h4 class="card-title">Permohonan Pengajuan Gym</h4>
                         
                         @if (session('success'))
                             <div class="alert alert-success">
@@ -85,10 +85,10 @@
             </div>
 
             <!-- Daftar Pengguna yang Mengajukan Gym -->
-            {{-- <div class="mt-4 col-md-12 grid-margin stretch-card">
+            <div class="mt-4 col-md-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Daftar Pengguna Mengajukan Gym</h4>
+                        <h4 class="card-title">Daftar Pengguna Yang Disetujui Sebagai Pihak Gym</h4>
                         
                         <table class="table table-striped">
                             <thead>
@@ -108,7 +108,7 @@
                                         <td>{{ $request->email }}</td>
                                         <td>{{ $request->created_at->format('d M Y H:i') }}</td>
                                         <td>
-                                            <a href="{{ route('admin.user.detail', ['id' => $request->id]) }}" class="btn btn-info btn-sm">Detail</a>
+                                            <a href="{{ route('admin.user.detail', ['id' => $request->id_user]) }}" class="btn btn-info btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                 @empty
@@ -120,7 +120,7 @@
                         </table>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 

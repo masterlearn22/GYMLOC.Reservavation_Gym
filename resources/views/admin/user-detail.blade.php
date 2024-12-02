@@ -31,9 +31,9 @@
                                         <th>Status Pengajuan Gym</th>
                                         <td>
                                             @if($user->is_gym_requested)
-                                                <span class="badge bg-warning">Menunggu Persetujuan</span>
+                                                <span class="badge bg-success">Disetujui</span>
                                             @else
-                                                <span class="badge bg-secondary">Tidak Mengajukan</span>
+                                                <span class="badge bg-secondary">Menunggu Persetujuan</span>
                                             @endif
                                         </td>
                                     </tr>

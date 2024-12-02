@@ -53,7 +53,7 @@ Route::middleware(['auth', 'role:1'])->post('/submit-gym-request', [UserControll
 Route::middleware(['auth', 'role:3'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware(['auth', 'role:3'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
 Route::middleware(['auth', 'role:3'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::middleware(['auth', 'role:3'])->group(function () {
     Route::get('/admin/user/{id}/detail', [AdminController::class, 'userDetail'])
          ->name('admin.user.detail');
 });
