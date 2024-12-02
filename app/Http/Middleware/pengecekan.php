@@ -17,7 +17,7 @@ class pengecekan
      */
     public function handle(Request $request, Closure $next, ...$roles)
 {
-    if (Auth::check() && in_array(Auth::user()->ID_JENIS_USER, $roles)) {
+    if (Auth::check() && in_array(Auth::user()->id_role, $roles)) {
         return $next($request);
     }
 

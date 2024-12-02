@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GymController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ReservationController;
 
 Route::get('/anjay', function () {
@@ -37,9 +40,22 @@ Route::post('/reservations/{id}/payment', [ReservationController::class, 'addPay
 
 
 Route::get('/index', function () {
-    return view('index');
+    return view('IntroWebsite.index');
 });
 
 
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
+Route::middleware(['auth', 'role:user'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
+Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
+Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
+Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
+Route::get('/profile/topup', [UserController::class, 'showTopUpForm'])->name('profile.topup');
+Route::post('/profile/topup', [UserController::class, 'processTopUp']);
+
+Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
+Route::post('/gym/edit/{id}', [GymController::class, 'update']);
+Route::resource('profile', ProfileController::class);
+
+

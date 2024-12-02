@@ -20,16 +20,15 @@ class AuthController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required',
-            'id_role' => 'required|exists:role,id_role'
         ]);
         
-        // Membuat pengguna baru
+        // Membuat pengguna baru dengan id_role default 1
         $user = User::create([
             'username' => $request->username,
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'id_role' => $request->id_role
+            'id_role' => 1  // Menetapkan role default ke 'user'
         ]);
     
         Auth::login($user);
@@ -41,11 +40,12 @@ class AuthController extends Controller
             // Menyimpan nama role ke dalam session
             session(['role' => $Role]);
     
-            return redirect()->intended('anjay');
+            return redirect()->intended('login');
         } else {
             return back()->withErrors(['message' => 'Failed to create user']);
         }
     }
+    
     
 
     public function TampilanLogin(){
@@ -71,7 +71,7 @@ class AuthController extends Controller
             // Regenerasi session ID untuk keamanan
             $request->session()->regenerate();
     
-            return redirect('anjay');
+            return redirect('index');
         } else {
             return back()->withErrors(['message' => 'Login failed']);
         }
