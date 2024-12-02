@@ -7,6 +7,7 @@ use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
 
 Route::get('/anjay', function () {
@@ -51,8 +52,9 @@ Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserContr
 Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
 Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-Route::get('/profile/topup', [UserController::class, 'showTopUpForm'])->name('profile.topup');
-Route::post('/profile/topup', [UserController::class, 'processTopUp']);
+Route::get('/profile/topup', [TransaksiController::class, 'showTopUpForm'])->name('profile.topup');
+Route::post('/profile/topup', [TransaksiController::class, 'processTopUp']);
+Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
 
 Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
 Route::post('/gym/edit/{id}', [GymController::class, 'update']);

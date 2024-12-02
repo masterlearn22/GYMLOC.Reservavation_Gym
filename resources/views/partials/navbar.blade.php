@@ -73,7 +73,7 @@
                                             <li><a class="dropdown-item" href="#">Keanggotaan</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
-                                                <form action="#" method="POST" class="dropdown-item">
+                                                <form action="/logout" method="POST" class="dropdown-item">
                                                     @csrf
                                                     <button type="submit" class="p-0 m-0 btn btn-link">Logout</button>
                                                 </form>
@@ -81,7 +81,7 @@
                                         </ul>
                                     </div>
                                 @else
-                                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-primary">
+                                    <a href="/login" class="btn btn-sm btn-outline-primary">
                                         Login
                                     </a>
                                 @endif

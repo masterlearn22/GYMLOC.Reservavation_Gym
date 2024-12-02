@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,27 +25,7 @@ class UserController extends Controller
         return redirect()->route('home')->with('success', 'Permohonan untuk menjadi pihak gym berhasil dikirim.');
     }
 
-    public function showTopUpForm()
-    {
-        if (Auth::user()->id_role == 'gym') {
-            return redirect()->route('profile.index')->with('error', 'Gym cannot top up saldo.');
-        }
-        
-        return view('profile.topup');
-    }
-
-    // Proses top-up saldo
-    public function processTopUp(Request $request)
-    {
-        $request->validate([
-            'amount' => 'required|numeric|min:10000',
-        ]);
-
-        $user = Auth::user();
-        $user->saldo += $request->amount;
-        $user->save();
-
-        return redirect()->route('profile.index')->with('success', 'Saldo berhasil ditambahkan!');
-    }
+   
     
+   
 }
