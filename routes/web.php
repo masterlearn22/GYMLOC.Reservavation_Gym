@@ -58,4 +58,5 @@ Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edi
 Route::post('/gym/edit/{id}', [GymController::class, 'update']);
 Route::resource('profile', ProfileController::class);
 
-
+Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
+Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');

@@ -1,395 +1,337 @@
 @extends('partials.app')
 @section('content')
+    <header class="header-2">
+        <div class="relative page-header min-vh-75" style="background-image: url('./assets/img/bg-landing.jpg')">
+            <span class="mask bg-gradient-dark opacity-4"></span>
+            <div class="container">
+                <div class="row">
+                    <div class="mx-auto text-center col-lg-7">
+                        <h1 class="pt-3 text-white font-weight-black mt-n5">GYMLOC</h1>
+                        <p class="mt-3 text-white lead">Temukan kemudahan dalam mencari gym di sekitar <br /> Harga
+                            Termurah dan Terdekat</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
 
-<header class="header-2">
-    <div class="relative page-header min-vh-75" style="background-image: url('./assets/img/bg-landing.jpg')">
-        <span class="mask bg-gradient-dark opacity-4"></span>
+    <section class="pt-3 pb-4" id="count-stats">
         <div class="container">
             <div class="row">
-                <div class="mx-auto text-center col-lg-7">
-                    <h1 class="pt-3 text-white font-weight-black mt-n5">GYMLOC</h1>
-                    <p class="mt-3 text-white lead">Temukan kemudahan dalam mencari gym di sekitar <br /> Harga
-                        Termurah dan Terdekat</p>
+                <div class="py-3 mx-auto col-lg-9">
+                    <div class="row">
+                        <div class="col-md-4 position-relative">
+                            <div class="p-3 text-center">
+                                <h1 class="text-gradient text-dark"><span id="state1" countTo="100">0</span>+</h1>
+                                <h5 class="mt-3">Lokasi Gym</h5>
+                                <p class="text-sm font-weight-normal">Tersebar di berbagai kota</p>
+                            </div>
+                            <hr class="vertical dark">
+                        </div>
+                        <div class="col-md-4 position-relative">
+                            <div class="p-3 text-center">
+                                <h1 class="text-gradient text-dark"><span id="state2" countTo="50">0</span>+</h1>
+                                <h5 class="mt-3">Fasilitas Lengkap</h5>
+                                <p class="text-sm font-weight-normal">Peralatan modern dan berkualitas</p>
+                            </div>
+                            <hr class="vertical dark">
+                        </div>
+                        <div class="col-md-4">
+                            <div class="p-3 text-center">
+                                <h1 class="text-gradient text-dark" id="state3" countTo="25">0</h1>
+                                <h5 class="mt-3">Kota Tersedia</h5>
+                                <p class="text-sm font-weight-normal">Jangkauan luas di seluruh Indonesia</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="mt-4 col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0">
+                    <div class="rotating-card-container">
+                        <div class="mt-5 card card-rotate card-background card-background-mask-primary shadow-dark mt-md-0">
+                            <div class="front front-background"
+                                style="background-image: url(https://asset.kompas.com/crops/MUiHPEJKwJknhjbHQTINeA3BkTI=/0x0:0x0/1200x800/data/photo/2021/05/08/60961de48b31a.jpg); background-size: cover;">
+                                <div class="text-center card-body py-7">
+                                    <i class="my-3 text-4xl text-white material-symbols-rounded">touch_app</i>
+                                    <h3 class="text-white">Cari Gym <br /> di Kotamu</h3>
+                                    <p class="text-white opacity-8">Gymloc memudahkan anda mencari gym dengan beberapa
+                                        fasilitas</p>
+                                </div>
+                            </div>
+                            <div class="back back-background"
+                                style="background-image: url(https://asset.kompas.com/crops/fg6z7bDQSPNA625RFOFP1ndlKac=/0x0:3000x2000/1200x800/data/photo/2024/03/26/66023bbbb5ce3.jpg); background-size: cover;">
+                                <div class="text-center card-body pt-7">
+                                    <h3 class="text-white">Explore More</h3>
+                                    <p class="text-white opacity-8"> Kamu akan di berikan list.
+                                    </p>
+                                    <a href="(menuju ke location/list gym)" target="_blank"
+                                        class="mx-auto mt-3 btn btn-white btn-sm w-50">Start with Gymloc</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ms-auto">
+                    <div class="row justify-content-start">
+                        <div class="col-md-6">
+                            <div class="info">
+                                <i class="text-3xl material-symbols-rounded text-gradient text-success">fitness_center</i>
+                            <h5 class="mt-3 font-weight-bolder">Peralatan Lengkap</h5>
+                            <p>Gym dengan peralatan terbaru dan berkualitas tinggi</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="info">
+                                <i class="text-3xl material-symbols-rounded text-gradient text-success">groups</i>
+                            <h5 class="mt-3 font-weight-bolder">Instruktur Profesional</h5>
+                            <p>Dibimbing oleh pelatih berpengalaman dan tersertifikasi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-5 row justify-content-start">
+                        <div class="mt-3 col-md-6">
+                            <i class="text-3xl material-symbols-rounded text-gradient text-success">local_activity</i>
+                            <h5 class="mt-3 font-weight-bolder">Harga Terjangkau</h5>
+                            <p>Berbagai pilihan paket dengan harga kompetitif</p>
+                        </div>
+                        <div class="mt-3 col-md-6">
+                            <div class="info">
+                                <i class="text-3xl material-symbols-rounded text-gradient text-success">schedule</i>
+                            <h5 class="mt-3 font-weight-bolder">Jam Fleksibel</h5>
+                            <p>Buka dari pagi hingga malam, sesuai kebutuhan Anda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-7">
+        <div class="container">
+            <div class="row">
+                <div class="mx-auto text-center col-lg-8">
+                    <h2 class="mb-0 font-weight-bolder">Apa Kata Member Kami</h2>
+                    <p class="lead">Pengalaman nyata dari mereka yang telah bergabung</p>
+                </div>
+            </div>
+            <div class="mt-6 row">
+                <!-- Testimoni 1-3 disesuaikan dengan konteks gym -->
+            </div>
+        </div>
+    </section>
+
+
+<section class="py-5" id="gym-locations">
+    <div class="container">
+        <div class="row">
+            <div class="mt-5 text-center row my-sm-5">
+                <div class="mx-auto col-lg-8">
+                    <span class="mb-3 badge bg-success">Temukan Gym Terbaik</span>
+                    <h2 class="display-4">Pilih Gym Sesuai Kebutuhanmu</h2>
+                    <p class="lead">Kami menyediakan berbagai pilihan gym dengan fasilitas terlengkap di berbagai kota</p>
                 </div>
             </div>
         </div>
     </div>
-</header>
-
-<section class="pt-3 pb-4" id="count-stats">
-            <div class="container">
-                <div class="row">
-                    <div class="py-3 mx-auto col-lg-9">
-                        <div class="row">
-                            <div class="col-md-4 position-relative">
-                                <div class="p-3 text-center">
-                                    <h1 class="text-gradient text-dark"><span id="state1" countTo="70">0</span>+
-                                    </h1>
-                                    <h5 class="mt-3">Coded Elements</h5>
-                                    <p class="text-sm font-weight-normal">From buttons, to inputs, navbars, alerts or
-                                        cards, you are covered</p>
-                                </div>
-                                <hr class="vertical dark">
-                            </div>
-                            <div class="col-md-4 position-relative">
-                                <div class="p-3 text-center">
-                                    <h1 class="text-gradient text-dark"> <span id="state2"
-                                            countTo="15">0</span>+</h1>
-                                    <h5 class="mt-3">Design Blocks</h5>
-                                    <p class="text-sm font-weight-normal">Mix the sections, change the colors and
-                                        unleash your creativity</p>
-                                </div>
-                                <hr class="vertical dark">
-                            </div>
-                            <div class="col-md-4">
-                                <div class="p-3 text-center">
-                                    <h1 class="text-gradient text-dark" id="state3" countTo="4">0</h1>
-                                    <h5 class="mt-3">Pages</h5>
-                                    <p class="text-sm font-weight-normal">Save 3-4 weeks of work when you use our
-                                        pre-made pages for your website</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <section class="py-5 my-5">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="mt-4 col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0">
-                        <div class="rotating-card-container">
-                            <div
-                                class="mt-5 card card-rotate card-background card-background-mask-primary shadow-dark mt-md-0">
-                                <div class="front front-background"
-                                    style="background-image: url(https://asset.kompas.com/crops/MUiHPEJKwJknhjbHQTINeA3BkTI=/0x0:0x0/1200x800/data/photo/2021/05/08/60961de48b31a.jpg); background-size: cover;">
-                                    <div class="text-center card-body py-7">
-                                        <i class="my-3 text-4xl text-white material-symbols-rounded">touch_app</i>
-                                        <h3 class="text-white">Cari Gym <br /> di Kotamu</h3>
-                                        <p class="text-white opacity-8">Gymloc memudahkan anda mencari gym dengan beberapa fasilitas</p>
-                                    </div>
-                                </div>
-                                <div class="back back-background"
-                                    style="background-image: url(https://asset.kompas.com/crops/fg6z7bDQSPNA625RFOFP1ndlKac=/0x0:3000x2000/1200x800/data/photo/2024/03/26/66023bbbb5ce3.jpg); background-size: cover;">
-                                    <div class="text-center card-body pt-7">
-                                        <h3 class="text-white">Explore More</h3>
-                                        <p class="text-white opacity-8"> Kamu akan di berikan list.
-                                        </p>
-                                        <a href="(menuju ke location/list gym)" target="_blank"
-                                            class="mx-auto mt-3 btn btn-white btn-sm w-50">Start with Gymloc</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 ms-auto">
-                        <div class="row justify-content-start">
-                            <div class="col-md-6">
-                                <div class="info">
-                                    <i
-                                        class="text-3xl material-symbols-rounded text-gradient text-success">content_copy</i>
-                                    <h5 class="mt-3 font-weight-bolder">Full Documentation</h5>
-                                    <p class="pe-5">Built by developers for developers. Check the foundation and you
-                                        will find everything inside our documentation.</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="info">
-                                    <i
-                                        class="text-3xl material-symbols-rounded text-gradient text-success">flip_to_front</i>
-                                    <h5 class="mt-3 font-weight-bolder">Bootstrap 5 Ready</h5>
-                                    <p class="pe-3">The world’s most popular front-end open source toolkit, featuring
-                                        Sass variables and mixins.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mt-5 row justify-content-start">
-                            <div class="mt-3 col-md-6">
-                                <i
-                                    class="text-3xl material-symbols-rounded text-gradient text-success">price_change</i>
-                                <h5 class="mt-3 font-weight-bolder">Save Time & Money</h5>
-                                <p class="pe-5">Creating your design from scratch with dedicated designers can be
-                                    very expensive. Start with our Design System.</p>
-                            </div>
-                            <div class="mt-3 col-md-6">
-                                <div class="info">
-                                    <i class="text-3xl material-symbols-rounded text-gradient text-success">devices</i>
-                                    <h5 class="mt-3 font-weight-bolder">Fully Responsive</h5>
-                                    <p class="pe-3">Regardless of the screen size, the website content will naturally
-                                        fit the given resolution.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="mt-5 text-center row my-sm-5">
-                        <div class="mx-auto col-lg-6">
-                            <span class="mb-3 badge bg-success">Boost creativity</span>
-                            <h2 class="">With our coded pages</h2>
-                            <p class="lead">The easiest way to get started is to use one of our <br /> pre-built
-                                example pages. </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-md-8">
-                        <div class="mt-4 row">
-                            <div class="col-md-6">
-                                <a href="./pages/about-us.html">
-                                    <div class="card move-on-hover">
-                                        <img class="w-100"
-                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/about-us.jpg"
-                                            alt="aboutus">
-                                    </div>
-                                    <div class="mt-2 ms-2">
-                                        <h6 class="mb-0">About Us Page</h6>
-                                    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mt-4 row">
+                    <div class="mb-4 col-md-6">
+                        <div class="card h-100 gym-card">
+                            <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
+                                <a href="#" class="d-block">
+                                    <img src="{{ asset('assets/img/gym-jakarta.jpg') }}" class="shadow-lg img-fluid border-radius-lg move-on-hover">
                                 </a>
                             </div>
-                            <div class="mt-5 col-md-6 mt-md-0">
-                                <a href="./pages/contact-us.html">
-                                    <div class="card move-on-hover">
-                                        <img class="w-100"
-                                            src="https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/assets/img/contact-us.jpg"
-                                            alt="contacus">
+                            <div class="pt-3 card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Gym Central Jakarta</h5>
+                                    <span class="badge bg-success">Terdekat</span>
+                                </div>
+                                <p class="mt-2 text-sm">
+                                    <i class="fas fa-map-marker-alt me-1"></i> Jakarta Pusat
+                                </p>
+                                <div class="mt-3 d-flex justify-content-between align-items-center">
+                                    <div class="rating">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-muted"></i>
                                     </div>
-                                    <div class="mt-2 ms-2">
-                                        <h6 class="mb-0">Contact Us Page</h6>
-                                    </div>
-                                </a>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mx-auto mt-5 col-md-3 mt-md-0">
-                        <div class="position-sticky" style="top:100px !important">
-                            <h4 class="">Presentation Pages for Company, Sign In Page, Author and Contact</h4>
-                            <h6 class="text-secondary font-weight-normal">These is just a small selection of the
-                                multiple possibitilies you have. Focus on the business, not on the design.</h6>
+                    <div class="mb-4 col-md-6">
+                        <div class="card h-100 gym-card">
+                            <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
+                                <a href="#" class="d-block">
+                                    <img src="{{ asset('assets/img/gym-bandung.jpg') }}" class="shadow-lg img-fluid border-radius-lg move-on-hover">
+                                </a>
+                            </div>
+                            <div class="pt-3 card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">Gym Fitness Bandung</h5>
+                                    <span class="badge bg-primary">Promo</span>
+                                </div>
+                                <p class="mt-2 text-sm">
+                                    <i class="fas fa-map-marker-alt me-1"></i> Bandung
+                                </p>
+                                <div class="mt-3 d-flex justify-content-between align-items-center">
+                                    <div class="rating">
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                        <i class="fas fa-star text-warning"></i>
+                                    </div>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-        </section>
-
-
-        <!-- -------- START Content Presentation Docs ------- -->
-        <div class="container mt-sm-5">
-            <div class="py-6 mb-3 page-header py-md-5 my-sm-3 border-radius-xl"
-                style="background-image: url('https://raw.githubusercontent.com/creativetimofficial/public-assets/master/soft-ui-design-system/assets/img/desktop.jpg');"
-                loading="lazy">
-                <span class="mask bg-gradient-dark"></span>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-6 ms-lg-5">
-                            <h4 class="text-white">Built by developers</h4>
-                            <h1 class="text-white">Complex Documentation</h1>
-                            <p class="text-white lead opacity-8">From colors, cards, typography to complex elements,
-                                you will find the full documentation. Play with the utility classes and you will create
-                                unlimited combinations for our components.</p>
-                            <a href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-kit"
-                                class="text-white icon-move-right">
-                                Read docs
-                                <i class="text-sm fas fa-arrow-right ms-1"></i>
-                            </a>
+            </div>
+            <div class="mx-auto mt-5 col-md-4 mt-md-0">
+                <div class="position-sticky" style="top:100px !important">
+                    <div class="text-white card bg-gradient-dark">
+                        <div class="card-body">
+                            <h4 class="text-white">Temukan Gym Ideal Anda</h4>
+                            <p>Gunakan filter pencarian kami untuk menemukan gym sesuai kebutuhan:</p>
+                            <form>
+                                <div class="mb-3">
+                                    <label class="text-white form-label">Lokasi</label>
+                                    <select class="form-control">
+                                        <option>Pilih Kota</option>
+                                        <option>Jakarta</option>
+                                        <option>Bandung</option>
+                                        <option>Surabaya</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="text-white form-label">Fasilitas</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="weightTraining">
+                                        <label class="text-white form-check-label" for="weightTraining">
+                                            Weight Training
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cardio">
+                                        <label class="text-white form-check-label" for="cardio">
+                                            Cardio
+                                        </label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-white w-100">Cari Gym</button>
+                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</section>
 
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="p-4 info-horizontal bg-gradient-dark border-radius-xl d-block d-md-flex">
-                        <i class="text-3xl text-white material-symbols-rounded">flag</i>
-                        <div class="mt-3 ps-0 ps-md-3 mt-md-0">
-                            <h5 class="text-white">Getting Started</h5>
-                            <p class="text-white">Check the possible ways of working with our product and the necessary
-                                files for building your own project.</p>
-                            <a href="https://www.creative-tim.com/learning-lab/bootstrap/overview/material-kit"
-                                class="text-white icon-move-right">
-                                Let's start
-                                <i class="text-sm fas fa-arrow-right ms-1"></i>
-                            </a>
+<section class="bg-gray-100 py-7" id="gym-benefits">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto text-center col-lg-8">
+                <h2 class="mb-4 font-weight-bolder">Kenapa Memilih Gymloc?</h2>
+                <p class="lead">Kami menyediakan pengalaman fitness terbaik dengan berbagai keunggulan</p>
+            </div>
+        </div>
+        <div class="mt-5 row">
+            <div class="col-md-4">
+                <div class="border-0 shadow-lg card card-body h-100">
+                    <div class="text-center">
+                        <div class="mb-3 text-center icon icon-shape bg-gradient-primary shadow-primary rounded-circle">
+                            <i class="text-lg fas fa-dumbbell opacity-10"></i>
                         </div>
+                        <h5>Peralatan Modern</h5>
+                        <p>Dilengkapi peralatan fitness tercanggih dan terawat</p>
                     </div>
                 </div>
-                <div class="mt-4 col-lg-4 px-lg-1 mt-lg-0">
-                    <div class="p-4 bg-gray-100 info-horizontal border-radius-xl d-block d-md-flex h-100">
-                        <i
-                            class="text-3xl material-symbols-rounded text-gradient text-primary">precision_manufacturing</i>
-                        <div class="mt-3 ps-0 ps-md-3 mt-md-0">
-                            <h5>Plugins</h5>
-                            <p>Get inspiration and have an overview about the plugins that we used to create the
-                                Material Kit.</p>
-                            <a href="https://www.creative-tim.com/learning-lab/bootstrap/datepicker/material-kit"
-                                class="text-primary icon-move-right">
-                                Read more
-                                <i class="text-sm fas fa-arrow-right ms-1"></i>
-                            </a>
+            </div>
+            <div class="col-md-4">
+                <div class="border-0 shadow-lg card card-body h-100">
+                    <div class="text-center">
+                        <div class="mb-3 text-center icon icon-shape bg-gradient-success shadow-success rounded-circle">
+                            <i class="text-lg fas fa -dumbbell opacity-10"></i>
                         </div>
+                        <h5>Pelatih Bersertifikat</h5>
+                        <p>Pelatih profesional siap membantu Anda mencapai tujuan fitness</p>
                     </div>
                 </div>
-
-                <div class="mt-4 col-lg-4 mt-lg-0">
-                    <div class="p-4 bg-gray-100 info-horizontal border-radius-xl d-block d-md-flex">
-                        <i class="text-3xl material-symbols-rounded text-gradient text-primary">receipt_long</i>
-                        <div class="mt-3 ps-0 ps-md-3 mt-md-0">
-                            <h5>Utility Classes</h5>
-                            <p>Material Kit is giving you a lot of pre-made elements. For those who want flexibility, we
-                                included many utility classes.</p>
-                            <a href="https://www.creative-tim.com/learning-lab/bootstrap/utilities/material-kit"
-                                class="text-primary icon-move-right">
-                                Read more
-                                <i class="text-sm fas fa-arrow-right ms-1"></i>
-                            </a>
+            </div>
+            <div class="col-md-4">
+                <div class="border-0 shadow-lg card card-body h-100">
+                    <div class="text-center">
+                        <div class="mb-3 text-center icon icon-shape bg-gradient-danger shadow-danger rounded-circle">
+                            <i class="text-lg fas fa-calendar-check opacity-10"></i>
                         </div>
+                        <h5>Jadwal Fleksibel</h5>
+                        <p>Jam buka yang fleksibel untuk menyesuaikan dengan rutinitas Anda</p>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- -------- END Content Presentation Docs ------- -->
+    </div>
+</section>
 
-
-        <section class="py-7">
-            <div class="container">
-                <div class="row">
-                    <div class="mx-auto text-center col-lg-6">
-                        <h2 class="mb-0 font-weight-bolder">Trusted by over</h2>
-                        <h2 class="mb-3 text-gradient font-weight-bolder text-success">2,603,000+ web developers</h2>
-                        <p class="lead">Many Fortune 500 companies, startups, universities and governmental
-                            institutions love Creative Tim's products. </p>
-                    </div>
-                </div>
-                <div class="mt-6 row">
-                    <div class="col-lg-4 col-md-8">
-                        <div class="card card-plain">
-                            <div class="card-body">
-                                <div class="author">
-                                    <div class="name">
-                                        <h6 class="mb-0 font-weight-bolder">Nick Willever</h6>
-                                        <div class="stats">
-                                            <i class="far fa-clock"></i> 1 day ago
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mt-4">"This is an excellent product, the documentation is excellent and
-                                    helped me get things done more efficiently."</p>
-                                <div class="mt-3 rating">
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-8 ms-md-auto">
-                        <div class="card bg-dark">
-                            <div class="card-body">
-                                <div class="author align-items-center">
-                                    <div class="name">
-                                        <h6 class="mb-0 text-white font-weight-bolder">Shailesh Kushwaha</h6>
-                                        <div class="text-white stats">
-                                            <i class="far fa-clock"></i> 1 week ago
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mt-4 text-white">"I found solution to all my design needs from Creative Tim.
-                                    I use them as a freelancer in my hobby projects for fun! And its really affordable,
-                                    very humble guys !!!"</p>
-                                <div class="mt-3 rating">
-                                    <i class="text-white fas fa-star"></i>
-                                    <i class="text-white fas fa-star"></i>
-                                    <i class="text-white fas fa-star"></i>
-                                    <i class="text-white fas fa-star"></i>
-                                    <i class="text-white fas fa-star"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-8">
-                        <div class="card card-plain">
-                            <div class="card-body">
-                                <div class="author">
-                                    <div class="name">
-                                        <h6 class="mb-0 font-weight-bolder">Samuel Kamuli</h6>
-                                        <div class="stats">
-                                            <i class="far fa-clock"></i> 3 weeks ago
-                                        </div>
-                                    </div>
-                                </div>
-                                <p class="mt-4">"Great product. Helped me cut the time to set up a site. I used the
-                                    components within instead of starting from scratch. I highly recommend for
-                                    developers who want to spend more time on the backend!."</p>
-                                <div class="mt-3 rating">
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                    <i class="fas fa-star text-success"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-                <hr class="my-5 horizontal dark">
-                <div class="row">
-                    <div class="col-lg-2 col-md-4 col-6 ms-auto">
-                        <img class="w-100 opacity-6" src="./assets/img/logos/gray-logos/logo-apple.svg"
-                            alt="Logo">
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <img class="w-100 opacity-6" src="./assets/img/logos/gray-logos/logo-facebook.svg"
-                            alt="Logo">
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-6">
-                        <img class="w-100 opacity-6" src="./assets/img/logos/gray-logos/logo-nasa.svg"
-                            alt="Logo">
-                    </div>
-                    <div class="col-lg-2 col-md-4 col-6 ms-lg-0 ms-md-auto">
-                        <img class="w-100 opacity-6" src="./assets/img/logos/gray-logos/logo-vodafone.svg"
-                            alt="Logo">
-                    </div>
-                    <div class="mx-auto col-lg-2 col-md-4 col-6 me-md-auto mx-md-0">
-                        <img class="w-100 opacity-6" src="./assets/img/logos/gray-logos/logo-digitalocean.svg"
-                            alt="Logo">
-                    </div>
+<section class="py-5" id="testimonials">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto text-center col-lg-8">
+                <h2 class="mb-4 font-weight-bolder">Apa Kata Member Kami</h2>
+                <p class="lead">Dengarkan pengalaman mereka yang telah bergabung dengan kami</p>
+            </div>
+        </div>
+        <div class="mt-5 row">
+            <div class="col-md-4">
+                <div class="border-0 shadow-lg card card-body">
+                    <p class="text-center">"Saya sangat puas dengan fasilitas dan pelatih di Gym Central Jakarta. Sangat membantu dalam mencapai tujuan fitness saya!"</p>
+                    <h6 class="text-center">- Rina S.</h6>
                 </div>
             </div>
-        </section>
-
-
-        <section class="py-sm-7" id="download-soft-ui">
-            <div class="m-3 overflow-hidden bg-gradient-dark position-relative border-radius-xl">
-                <img src="./assets/img/shapes/waves-white.svg" alt="pattern-lines"
-                    class="position-absolute start-0 top-md-0 w-100 opacity-2">
-                <div class="container py-7 postion-relative z-index-2 position-relative">
-                    <div class="row">
-                        <div class="mx-auto text-center col-md-7">
-                            <h3 class="mb-0 text-white h4">Do you love this awesome</h3>
-                            <h3 class="text-white">UI Kit for Bootstrap 5?</h3>
-                            <p class="mb-5 text-white">Cause if you do, it can be yours for FREE. Hit the button below
-                                to navigate to Creative Tim where you can find the Design System in HTML. Start a new
-                                project or give an old Bootstrap project a new look!</p>
-                        </div>
-                    </div>
+            <div class="col-md-4">
+                <div class="border-0 shadow-lg card card-body">
+                    <p class="text-center">"Gym Fitness Bandung memiliki peralatan yang sangat baik dan pelatih yang profesional. Saya sangat merekomendasikannya!"</p>
+                    <h6 class="text-center">- Andi P.</h6>
                 </div>
             </div>
-        </section>
+            <div class="col-md-4">
+                <div class="border-0 shadow-lg card card-body">
+                    <p class="text-center">"Fasilitas yang lengkap dan suasana yang nyaman membuat saya betah berolahraga di sini!"</p>
+                    <h6 class="text-center">- Siti A.</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="text-white py-7 bg-gradient-dark" id="cta">
+    <div class="container">
+        <div class="row">
+            <div class="mx-auto text-center col-md-8">
+                <h3 class="mb-0">Siap untuk memulai perjalanan fitness Anda?</h3>
+                <p class="mb-5">Bergabunglah dengan kami dan temukan gym terbaik di dekat Anda!</p>
+                <a href="#gym-locations" class="btn btn-light btn-lg">Cari Gym Sekarang</a>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
 
 @section('scripts')
