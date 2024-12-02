@@ -10,12 +10,17 @@ Route::get('/anjay', function () {
     return view('welcome');
 });
 
+//Dashboard Page
+Route::get('/', function () {
+    return view('partials.app');
+});
+
 
 // Route untuk AuthController (Login, Logout, Register)
 Route::post('/simpanregist', [AuthController::class, 'Registrasi']);
 Route::get('/register', [AuthController::class, 'TampilanRegistrasi']);
-Route::post('/simpanlogin', [AuthController::class, 'login']);
-Route::get('/', [AuthController::class, 'Tampilanlogin']);
+Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');;
+//Route::get('/', [AuthController::class, 'Tampilanlogin']);
 Route::get('/login', [AuthController::class, 'Tampilanlogin']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
@@ -34,6 +39,7 @@ Route::post('/reservations/{id}/payment', [ReservationController::class, 'addPay
 Route::get('/index', function () {
     return view('index');
 });
+
 
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
