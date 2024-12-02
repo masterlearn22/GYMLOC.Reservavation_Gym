@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 
 // Route untuk AuthController (Login, Logout, Register)
-Route::post('/simpanregist', [AuthController::class, 'Registrasi']);
+Route::post('/simpanregist', [AuthController::class, 'Registrasi'])->name('register');
 Route::get('/register', [AuthController::class, 'TampilanRegistrasi']);
 Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');;
 //Route::get('/', [AuthController::class, 'Tampilanlogin']);
