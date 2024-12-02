@@ -54,23 +54,21 @@
                             <div
                                 class="mt-5 card card-rotate card-background card-background-mask-primary shadow-dark mt-md-0">
                                 <div class="front front-background"
-                                    style="background-image: url(https://images.unsplash.com/photo-1569683795645-b62e50fbf103?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&q=80); background-size: cover;">
+                                    style="background-image: url(https://asset.kompas.com/crops/MUiHPEJKwJknhjbHQTINeA3BkTI=/0x0:0x0/1200x800/data/photo/2021/05/08/60961de48b31a.jpg); background-size: cover;">
                                     <div class="text-center card-body py-7">
                                         <i class="my-3 text-4xl text-white material-symbols-rounded">touch_app</i>
-                                        <h3 class="text-white">Feel the <br /> Material Kit</h3>
-                                        <p class="text-white opacity-8">All the Bootstrap components that you need in a
-                                            development have been re-design with the new look.</p>
+                                        <h3 class="text-white">Cari Gym <br /> di Kotamu</h3>
+                                        <p class="text-white opacity-8">Gymloc memudahkan anda mencari gym dengan beberapa fasilitas</p>
                                     </div>
                                 </div>
                                 <div class="back back-background"
-                                    style="background-image: url(https://images.unsplash.com/photo-1498889444388-e67ea62c464b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1365&q=80); background-size: cover;">
+                                    style="background-image: url(https://asset.kompas.com/crops/fg6z7bDQSPNA625RFOFP1ndlKac=/0x0:3000x2000/1200x800/data/photo/2024/03/26/66023bbbb5ce3.jpg); background-size: cover;">
                                     <div class="text-center card-body pt-7">
-                                        <h3 class="text-white">Discover More</h3>
-                                        <p class="text-white opacity-8"> You will save a lot of time going from
-                                            prototyping to full-functional code because all elements are implemented.
+                                        <h3 class="text-white">Explore More</h3>
+                                        <p class="text-white opacity-8"> Kamu akan di berikan list.
                                         </p>
-                                        <a href=".//sections/page-sections/hero-sections.html" target="_blank"
-                                            class="mx-auto mt-3 btn btn-white btn-sm w-50">Start with Headers</a>
+                                        <a href="(menuju ke location/list gym)" target="_blank"
+                                            class="mx-auto mt-3 btn btn-white btn-sm w-50">Start with Gymloc</a>
                                     </div>
                                 </div>
                             </div>
