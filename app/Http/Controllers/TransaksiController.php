@@ -12,7 +12,7 @@ class TransaksiController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-        $query = Transaksi::where('user_id', $user->id);
+        $query = Transaksi::where('id_user', $user->id);
 
         // Filter berdasarkan tipe transaksi
         if ($request->filled('type')) {
@@ -35,15 +35,15 @@ class TransaksiController extends Controller
         return view('profile.transaksi', compact('transactions'));
     }
 
-    // public function show($id)
-    // {
-    //     $transaction = Transaksi::findOrFail($id);
+    public function show($id)
+    {
+        $transaction = Transaksi::findOrFail($id);
 
-    //     // Pastikan hanya pemilik transaksi yang bisa melihat
-    //     if ($transaction->user_id !== Auth::id()) {
-    //         abort(403, 'Unauthorized');
-    //     }
+        // Pastikan hanya pemilik transaksi yang bisa melihat
+        if ($transaction->id_user !== Auth::id()) {
+            abort(403, 'Unauthorized');
+        }
 
-    //     return view('transactions.detail', compact('transaction'));
-    // }
+        return view('transactions.detail', compact('transaction'));
+    }
 }
