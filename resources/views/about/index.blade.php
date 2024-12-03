@@ -1,8 +1,12 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @extends('partials.footer')
     @include('partials.header')
     @include('partials.styleGlobal')
+
+  
 
     <!-- Menambahkan CSS untuk Kartu Informasi dan Banner -->
     <style>
@@ -44,6 +48,69 @@
 
         .banner-text:active {
             color: #ff5722; /* Warna saat diklik */
+        }
+
+        /* Deskripsi dan Tempat Video */
+        .about-description {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin: 50px 0;
+        }
+
+        .about-description .description-text {
+            flex: 1;
+            padding: 20px;
+            color: rgba(255, 255, 255, 0.7); /* Warna teks lebih redup */
+            opacity: 0.7; /* Mulai dengan teks yang lebih transparan */
+            transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out; /* Transisi untuk efek */
+        }
+
+        .about-description .description-text h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7); /* Warna lebih redup */
+            opacity: 0.7;
+            transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        .about-description .description-text p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7); /* Warna lebih redup */
+            line-height: 1.8;
+            opacity: 0.7;
+            transition: color 0.3s ease-in-out, opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+
+        /* Efek saat hover untuk teks deskripsi */
+        .about-description .description-text:hover {
+            opacity: 1; /* Teks menjadi lebih jelas saat hover */
+            transform: translateY(-10px); /* Efek timbul ke atas */
+        }
+
+        .about-description .description-text h2:hover,
+        .about-description .description-text p:hover {
+            opacity: 1; /* Teks menjadi lebih jelas saat hover */
+            transform: translateY(-10px); /* Efek timbul ke atas */
+            color: #00bcd4; /* Mengubah warna menjadi cerah saat hover */
+        }
+
+        .about-description .video-container {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .about-description .video-container video {
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
         }
 
         /* Section Kenapa Gym Terbaik */
@@ -113,6 +180,16 @@
             color: #555;
             line-height: 1.8;
         }
+
+        /* Background Gradiasi Hitam */
+        body {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1));
+            color: white; /* Agar teks tetap terbaca dengan baik */
+        }
+
+        .container {
+            background-color: transparent; /* Kontainer tetap transparan */
+        }
     </style>
 </head>
 <body>
@@ -123,27 +200,25 @@
         <div class="banner-text">Tentang Kami</div>
     </a>
 
-    <!-- Deskripsi dan Galeri Foto -->
-    <div class="container my-5 about-description">
-        <h2>Tentang Kami</h2>
-        <p>GYMLOC adalah platform yang memudahkan Anda untuk menemukan gym yang sesuai dengan kebutuhanmu. Kami menyediakan berbagai pilihan gym terbaik yang dapat diakses dengan mudah di kotamu.</p>
-        
-        <h4>Galeri Foto</h4>
-        <div class="row gallery">
-            <div class="col-md-4">
-                <img src="{{ asset('assets/images/gym1.jpg') }}" class="img-fluid" alt="Gym 1">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('assets/images/gym2.jpg') }}" class="img-fluid" alt="Gym 2">
-            </div>
-            <div class="col-md-4">
-                <img src="{{ asset('assets/images/gym3.jpg') }}" class="img-fluid" alt="Gym 3">
-            </div>
+    <!-- Deskripsi dan Tempat Video -->
+    <div class="container about-description">
+        <!-- Deskripsi Teks -->
+        <div class="description-text">
+            <h2>Kenalan Dengan Gymloc Yuk!</h2>
+            <p>GYMLOC adalah platform yang memudahkan Anda untuk menemukan gym yang sesuai dengan kebutuhanmu. Kami menyediakan berbagai pilihan gym terbaik yang dapat diakses dengan mudah di kotamu.</p>
+        </div>
+
+        <!-- Tempat Video -->
+        <div class="video-container">
+            <video controls>
+                <source src="{{ asset('assets/images/vidiogym.mp4') }}" type="video/mp4">
+                
+            </video>
         </div>
     </div>
 
-    <!-- Menambahkan Section Baru di Bawah -->
-    <div class="additional-section">
+    <!-- Section Kenapa Gym Terbaik -->
+    <div class="why-gym">
         <h2>Kenapa GYMLOC Gym Terbaik buat Kamu?</h2>
         <div class="card-grid">
             <!-- Kartu 1 -->

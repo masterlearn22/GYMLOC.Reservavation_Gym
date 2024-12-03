@@ -40,7 +40,7 @@
                                 <a href="{{ route('gym.list') }}" class="nav-link d-flex align-items-center">Daftar Gym</a>
                             </li>
                             <li class="nav-item">
-                               <a href="{{ route('about.index') }}" class="nav-link d-flex align-items-center">Tentang Kami</a>
+                                <a href="#" class="nav-link d-flex align-items-center">Tentang Kami</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link d-flex align-items-center">Kontak</a>

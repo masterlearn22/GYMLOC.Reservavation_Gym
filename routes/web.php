@@ -65,3 +65,7 @@ Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
 // routes/web.php
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::get('/about', function () {
+    return view('about.index');
+})->name('about.index');
+Route::get('/profile/transaksi', [ProfileController::class, 'transaksi'])->name('profile.transaksi');
