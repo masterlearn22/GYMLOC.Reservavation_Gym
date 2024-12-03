@@ -95,7 +95,7 @@
                 <div class="card">
                     <div class="card-body">
                         
-                            <a href="{{ url()->previous() }}" class="mt-3 btn btn-secondary">
+                            <a href="{{ route('profile.index')}}" class="mt-3 btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Kembali
                             </a>
                        

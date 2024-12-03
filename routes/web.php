@@ -5,11 +5,12 @@ use App\Http\Controllers\GymController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\TopupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\AboutController;
 
 Route::get('/anjay', function () {
     return view('welcome');
@@ -17,7 +18,7 @@ Route::get('/anjay', function () {
 
 //Dashboard Page
 Route::get('/', function () {
-    return view('index');
+    return view('IntroWebsite.index');
 });
 
 
@@ -33,7 +34,7 @@ Route::resource('menu', MenuController::class);
 
 
 Route::get('/reservations/view', function () {
-    return view('reservations');
+    return view('reservations  ');
 });
 Route::get('/reservations/api', [ReservationController::class, 'index']);
 Route::post('/reservations/store', [ReservationController::class, 'create']);
@@ -53,8 +54,8 @@ Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserContr
 Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
 Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-Route::get('/profile/topup', [TransaksiController::class, 'showTopUpForm'])->name('profile.topup');
-Route::post('/profile/topup', [TransaksiController::class, 'processTopUp'])->name('profile.topup');
+Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
+Route::post('/profile/topup', [TopupController::class, 'processTopUp'])->name('profile.topup');
 Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
 
 Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
