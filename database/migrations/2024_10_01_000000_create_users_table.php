@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {       
+        Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('name', 60);
             $table->string('username', 60);
@@ -19,10 +19,13 @@ return new class extends Migration
             $table->string('email', 60);
             $table->longText('profile_photo')->nullable();
             $table->string('id_role', 30)->nullable();
+            $table->boolean('is_gym_requested')->default(false);
+            $table->decimal('saldo', 10, 2)->default(0.00); // Kolom saldo dengan default 0.00
             $table->timestamps();
-        
+            
             $table->foreign('id_role')->references('id_role')->on('role');
         });
+        
         
         Schema::create('password_reset_tokens', function (Blueprint $table) {
             $table->string('email')->primary();
