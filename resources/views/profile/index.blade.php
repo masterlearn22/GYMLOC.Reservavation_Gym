@@ -55,7 +55,12 @@
         <div class="content-wrapper">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body">     
+                        <div class="card-footer">
+                            <a href="/" class="mt-3 btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Kembali
+                            </a>
+                        </div>
                         <h4 class="card-title">Profil Saya</h4>
 
                         <!-- Tampilkan informasi profil pengguna -->
@@ -63,12 +68,9 @@
                             <tr>
                                 <th>Foto Profil</th>
                                 <td>
-                                    @if ($user->profile_photo)
-                                        <img src="{{ asset('storage/' . $user->profile_photo) }}"
-                                            alt="Current Profile Photo" width="100" height="100">
-                                    @else
-                                        <img src="{{ asset('assets/images/faces/default.jpg') }}" width="100"
-                                            height="100">
+                                    @if($user->profile_photo)
+                                    <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Current Profile Photo" width="100" height="100">
+                                    
                                     @endif
                                 </td>
                             </tr>
@@ -106,13 +108,21 @@
 
                         <!-- Tombol untuk mengedit profil -->
                         <div class="mt-3">
-                            <a href="{{ route('profile.edit', $user->id_role) }}" class="btn btn-primary me-2">
+                            <a href="{{ route('profile.edit', $user->id_user) }}" class="btn btn-primary me-2">
                                 <i class="fas fa-edit"></i> Edit Profil
                             </a>
                             
-                            @if (Auth::user()->id_role != 'gym')
-                                <a href="{{ route('pihakgym.edit', $user->id_role) }}" class="btn btn-primary">
+                            @if (Auth::user()->id_role == '2')
+                                <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
                                     <i class="fas fa-building"></i> Edit Profil Gym
+                                </a>
+                                @elseif (Auth::user()->id_role == '1')
+                                <a href="{{ route('request.gym') }}" class="btn btn-primary">
+                                    <i class="fas fa-building"></i> Buat Gym
+                                </a>
+                                @elseif (Auth::user()->id_role == '3')
+                                <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">
+                                    <i class="fas fa-building"></i> Dashboard
                                 </a>
                             @endif
                         </div>

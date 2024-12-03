@@ -21,7 +21,7 @@
                         </div>
 
                         <!-- Filter Transaksi -->
-                        <form action="{{ route('profile.transactions') }}" method="GET" class="mb-4">
+                        <form action="{{ route('profile.transaksi') }}" method="GET" class="mb-4">
                             <div class="row">
                                 <div class="col-md-3">
                                     <select name="type" class="form-control">
@@ -43,7 +43,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <button type="submit" class="btn btn-primary">Filter</button>
-                                    <a href="{{ route('profile.transactions') }}" class="btn btn-secondary">Reset</a>
+                                    <a href="{{ route('profile.transaksi') }}" class="btn btn-secondary">Reset</a>
                                 </div>
                             </div>
                         </form>

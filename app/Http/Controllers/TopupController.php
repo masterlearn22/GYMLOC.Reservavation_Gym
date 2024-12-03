@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Transaction;
+
+use database;
 use App\Models\Transaksi;
-use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class TopupController extends Controller
 {
@@ -22,27 +23,41 @@ class TopupController extends Controller
             'amount' => 'required|numeric|min:10000',
             'payment_method' => 'required|in:gopay,dana,ovo,bca,mandiri,bni'
         ]);
-
+    
         try {
+            // Mulai database transaction untuk keamanan
+            DB::beginTransaction();
+    
             // Buat transaksi top up
             $transaction = Transaksi::create([
-                'user_id' => Auth::id(),
+                'id_user' => Auth::id(),
                 'type' => 'topup',
                 'amount' => $validated['amount'],
                 'method' => $validated['payment_method'],
-                'status' => 'pending',
+                'status' => 'success', // Langsung set success
                 'reference_number' => 'TOP-' . Str::random(10),
                 'description' => 'Top Up Saldo'
             ]);
-
-            // Redirect ke halaman konfirmasi/pembayaran
+    
+            // Update saldo pengguna
+            $user = Auth::user();
+            $user->saldo += $validated['amount'];
+            $user->save();
+    
+            // Commit transaksi database
+            DB::commit();
+    
+            // Redirect dengan pesan sukses
             return redirect()
-                ->route('topup.confirm', $transaction->id)
-                ->with('success', 'Top up berhasil dibuat. Silakan selesaikan pembayaran.');
-
+                ->route('profile.index')
+                ->with('success', 'Top up saldo berhasil. Saldo Anda bertambah Rp ' . number_format($validated['amount'], 0, ',', '.'));
+    
         } catch (\Exception $e) {
+            // Rollback transaksi jika terjadi error
+                        DB::rollBack();
+    
             return back()
-                ->with('error', 'Gagal membuat top up: ' . $e->getMessage());
+                ->with('error', 'Gagal melakukan top up: ' . $e->getMessage());
         }
     }
 }

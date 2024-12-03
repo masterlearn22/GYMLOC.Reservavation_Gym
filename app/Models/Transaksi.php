@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaksi extends Model
 {
+
+    protected $table = 'transaksi';
     protected $fillable = [
-        'user_id', 
+        'id_user', 
         'type', 
         'amount', 
         'method', 

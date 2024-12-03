@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     @include('partials.header')
     @include('partials.styleGlobal')
@@ -9,7 +8,6 @@
             text-align: center;
             margin-bottom: 20px;
         }
-
         .current-profile-photo img {
             width: 150px;
             height: 150px;
@@ -17,16 +15,13 @@
             object-fit: cover;
             border: 3px solid #ddd;
             cursor: pointer;
-            /* Tambahkan pointer untuk menunjukkan bahwa gambar bisa diklik */
         }
-
+        /* Sembunyikan input file default */
         #profile_photo {
             display: none;
-            /* Sembunyikan input file */
         }
     </style>
 </head>
-
 <body>
     <div class="main-panel">
         <div class="content-wrapper">
@@ -35,100 +30,96 @@
                     <div class="card-body">
                         <h4 class="card-title">Edit Profile</h4>
 
-                        <!-- Bagian untuk menampilkan foto profil saat ini -->
+                        <!-- Tampilkan error validasi -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
                         <div class="current-profile-photo">
-                            <img id="profileImage"
-                                src="{{ $user->profile_photo ? asset('storage/' . $user->profile_photo) : asset('assets/images/faces/default.jpg') }}"
-                                alt="Current Profile Photo">
+                            @if($user->profile_photo)
+                                <img id="profileImage" 
+                                     src="{{ asset('storage/' . $user->profile_photo) }}" 
+                                     alt="Profile Photo">
+                            @else
+                                <img id="profileImage" 
+                                     src="{{ asset('assets/images/faces/default.jpg') }}" 
+                                     alt="Default Profile Photo">
+                            @endif
                         </div>
 
-                        <!-- Input file yang tersembunyi -->
-                        
-                        <form class="forms-sample" action="{{ route('profile.update', $user->id_role)}}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('profile.update', $user->id_user) }}" 
+                              method="POST" 
+                              enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
-                             <!-- Debug info -->
-                           {{ $user->id_role }} 
-                            <input type="file" name="profile_photo" class="form-control" id="profile_photo">
-                            <!-- Form input lainnya -->
-                            <div class="form-group row">
-                                <label for="name" class="col-sm-3 col-form-label">Nama Lengkap</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="name" class="form-control" id="Username2"
-                                        value="{{ old('name', $user->name) }}" placeholder="Nama Lengkap" required>
-                                </div>
+                            
+                            <!-- Tambahkan input file tersembunyi -->
+                            <input type="file" 
+                                   id="profile_photo" 
+                                   name="profile_photo" 
+                                   accept="image/*" 
+                                   style="display:none;">
+                            
+                            <div class="form-group">
+                                <label>Nama Lengkap</label>
+                                <input type="text" name="name" class="form-control" 
+                                       value="{{ old('name', $user->name) }}">
                             </div>
-                            <div class="form-group row">
-                                <label for="Username" class="col-sm-3 col-form-label">Username</label>
-                                <div class="col-sm-9">
-                                    <input type="text" name="username" class="form-control" id="Username2"
-                                        value="{{ old('username', $user->username) }}" placeholder="Username" required>
-                                </div>
+                            
+                            <div class="form-group">
+                                <label>Username</label>
+                                <input type="text" name="username" class="form-control" 
+                                       value="{{ old('username', $user->username) }}">
                             </div>
-                            <div class="form-group row">
-                                <label for="Email2" class="col-sm-3 col-form-label">Email</label>
-                                <div class="col-sm-9">
-                                    <input type="email" name="email" class="form-control" id="Email2"
-                                        value="{{ old('email', $user->email) }}" placeholder="Email" required>
-                                </div>
+                            
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control" 
+                                       value="{{ old('email', $user->email) }}">
                             </div>
-                            <div class="form-group row">
-                                <label for="Password2" class="col-sm-3 col-form-label">Password</label>
-                                <div class="col-sm-9">
-                                    <input type="password" name="password" class="form-control" id="Password2"
-                                        placeholder="Password (kosongkan jika tidak diubah)">
-                                </div>
+                            
+                            <div class="form-group">
+                                <label>Password Baru (Opsional)</label>
+                                <input type="password" name="password" class="form-control">
+                                <small class="form-text text-muted">
+                                    Kosongkan jika tidak ingin mengganti password
+                                </small>
                             </div>
-                            <div class="form-group row">
-                                <label for="ConfirmPassword2" class="col-sm-3 col-form-label">Re Password</label>
-                                <div class="col-sm-9">
-                                    <input type="password" name="password_confirmation" class="form-control"
-                                        id="ConfirmPassword2" placeholder="Konfirmasi Password">
-                                </div>
+                            
+                            <div class="form-group">
+                                <label>Konfirmasi Password Baru</label>
+                                <input type="password" name="password_confirmation" class="form-control">
                             </div>
-                            <button type="submit" class="btn btn-primary me-2">Submit</button>
-                            <button type="reset" class="btn btn-light">Cancel</button>
+                            
+                            <button type="submit" class="btn btn-primary">Update Profil</button>
                         </form>
-
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
-@if(session('error'))
-    <div class="alert alert-danger">
-        {{ session('error') }}
-    </div>
-@endif
-
     @include('partials.jspage')
     @include('partials.jsglobal')
-<script>
-      // JavaScript untuk membuka file manager ketika gambar diklik
-      document.getElementById('profileImage').onclick = function() {
+    <script>
+        // Tambahkan event listener untuk membuka file manager
+        document.getElementById('profileImage').addEventListener('click', function() {
             document.getElementById('profile_photo').click();
-        };
+        });
 
-        // Preview gambar yang dipilih langsung ditampilkan
-        document.getElementById('profile_photo').onchange = function(event) {
+        // Preview gambar yang dipilih
+        document.getElementById('profile_photo').addEventListener('change', function(event) {
             if (event.target.files.length > 0) {
                 var src = URL.createObjectURL(event.target.files[0]);
                 document.getElementById('profileImage').src = src;
             }
-        };
-</script>
+        });
+    </script>
 </body>
-
 </html>

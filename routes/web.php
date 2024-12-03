@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TopupController;
 
 Route::get('/anjay', function () {
     return view('welcome');
@@ -16,7 +17,7 @@ Route::get('/anjay', function () {
 
 //Dashboard Page
 Route::get('/', function () {
-    return view('index');
+    return view('IntroWebsite.index');
 });
 
 
@@ -47,18 +48,28 @@ Route::get('/index', function () {
 
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
-Route::middleware(['auth', 'role:user'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
-Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
-Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-Route::get('/profile/topup', [TransaksiController::class, 'showTopUpForm'])->name('profile.topup');
-Route::post('/profile/topup', [TransaksiController::class, 'processTopUp']);
+Route::middleware(['auth', 'role:1'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
+Route::middleware(['auth', 'role:1'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
+Route::middleware(['auth', 'role:3'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:3'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
+Route::middleware(['auth', 'role:3'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
+Route::middleware(['auth', 'role:3'])->group(function () {
+    Route::get('/admin/user/{id}/detail', [AdminController::class, 'userDetail'])
+         ->name('admin.user.detail');
+});
+
+Route::middleware(['auth'])->group(function () { 
+    Route::resource('profile', ProfileController::class);
+});
+Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
+Route::post('/profile/topup', [TopupController::class, 'processTopUp']);
+Route::get('/profile/transaksi', [TransaksiController::class, 'index'])->name('profile.transaksi');
 Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
 
-Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
-Route::post('/gym/edit/{id}', [GymController::class, 'update']);
+Route::get('/gym/edit/{gym_id}', [GymController::class, 'edit'])->name('pihakgym.edit');
+Route::post('/gym/edit/{gym_id}', [GymController::class, 'update'])->name('pihakgym.update');
 Route::resource('profile', ProfileController::class);
 
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
+Route::get('/gym/detail/{id}', [GymController::class, 'show'])->name('gym.detail');

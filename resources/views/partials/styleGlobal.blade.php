@@ -18,3 +18,4 @@
 
 <!-- CSS Files -->
 <link id="pagestyle" href="{{asset('assets/css/material-kit.css?v=3.1.0')}}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">

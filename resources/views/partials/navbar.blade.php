@@ -37,7 +37,7 @@
 
                         <ul class="navbar-nav ms-auto d-flex align-items-center">
                             <li class="nav-item">
-                                <a href="{{ route('gym.list') }}" class="nav-link d-flex align-items-center">Daftar Gym</a>
+                                <a href="/" class="nav-link d-flex align-items-center">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a href="#" class="nav-link d-flex align-items-center">Tentang Kami</a>
