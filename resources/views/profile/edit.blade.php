@@ -16,6 +16,10 @@
             border: 3px solid #ddd;
             cursor: pointer;
         }
+        /* Sembunyikan input file default */
+        #profile_photo {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -49,11 +53,18 @@
                             @endif
                         </div>
 
-                        <form action="{{ route('profile.update', ['id_user' => $user->id_user]) }}" 
+                        <form action="{{ route('profile.update', $user->id_user) }}" 
                               method="POST" 
                               enctype="multipart/form-data">
                             @method('PUT')
                             @csrf
+                            
+                            <!-- Tambahkan input file tersembunyi -->
+                            <input type="file" 
+                                   id="profile_photo" 
+                                   name="profile_photo" 
+                                   accept="image/*" 
+                                   style="display:none;">
                             
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
@@ -71,17 +82,6 @@
                                 <label>Email</label>
                                 <input type="email" name="email" class="form-control" 
                                        value="{{ old('email', $user->email) }}">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>Foto Profil</label>
-                                <input type="file" name="profile_photo" 
-                                       id="profile_photo" 
-                                       class="form-control" 
-                                       accept="image/*">
-                                <small class="form-text text-muted">
-                                    Ukuran maks: 2MB. Format: JPEG, PNG, JPG, GIF
-                                </small>
                             </div>
                             
                             <div class="form-group">
@@ -108,14 +108,18 @@
     @include('partials.jspage')
     @include('partials.jsglobal')
     <script>
-        document.getElementById('profileImage').onclick = function() {
+        // Tambahkan event listener untuk membuka file manager
+        document.getElementById('profileImage').addEventListener('click', function() {
             document.getElementById('profile_photo').click();
-        }; document.getElementById('profile_photo').onchange = function(event) {
+        });
+
+        // Preview gambar yang dipilih
+        document.getElementById('profile_photo').addEventListener('change', function(event) {
             if (event.target.files.length > 0) {
                 var src = URL.createObjectURL(event.target.files[0]);
                 document.getElementById('profileImage').src = src;
             }
-        };
+        });
     </script>
 </body>
 </html>

@@ -55,9 +55,9 @@
         <div class="content-wrapper">
             <div class="col-md-6 grid-margin stretch-card">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-body">     
                         <div class="card-footer">
-                            <a href="{{ url()->previous() }}" class="mt-3 btn btn-secondary">
+                            <a href="/" class="mt-3 btn btn-secondary">
                                 <i class="fas fa-arrow-left"></i> Kembali
                             </a>
                         </div>
@@ -68,12 +68,9 @@
                             <tr>
                                 <th>Foto Profil</th>
                                 <td>
-                                    @if ($user->profile_photo)
-                                        <img src="{{ asset('storage/' . $user->profile_photo) }}"
-                                            alt="Current Profile Photo" width="100" height="100">
-                                    @else
-                                        <img src="{{ asset('assets/images/faces/default.jpg') }}" width="100"
-                                            height="100">
+                                    @if($user->profile_photo)
+                                    <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="Current Profile Photo" width="100" height="100">
+                                    
                                     @endif
                                 </td>
                             </tr>
