@@ -14,7 +14,6 @@ class ProfileController extends Controller
     /**
      * Menampilkan halaman profil pengguna.
      */
-    // Di dalam controller
     public function index()
     {
         $user = Auth::user();
@@ -26,13 +25,13 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        // Pastikan user yang sedang login adalah pemilik profil
+        // Pastikan ID pengguna cocok dengan yang sedang login
         $user = Auth::user();
-        if ($user->id_user != $id) {
-            return redirect()->route('profile.index')
-                ->with('error', 'Anda tidak memiliki izin');
+        if ($user->id_role != $id) {
+            return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk mengedit profil ini.');
         }
-    
+
+        // Menampilkan view edit profile dengan data pengguna
         return view('profile.edit', compact('user'));
     }
 
@@ -41,50 +40,70 @@ class ProfileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
+       // dd($request->all());
+        try {
+            $user = User::findOrFail($id);
+            if (!$user) {
+                return redirect()->route('profile.index')->with('error', 'User not found.');
+            }
+            
+            Log::info('User ID:', [
+                'id_parameter' => $id,
+                'user_id' => $user->id_role,
+                'auth_id' => Auth::id(),
+                'current_email' => $user->email,
+                'new_email' => $request->email
+            ]);
     
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users,username,' . $user->id_user . ',id_user',
-            'email' => 'required|email|unique:users,email,' . $user->id_user . ',id_user',
-            'password' => 'nullable|min:6|confirmed',
-            'profile_photo' => 'nullable|image|max:10480' // Maks 2MB
-        ]);
-    
-        // Proses update data dasar
-        $user->name = $validated['name'];
-        $user->username = $validated['username'];
-        $user->email = $validated['email'];
-    
-        // Handle password update (opsional)
-        if (!empty($validated['password'])) {
-            $user->password = Hash::make($validated['password']);
-        }
-    
-        // Handle foto profil
-        if ($request->hasFile('profile_photo')) {
-            // Hapus foto lama jika ada
-            if ($user->profile_photo) {
-                Storage::delete('public/' . $user->profile_photo);
+            // Validasi email secara terpisah
+            if ($request->email !== $user->email) {
+                $request->validate([
+                    'email' => 'required|email|max:255|unique:users,email'
+                ]);
             }
     
-            // Simpan foto baru
-            $photoPath = $request->file('profile_photo')->store('profile_photos', 'public');
-            
-            // Simpan path tanpa 'public/'
-            $user->profile_photo = str_replace('public/', '', $photoPath);
+            // Validasi untuk field lainnya
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'username' => 'required|string|max:255|unique:users,username,'.$user->id_role.',id_role',
+                'password' => 'nullable|confirmed|min:8',
+                'profile_photo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            ]);
+    
+            // Update data
+            $user->name = $request->name;
+            $user->username = $request->username;
+            $user->email = $request->email;
+    
+            // Handle password
+            if ($request->filled('password')) {
+                $user->password = Hash::make($request->password);
+            }
+    
+            // Handle profile photo
+            if ($request->hasFile('profile_photo')) {
+                if ($user->profile_photo) {
+                    Storage::disk('public')->delete($user->profile_photo);
+                }
+                $path = $request->file('profile_photo')->store('profile_photos', 'public');
+                $user->profile_photo = $path;
+            }
+    
+            $user->save();
+    
+            Log::info('Profile updated successfully', ['user_id' => $user->id_role]);
+            return redirect()->route('profile.index')->with('success', 'Profile updated successfully');
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            Log::error('Validation error: ' . json_encode($e->errors()));
+            return redirect()->back()
+                ->withErrors($e->errors())
+                ->withInput();
+        } catch (\Exception $e) {
+            Log::error('Error updating profile: ' . $e->getMessage());
+            return redirect()->back()
+                ->with('error', 'Failed to update profile: ' . $e->getMessage())
+                ->withInput();
         }
-    
-        // Simpan perubahan
-        $user->save();
-    
-        // Logging untuk debugging
-        Log::info('Profile updated with photo', [
-            'id_user' => $user->id_user,
-            'name' => $user->name,
-            'profile_photo' => $user->profile_photo
-        ]);
-    
-        return redirect()->back()->with('success', 'Profil berhasil diperbarui');
     }
 }
