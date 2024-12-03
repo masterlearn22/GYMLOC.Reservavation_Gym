@@ -46,4 +46,23 @@ class TransaksiController extends Controller
 
         return view('transactions.detail', compact('transaction'));
     }
+    
+    public function showTopUpForm()
+    {
+        return view('profile.topup');
+    }
+
+    public function processTopUp(Request $request)
+    {
+        // Validasi jumlah top up
+        $request->validate([
+            'amount' => 'required|numeric|min:10000',
+            'payment_method' => 'required',
+        ]);
+
+        // Lakukan proses top up di sini
+        // Contoh: simpan data transaksi ke database
+
+        return redirect()->route('profile.topup')->with('success', 'Top up berhasil diproses!');
+    }
 }

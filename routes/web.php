@@ -54,7 +54,7 @@ Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminControl
 Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
 Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
 Route::get('/profile/topup', [TransaksiController::class, 'showTopUpForm'])->name('profile.topup');
-Route::post('/profile/topup', [TransaksiController::class, 'processTopUp']);
+Route::post('/profile/topup', [TransaksiController::class, 'processTopUp'])->name('profile.topup');
 Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
 
 Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
