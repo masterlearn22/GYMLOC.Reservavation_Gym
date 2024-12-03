@@ -23,11 +23,11 @@ class ProfileController extends Controller
     /**
      * Menampilkan halaman edit profil.
      */
-    public function edit($id_user)
+    public function edit($id)
     {
         // Pastikan user yang sedang login adalah pemilik profil
         $user = Auth::user();
-        if ($user->id_user != $id_user) {
+        if ($user->id_user != $id) {
             return redirect()->route('profile.index')
                 ->with('error', 'Anda tidak memiliki izin');
         }

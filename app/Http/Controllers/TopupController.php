@@ -54,7 +54,7 @@ class TopupController extends Controller
     
         } catch (\Exception $e) {
             // Rollback transaksi jika terjadi error
-            DB::rollBack();
+                        DB::rollBack();
     
             return back()
                 ->with('error', 'Gagal melakukan top up: ' . $e->getMessage());

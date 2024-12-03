@@ -58,23 +58,16 @@ Route::middleware(['auth', 'role:3'])->group(function () {
          ->name('admin.user.detail');
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/profile', [ProfileController::class, 'index'])
-        ->name('profile.index');
-    
-    Route::get('/profile/{id_user}/edit', [ProfileController::class, 'edit'])
-        ->name('profile.edit');
-    
-    Route::put('/profile/{id_user}/update', [ProfileController::class, 'update'])
-        ->name('profile.update');
+Route::middleware(['auth'])->group(function () { 
+    Route::resource('profile', ProfileController::class);
 });
 Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
 Route::post('/profile/topup', [TopupController::class, 'processTopUp']);
 Route::get('/profile/transaksi', [TransaksiController::class, 'index'])->name('profile.transaksi');
 Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
 
-Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
-Route::post('/gym/edit/{id}', [GymController::class, 'update']);
+Route::get('/gym/edit/{gym_id}', [GymController::class, 'edit'])->name('pihakgym.edit');
+Route::post('/gym/edit/{gym_id}', [GymController::class, 'update'])->name('pihakgym.update');
 Route::resource('profile', ProfileController::class);
 
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');

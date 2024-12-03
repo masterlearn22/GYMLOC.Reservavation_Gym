@@ -111,12 +111,12 @@
 
                         <!-- Tombol untuk mengedit profil -->
                         <div class="mt-3">
-                            <a href="{{ route('profile.edit', $user->id_role) }}" class="btn btn-primary me-2">
+                            <a href="{{ route('profile.edit', $user->id_user) }}" class="btn btn-primary me-2">
                                 <i class="fas fa-edit"></i> Edit Profil
                             </a>
                             
                             @if (Auth::user()->id_role == '2')
-                                <a href="{{ route('pihakgym.edit', $user->id_role) }}" class="btn btn-primary">
+                                <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
                                     <i class="fas fa-building"></i> Edit Profil Gym
                                 </a>
                                 @elseif (Auth::user()->id_role == '1')
