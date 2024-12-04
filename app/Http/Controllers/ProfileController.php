@@ -38,11 +38,6 @@ class ProfileController extends Controller
     /**
      * Memperbarui profil pengguna.
      */
-    public function transaksi()
-{
-    // Logika untuk menampilkan riwayat transaksi
-    return view('profile.transaksi');
-}
     public function update(Request $request, $id)
     {
        // dd($request->all());

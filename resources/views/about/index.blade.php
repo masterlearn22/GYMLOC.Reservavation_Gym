@@ -183,7 +183,7 @@
 
         /* Background Gradiasi Hitam */
         body {
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1));
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgb(47, 39, 39));
             color: white; /* Agar teks tetap terbaca dengan baik */
         }
 

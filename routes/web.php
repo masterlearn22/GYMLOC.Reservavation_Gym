@@ -70,3 +70,12 @@ Route::get('/about', function () {
     return view('about.index');
 })->name('about.index');
 Route::get('/profile/transaksi', [ProfileController::class, 'transaksi'])->name('profile.transaksi');
+Route::get('/tentang-kami', function () {
+    return view('about'); 
+})->name('about.index');
+Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.index');
+
+
+// Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+// Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+// Route::put('/profile/{user}/update-photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
