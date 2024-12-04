@@ -76,6 +76,6 @@ Route::get('/tentang-kami', function () {
 Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.index');
 
 
-// Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 // Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 // Route::put('/profile/{user}/update-photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
