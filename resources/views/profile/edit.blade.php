@@ -92,7 +92,7 @@
                                 </small>
                             </div>
                             
-                            <div class="form-group">
+                          f12  <div class="form-group">
                                 <label>Konfirmasi Password Baru</label>
                                 <input type="password" name="password_confirmation" class="form-control">
                             </div>
