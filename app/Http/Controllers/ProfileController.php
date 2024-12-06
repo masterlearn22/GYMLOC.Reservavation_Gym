@@ -27,7 +27,7 @@ class ProfileController extends Controller
     {
         // Pastikan ID pengguna cocok dengan yang sedang login
         $user = Auth::user();
-        if ($user->id_role != $id) {
+        if ($user->id_user != $id) {
             return redirect()->back()->with('error', 'Anda tidak memiliki izin untuk mengedit profil ini.');
         }
 
