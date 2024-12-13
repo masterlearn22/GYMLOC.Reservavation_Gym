@@ -14,25 +14,35 @@
                         </span>
                     </button>
                     <div class="pt-3 pb-2 collapse navbar-collapse w-100 py-lg-0" id="navigation">
-                        <!-- Tambahkan Form Pencarian -->
-                        <form action="{{ route('gym.search') }}" method="GET" class="d-flex me-auto ms-3 align-items-center">
-                            <div class="input-group">
+                        <!-- Form Pencarian dengan Filter -->
+                        <form action="{{ route('gym.search') }}" method="GET" class="d-flex align-items-center">
+                            <div class="input-group me-3">
                                 <span class="bg-white input-group-text border-end-0"><i class="fas fa-search"></i></span>
                                 <input type="search" 
                                        name="query" 
                                        class="form-control border-start-0" 
                                        placeholder="Cari gym di kotamu..." 
                                        aria-label="Search"
-                                       required>
-                                <select name="city" class="form-select" style="max-width: 150px;">
-                                    <option value="">Semua Kota</option>
-                                    <option value="jakarta">Jakarta</option>
-                                    <option value="bandung">Bandung</option>
-                                    <option value="surabaya">Surabaya</option>
-                                    <option value="yogyakarta">Yogyakarta</option>
-                                </select>
-                                <button class="btn btn-primary" type="submit">Cari</button>
+                                       value="{{ request('query') }}" required>
                             </div>
+
+                            <select name="city" class="form-select me-3" style="max-width: 150px;">
+                                <option value="">Semua Kota</option>
+                                <option value="jakarta" {{ request('city') == 'jakarta' ? 'selected' : '' }}>Jakarta</option>
+                                <option value="bandung" {{ request('city') == 'bandung' ? 'selected' : '' }}>Bandung</option>
+                                <option value="surabaya" {{ request('city') == 'surabaya' ? 'selected' : '' }}>Surabaya</option>
+                                <option value="yogyakarta" {{ request('city') == 'yogyakarta' ? 'selected' : '' }}>Yogyakarta</option>
+                            </select>
+
+                            <select name="price_range" class="form-select me-3" style="max-width: 200px;">
+                                <option value="">Harga</option>
+                                <option value="asc" {{ request('price_range') == 'asc' ? 'selected' : '' }}>Termurah</option>
+                                <option value="desc" {{ request('price_range') == 'desc' ? 'selected' : '' }}>Termahal</option>
+                            </select>
+
+                            <button class="btn btn-primary btn-lg w-100" type="submit">Cari</button>
+
+
                         </form>
 
                         <ul class="navbar-nav ms-auto d-flex align-items-center">
@@ -45,26 +55,14 @@
                             <li class="nav-item">
                                 <a href="#" class="nav-link d-flex align-items-center">Kontak</a>
                             </li>
-                            
-                            <!-- Bagian Login/Profil -->
                             <li class="nav-item ms-2 d-flex align-items-center">
                                 @if (Auth::check())
                                     <div class="dropdown">
                                         <a href="#" class="nav-link d-flex align-items-center dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <!-- Photo Profile -->
                                             @if (Auth::user()->profile_photo)
-                                                <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" 
-                                                     alt="profile" 
-                                                     class="rounded-circle me-2" 
-                                                     width="40" 
-                                                     height="40" 
-                                                     style="object-fit: cover;">
+                                                <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="profile" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
                                             @else
-                                                <img src="{{ asset('assets/images/faces/default.jpg') }}" 
-                                                     class="rounded-circle me-2" 
-                                                     width="40" 
-                                                     height="40" 
-                                                     style="object-fit: cover;">
+                                                <img src="{{ asset('assets/images/faces/default.jpg') }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
                                             @endif
                                             {{ Auth::user()->name }}
                                         </a>
@@ -81,9 +79,7 @@
                                         </ul>
                                     </div>
                                 @else
-                                    <a href="/login" class="btn btn-sm btn-outline-primary">
-                                        Login
-                                    </a>
+                                    <a href="/login" class="btn btn-sm btn-outline-primary">Login</a>
                                 @endif
                             </li>
                         </ul>
@@ -93,19 +89,3 @@
         </div>
     </div>
 </div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchForm = document.querySelector('form[action="{{ route('gym.search') }}"]');
-    
-    searchForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const query = this.querySelector('input[name="query"]').value;
-        const city = this.querySelector('select[name="city"]').value;
-        
-        // Redirect ke halaman hasil pencarian dengan parameter
-        window.location.href = `{{ route('gym.search') }}?query=${encodeURIComponent(query)}&city=${encodeURIComponent(city)}`;
-    });
-});
-</script>

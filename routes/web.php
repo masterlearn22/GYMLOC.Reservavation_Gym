@@ -64,7 +64,7 @@ Route::resource('profile', ProfileController::class);
 
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
-// routes/web.php
+
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/about', function () {
     return view('about.index');
@@ -77,5 +77,4 @@ Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.inde
 
 
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-// Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-// Route::put('/profile/{user}/update-photo', [ProfileController::class, 'updatePhoto'])->name('profile.updatePhoto');
+Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
