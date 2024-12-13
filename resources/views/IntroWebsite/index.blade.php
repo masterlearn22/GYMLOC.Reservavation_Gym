@@ -1,7 +1,7 @@
 @extends('partials.app')
 @section('content')
     <header class="header-2">
-        <div class="relative page-header min-vh-75" style="background-image: url('./assets/img/bg-landing.jpg')">
+        <div class="relative page-header min-vh-75" style="background-image: url('./assets/images/index.jpeg')">
             <span class="mask bg-gradient-dark opacity-4"></span>
             <div class="container">
                 <div class="row">
