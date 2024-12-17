@@ -85,4 +85,4 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index
 
 
 
-Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::middleware('auth')->post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');

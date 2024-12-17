@@ -97,6 +97,13 @@
                             @endforeach
                         </select>
                     </div>
+                
+                    <!-- Input tersembunyi untuk id_user -->
+                    <input type="hidden" name="id_user" value="{{ Auth::id() }}">
+                
+                    <!-- Input tersembunyi untuk gym_id -->
+                    <input type="hidden" name="gym_id" value="{{ $gym->gym_id }}"> <!-- Pastikan ini adalah ID gym yang benar -->
+                
                     <button type="submit" class="btn btn-primary">Konfirmasi Booking</button>
                 </form>
             </div>
