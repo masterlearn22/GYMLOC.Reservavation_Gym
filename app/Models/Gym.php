@@ -18,7 +18,8 @@ class Gym extends Model
         'deskripsi',
         'fasilitas',
         'foto',
-        'jam_operasional',
+        'jam_buka',
+        'jam_tutup',
         'approved_at'
     ];
 

@@ -11,80 +11,140 @@ class RandomUsersSeeder extends Seeder
 {
     public function run()
     {
-        // Kode seeder sebelumnya tetap ada di sini
-
-        $animeCharacters = [
-            // One Piece (tambahan karakter)
-            'Monkey D. Luffy', 'Roronoa Zoro', 'Nami', 'Usopp', 'Sanji', 'Tony Tony Chopper', 'Nico Robin', 'Franky', 'Brook', 'Jinbe',
-            'Portgas D. Ace', 'Sabo', 'Trafalgar Law', 'Boa Hancock', 'Buggy', 'Shanks', 'Whitebeard', 'Kaido', 'Big Mom', 'Blackbeard',
-            'Doflamingo', 'Crocodile', 'Enel', 'Kuma', 'Mihawk', 'Rayleigh', 'Garp', 'Aokiji', 'Kizaru', 'Akainu',
-            'Coby', 'Smoker', 'Tashigi', 'Koby', 'Helmeppo', 'Vivi', 'Carrot', 'Yamato', 'Marco', 'Perona',
-            'Bartolomeo', 'Cavendish', 'Rebecca', 'Shirahoshi', 'Koala', 'Ivankov', 'Bon Clay', 'Kaku', 'Rob Lucci', 'Spandam',
-        
-            // Naruto (tambahan karakter)
-            'Naruto Uzumaki', 'Sasuke Uchiha', 'Sakura Haruno', 'Kakashi Hatake', 'Hinata Hyuga', 'Shikamaru Nara', 'Ino Yamanaka', 'Choji Akimichi',
-            'Rock Lee', 'Neji Hyuga', 'Tenten', 'Gaara', 'Temari', 'Kankuro', 'Jiraiya', 'Tsunade', 'Orochimaru', 'Itachi Uchiha',
-            'Kisame Hoshigaki', 'Deidara', 'Sasori', 'Hidan', 'Kakuzu', 'Pain', 'Konan', 'Madara Uchiha', 'Obito Uchiha', 'Kaguya Otsutsuki',
-            'Boruto Uzumaki', 'Sarada Uchiha', 'Mitsuki', 'Kawaki', 'Minato Namikaze', 'Kushina Uzumaki', 'Hashirama Senju', 'Tobirama Senju',
-        
-            // Dragon Ball (tambahan karakter)
-            'Goku', 'Vegeta', 'Gohan', 'Piccolo', 'Krillin', 'Bulma', 'Trunks', 'Goten', 'Android 18', 'Frieza',
-            'Cell', 'Majin Buu', 'Beerus', 'Whis', 'Jiren', 'Hit', 'Zamasu', 'Goku Black', 'Master Roshi', 'Yamcha',
-            'Tien Shinhan', 'Chiaotzu', 'Mr. Satan', 'Videl', 'Pan', 'Uub', 'Android 17', 'Android 16', 'Nappa', 'Raditz',
-        
-            // My Hero Academia (tambahan karakter)
-            'Izuku Midoriya', 'Katsuki Bakugo', 'Ochaco Uraraka', 'Tenya Iida', 'Shoto Todoroki', 'All Might', 'Eraserhead', 'Present Mic',
-            'Midnight', 'Recovery Girl', 'Endeavor', 'Hawks', 'Best Jeanist', 'Mirko', 'Mt. Lady', 'Kamui Woods', 'Gran Torino', 'Nezu',
-            'Momo Yaoyorozu', 'Eijiro Kirishima', 'Tsuyu Asui', 'Minoru Mineta', 'Fumikage Tokoyami', 'Mezo Shoji', 'Mina Ashido', 'Denki Kaminari',
-        
-            // Fullmetal Alchemist (tambahan karakter)
-            'Edward Elric', 'Alphonse Elric', 'Roy Mustang', 'Riza Hawkeye', 'Winry Rockbell', 'Scar', 'Maes Hughes', 'Alex Louis Armstrong',
-            'Olivier Mira Armstrong', 'Izumi Curtis', 'Van Hohenheim', 'King Bradley', 'Lust', 'Gluttony', 'Envy', 'Greed', 'Pride', 'Sloth',
-        
-            // Death Note (tambahan karakter)
-            'Light Yagami', 'L Lawliet', 'Misa Amane', 'Near', 'Mello', 'Ryuk', 'Rem', 'Watari', 'Soichiro Yagami', 'Teru Mikami',
-        
-            // Tokyo Ghoul (tambahan karakter)
-            'Ken Kaneki', 'Touka Kirishima', 'Rize Kamishiro', 'Shuu Tsukiyama', 'Hinami Fueguchi', 'Juuzou Suzuya', 'Kotaro Amon', 'Akira Mado',
-        
-            // Sword Art Online (tambahan karakter)
-            'Kirito', 'Asuna', 'Klein', 'Agil', 'Silica', 'Lisbeth', 'Sinon', 'Leafa', 'Yui', 'Alice Zuberg',
-        
-            // Attack on Titan (tambahan karakter)
-            'Eren Yeager', 'Mikasa Ackerman', 'Armin Arlert', 'Levi Ackerman', 'Erwin Smith', 'Hange Zoe', 'Jean Kirstein', 'Sasha Blouse',
-            'Connie Springer', 'Historia Reiss', 'Ymir', 'Reiner Braun', 'Bertholdt Hoover', 'Annie Leonhart', 'Zeke Yeager', 'Pieck Finger',
-        
-            // Demon Slayer (tambahan karakter)
-            'Tanjiro Kamado', 'Nezuko Kamado', 'Zenitsu Agatsuma', 'Inosuke Hashibira', 'Giyu Tomioka', 'Shinobu Kocho', 'Kyojuro Rengoku',
-            'Tengen Uzui', 'Mitsuri Kanroji', 'Muichiro Tokito', 'Gyomei Himejima', 'Sanemi Shinazugawa', 'Obanai Iguro', 'Kanao Tsuyuri',
-        
-            // Jujutsu Kaisen (tambahan karakter)
-            'Yuji Itadori', 'Megumi Fushiguro', 'Nobara Kugisaki', 'Satoru Gojo', 'Maki Zenin', 'Toge Inumaki', 'Panda', 'Kento Nanami',
-            'Aoi Todo', 'Yuta Okkotsu', 'Suguru Geto', 'Mahito', 'Jogo', 'Hanami', 'Choso', 'Uraume',
-        
-            // Hunter x Hunter (tambahan karakter)
-            'Gon Fre ecss', 'Killua Zoldyck', 'Kurapika', 'Leorio Paradinight', 'Hisoka Morow', 'Chrollo Lucilfer', 'Meruem', 'Netero',
-            'Alluka Zoldyck', 'Shizuku', 'Biscuit Krueger', 'Kite', 'Feitan', 'Kuroro Lucilfer', 'Phantom Troupe', 'Knuckle Bine',
-            'Shoot McMahon', 'Palm Siberia', 'Genthru', 'Mach', 'Franklin Bordeau', 'Zeno Zoldyck', 'Silva Zoldyck', 'Kalluto Zoldyck',
+        // Daftar nama lengkap
+        $fullNames = [
+            'Evika Pitaloka',
+            'Khaisa Zumma Salsabhila',
+            'Raditya Rahmatullah M.P',
+            'Akbar Zahron Jiwa Yanu',
+            'Noga Salsabilla Alfalfa',
+            'Nindhary Endriya',
+            'Reynaldi Susilo Waskito',
+            'Arya Maulana',
+            'Andino Ferdiansah',
+            'Fikri Ardiansyah',
+            'Elia Sari',
+            'Vanesha Amanda Yatinde',
+            'Aisha Laily Purwanto',
+            'Defrian Bagus Dewanta Putra',
+            'Risfiana Nur Farida',
+            'Kenzie Maulana Hugo Aurich',
+            'Diandra Kautsar Meila Dhofani',
+            'Nauval Januarta Putra Aryanto',
+            'Awaulangga Dwi Ariyanto',
+            'Artha Gandhi Wardana Aksa',
+            'Sherly Tanti Virginia',
+            'Ananda Nouval Aryanta',
+            'Cindy Permatasari Lubis',
+            'George Misael Gantume',
+            'Seri Muliani Lubis',
+            'Nisrin Raihana',
+            'Muhammad Zaky Irly Alqifari',
+            'Affan Rido Harris Berliansyah',
+            'Festiana Ramaya',
+            'Daexza Alfiantineora S',
+            'Safina Rahmani Maulidiyah',
+            'Aleron Maulana Firjatullah',
+            'Adinda Rizki Amaliyah',
+            'Nur Azizah',
+            'Noor Fariha',
+            'Fitria Indah',
+            'Carakacatya',
+            'Muhammad Ridha Hafidz',
+            'Falih Dwi Anggara',
+            'Felicia Paramdayani Aidilya Putri',
+            'Muhammad Faidzin Aslam',
+            'Yuro Arumandji',
+            'Mohammad Hafidz Al Maaher',
+            'Agnesti Wulansari',
+            'Muhammad Farid Luqman Hakim',
+            'Panji Bachtiar',
+            'Daniel Situmorang',
+            'Naurah Dila Fitriah',
+            'Cindy Alfira',
+            'Shendy Tria Amelyana',
+            'SHELYNA RISKA AMANATULLAH',
+            'ADITYA PRATAMA',
+            'ESALINA PRISA WANUDIA',
+            'SOFIE KUSUMA ANGGRAINI',
+            'AURELI ECI SALSABILA',
+            'REVIKA AMELINDA FEFTYANA',
+            'WAFI HUSNA SALSABILA',
+            'DHAFINA BENING NAJWA BRILLIAN',
+            'SAFRIZAL HUDA KURNIAWAN',
+            'FAIZATUN NI\'MAH',
+            'ABDUL ALIM',
+            'NAHDAH ZAFIRAH BR TAMPUBOLON',
+            'ARYO PRABOWO',
+            'FAZA ULUL ILMA',
+            'MUHAMMAD DUTA ZAINUL HAKIM',
+            'MELLINDA IMPIAWATI DWINORI',
+            'AHMAD LAZIM',
+            'KAMILATUS SA\'ADAH',
+            'CHRISTYA WAHYUHANATALIA ERFACHRY',
+            'MUHAMMAD RAFLI ADITYA PRATAMA',
+            'DAFFA SURYA ARRAYAN',
+            'PUTU BAGUS WEDHA WIDAGDHA',
+            'RAISYA ADREL ANANDA',
+            'DIVA DWI BERENZA',
+            'SURYA DWI SATRIA',
+            'FIKRI FIRMANSYAH',
+            'MUHAMMAD ALIF ADIAWAN',
+            'ABDILLAH MUHARRARUL WIBOWO',
+            'M ARVIN NUR MADINAH',
+            'MUHAMMAD ABIDDAR PUTRA MIRZA',
+            'DZIKRI HIDAYAT',
+ 'MUHAMMAD WILDAN ADYATMA SATRIA',
+            'TALITHA SABIYA NUR AZIGHAH',
+            'INUNK RODLIYAH',
+            'FAHAD USMAN',
+            'AYUNDA RISKI NURVIANA',
+            'NABILA RAHMASARI',
+            'DE\'VINNO RYANSYAH ODDANG',
+            'SUTANTIYAR DWIPUTRA',
+            'LUTFINO ATHALLAH PRATAMA',
+            'MOH. SEFRY AUDITYA IZZA EFENDI',
+            'AHLUL MUFI',
+            'SAYU DAMAR YUNAN',
+            'HELMI SA\'ID HIDAYATULLOH',
+            'AERIO DAVID TIRTA ATMODJO',
+            'HAMMAM NASHIRUDDIN SOEDIRO',
+            'JORDAN IZHA AL AYUBI',
+            'ALVIN CHANDRA UTOMO',
+            'ADELIA SALSABILA',
+            'AHMAD SYAUQI NURI',
+            'MUHAMAD ALI WAHYU DWI LAKSONO',
+            'NADHIVA MAULIDYA',
+            'MERLIN LUTVIKA',
+            'TITO MUHAMMAD GAFA',
+            'MUCHAMAD ERLANGGA SETIAWAN',
+            'MUHAMMAD ZAKI FIKRI HARIYADI',
+            'SYAHREN MAULANA ADIL HAKIM',
+            'PEDJA RAFSANJANI',
+            'INDAH TASYA KURINA',
+            'MUHAMMAD CATRA HANIF \'AZMI',
+            'NURUL HALISA',
+            'BRAYN FIRMANA YUWONO',
+            'DAFFA FADHLULLAH SAPUTRA',
+            'MUHAMMAD HAIKAL BIMA',
+            'AISYATUN NABILA',
+            'ANISSA MONASRITA WIDYADHANA',
+            'LUTFANIA',
         ];
 
+        // Daftar role yang tersedia
+        $roles = [1, 2, 3]; // Misalnya, 1 = Admin, 2 = Member, 3 = Guest
 
-        
-// Ulangi karakter hingga mencapai 500
-        while (count($animeCharacters) < 500) {
-            $animeCharacters = array_merge($animeCharacters, $animeCharacters);
-        }
+        // Buat pengguna dengan nama lengkap dan username yang unik
+        foreach ($fullNames as $fullName) {
+            $firstName = explode(' ', $fullName)[0]; // Ambil nama depan
+            $username = Str::slug($firstName, '');
 
-// Hasilkan daftar karakter anime yang cukup untuk 500 pengguna
-        print_r($animeCharacters);
-        
-        foreach ($animeCharacters as $character) {
-            $username = Str::slug($character, '');
             User::create([
-                'name' => $character,
+                'name' => $fullName,
                 'username' => $username,
                 'email' => $username . '@gmail.com',
-                'id_role'=>1,
+                'id_role' => $roles[array_rand($roles)], // Pilih role secara acak
                 'password' => Hash::make('1234567890'),
             ]);
         }

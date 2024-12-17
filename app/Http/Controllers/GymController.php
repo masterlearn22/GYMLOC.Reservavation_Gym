@@ -27,8 +27,17 @@ class GymController extends Controller
     public function show($gym_id)
     {
         $gym = Gym::findOrFail($gym_id);
+    
+        // Ambil harga-harga yang terkait dengan gym ini
+        $prices = DB::table('gym_prices')
+            ->join('gym_price_categories', 'gym_prices.category_id', '=', 'gym_price_categories.id')
+            ->where('gym_prices.gym_id', $gym_id)
+            ->select('gym_price_categories.nama_kategori', 'gym_prices.durasi', 'gym_prices.harga','gym_prices.category_id')
+            ->get();
+    
         return view('user.detailGym', [
-            'gym' => $gym
+            'gym' => $gym,
+            'prices' => $prices // Kirim data harga ke view
         ]);
     }
 
@@ -39,7 +48,8 @@ class GymController extends Controller
             'alamat' => 'required|string|max:150',
             'fasilitas' => 'required|string|max:200',
             'deskripsi' => 'nullable|string|max:255',
-            'jam_operasional' => 'required|string|max:100',
+            'jam_buka' => 'required',
+            'jam_tutup' => 'required',
             'kategori' => 'required|array',
             'kategori.*' => 'required|string|max:50',
             'durasi' => 'required|array',
@@ -54,7 +64,8 @@ class GymController extends Controller
             'alamat' => $validated['alamat'],
             'fasilitas' => $validated['fasilitas'],
             'deskripsi' => $validated['deskripsi'],
-            'jam_operasional' => $validated['jam_operasional'],
+            'jam_buka' => $validated['jam_buka'],
+            'jam_tutup' => $validated['jam_tutup'],
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -196,13 +207,13 @@ class GymController extends Controller
             })
             ->paginate(10);
 
-        return view('user.gymlist', compact('gyms', 'query', 'city'));
+        return view('user.daftargym', compact('gyms', 'query', 'city'));
     }
 
     public function list()
     {
         // Tampilkan daftar gym dengan pagination
         $gyms = Gym::paginate(12);
-        return view('user.gymlist', compact('gyms'));
+        return view('user.daftargym', compact('gyms'));
     }
 }

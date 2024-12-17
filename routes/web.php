@@ -11,6 +11,7 @@ use App\Http\Controllers\TopupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\CheckoutController;
 
 Route::get('/anjay', function () {
     return view('welcome');
@@ -49,11 +50,12 @@ Route::get('/index', function () {
 
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
-Route::middleware(['auth', 'role:user'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
-Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
-Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
+Route::middleware(['auth', 'role:1'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
+Route::middleware(['auth', 'role:1'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
+Route::middleware(['auth', 'role:1'])->get('/user-detail', [UserController::class, 'UserDetail'])->name('admin.user.detail');
+Route::middleware(['auth', 'role:2'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:2'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
+Route::middleware(['auth', 'role:2'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
 Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
 Route::post('/profile/topup', [TopupController::class, 'processTopUp'])->name('profile.topup');
 Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
@@ -64,6 +66,7 @@ Route::resource('profile', ProfileController::class);
 
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
+Route::get('/gym/{id}', [GymController::class, 'show'])->name('gym.show');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 Route::get('/about', function () {
@@ -78,3 +81,8 @@ Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.inde
 
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+
+
+
+
+Route::post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');

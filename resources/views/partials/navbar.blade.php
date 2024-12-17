@@ -23,7 +23,7 @@
                                        class="form-control border-start-0" 
                                        placeholder="Cari gym di kotamu..." 
                                        aria-label="Search"
-                                       value="{{ request('query') }}" required>
+                                       value="{{ request('query') }}">
                             </div>
 
                             <select name="city" class="form-select me-3" style="max-width: 150px;">

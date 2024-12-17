@@ -13,7 +13,7 @@ class CreateGymPricesTable extends Migration
             $table->unsignedBigInteger('gym_id');
             $table->unsignedBigInteger('category_id');
             $table->integer('durasi')->nullable(); // Null untuk "Per Sesi"
-            $table->integer('harga');
+            $table->bigInteger('harga');
             $table->timestamps();
 
             $table->foreign('gym_id')->references('gym_id')->on('gyms')->onDelete('cascade');

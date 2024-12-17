@@ -11,11 +11,10 @@ class Reservation extends Model
 
     protected $primaryKey = 'reservasi_id';
     protected $fillable = [
-        'user_id',
+        'id_user',
         'gym_id',
         'tgl_reservasi',
-        'waktu_mulai',
-        'waktu_selesai',
+        'tgl_berakhir',
         'status',
         'total_harga',
     ];

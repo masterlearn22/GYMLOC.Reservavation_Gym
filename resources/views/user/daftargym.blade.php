@@ -1,89 +1,83 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Gym</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        .gym-card {
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
-        }
-        .gym-card:hover {
-            transform: translateY(-5px);
-        }
-        .gym-card img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
-        .gym-card-body {
-            padding: 15px;
-        }
-    </style>
-</head>
-<body>
-    <div class="container py-5">
-        <h2 class="mb-4">Daftar Gym di <span id="city-name">[Nama Kota]</span></h2>
-        <div class="row" id="gym-list">
-            <!-- Contoh Kartu Gym -->
-            <!-- Data akan dimuat dinamis dari backend -->
+@extends('partials.app') 
+
+@section('content')
+<section class="py-5" id="gym-locations">
+    <div class="container">
+        <div class="row">
+            <div class="mt-5 text-center row my-sm-5">
+                <div class="mx-auto col-lg-8">
+                    <span class="mb-3 badge bg-success">Temukan Gym Terbaik</span>
+                    <h2 class="display-4">Pilih Gym Sesuai Kebutuhanmu</h2>
+                    <p class="lead">Kami menyediakan berbagai pilihan gym dengan fasilitas terlengkap di berbagai kota</p>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            // Contoh data gym yang dimuat dari server (gunakan backend untuk data asli)
-            const gyms = [
-                { 
-                    name: "Gym A", 
-                    distance: 1.2, 
-                    image: "https://via.placeholder.com/300x150", 
-                    city: "Jakarta"
-                },
-                { 
-                    name: "Gym B", 
-                    distance: 3.5, 
-                    image: "https://via.placeholder.com/300x150", 
-                    city: "Jakarta"
-                },
-                { 
-                    name: "Gym C", 
-                    distance: 5.0, 
-                    image: "https://via.placeholder.com/300x150", 
-                    city: "Jakarta"
-                }
-            ];
-
-            const cityName = new URLSearchParams(window.location.search).get('city');
-            document.getElementById('city-name').textContent = cityName ? cityName : 'Semua Kota';
-
-            const gymList = document.getElementById('gym-list');
-            gyms.forEach(gym => {
-                // Hanya tampilkan gym sesuai kota yang dipilih
-                if (!cityName || gym.city.toLowerCase() === cityName.toLowerCase()) {
-                    const gymCard = `
-                        <div class="col-md-4 mb-4">
-                            <div class="gym-card">
-                                <img src="${gym.image}" alt="${gym.name}">
-                                <div class="gym-card-body">
-                                    <h5 class="gym-name">${gym.name}</h5>
-                                    <p class="gym-distance text-muted">${gym.distance} km dari lokasi Anda</p>
-                                    <button class="btn btn-primary btn-sm">Lihat Detail</button>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="mt-4 row">
+                    @foreach($gyms as $gym)
+                    <div class="mb-4 col-md-6">
+                        <div class="card h-100 gym-card">
+                            <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
+                                <a href="{{ route('gym.show', $gym->gym_id) }}" class="d-block">
+                                    <img src="{{ asset('storage/' . $gym->foto) }}" 
+                                         class="shadow-lg img-fluid border-radius-lg move-on-hover"
+                                         alt="{{ $gym->nama_gym }}">
+                                </a>
+                            </div>
+                            <div class="pt-3 card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h5 class="mb-0">{{ $gym->nama_gym }}</h5>
+                                    <span class="badge bg-success">Tersedia</span>
+                                </div>
+                                <p class="mt-2 text-sm">
+                                    <i class="fas fa-map-marker-alt me-1"></i> {{ $gym->alamat }}
+                                </p>
+                                <div class="mt-3 d-flex justify-content-between align-items-center">
+                                    <div class="rating">
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star {{ $i <= 4 ? 'text-warning' : 'text-muted' }}"></i>
+                                        @endfor
+                                    </div>
+                                    <a href="{{ route('gym.show', $gym->gym_id) }}" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
-                    `;
-                    gymList.innerHTML += gymCard;
-                }
-            });
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+                    </div>
+                    @endforeach
+                </div>
+                
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center">
+                    {{ $gyms->links() }}
+                </div>
+            </div>
+            
+            <!-- Sidebar Filter -->
+            <div class="mx-auto mt-5 col-md-4 mt-md-0">
+                <div class="position-sticky" style="top:100px !important">
+                    <div class="text-white card bg-gradient-dark">
+                        <div class="card-body">
+                            <h4 class="text-white">Filter Gym</h4>
+                            <form action="{{ route('gym.list') }}" method="GET">
+                                <div class="mb-3">
+                                    <label class="text-white form-label">Lokasi</label>
+                                    <select name="city" class="form-control">
+                                        <option value="">Semua Kota</option>
+                                        <option value="Jakarta">Jakarta</option>
+                                        <option value="Bandung">Bandung</option>
+                                        <option value="Surabaya">Surabaya</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="btn btn-white w-100">Terapkan Filter</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection

@@ -13,8 +13,7 @@ class CreateReservationsTable extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('gym_id');
             $table->timestamp('tgl_reservasi');
-            $table->time('waktu_mulai');
-            $table->time('waktu_selesai');
+            $table->time('tgl_berakhir');
             $table->boolean('status')->default(false);
             $table->integer('total_harga');
             $table->timestamps();

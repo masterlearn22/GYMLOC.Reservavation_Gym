@@ -44,16 +44,21 @@
                             </div>
                             <div class="mb-3">
                                 <label for="fasilitas" class="form-label">Fasilitas</label>
-                                <textarea id="fasilitas" name="fasilitas" class="form-control" required></textarea>
+                                <textarea id="fasilitas" name="fasilitas" class="form-control"></textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea id="deskripsi" name="deskripsi" class="form-control" required></textarea>
+                                <textarea id="deskripsi" name="deskripsi" class="form-control"></textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="jam_operasional" class="form-label">Jam Operasional</label>
-                                <input type="text" id="jam_operasional" name="jam_operasional" class="form-control"
-                                    placeholder="Contoh: 08:00 - 22:00" required>
+                                <label for="jam_buka" class="form-label">Jam Buka</label>
+                                <input type="time" id="jam_buka" name="jam_buka" class="form-control"
+                                    placeholder="Contoh: 08:00" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="jam_tutup" class="form-label">Jam Tutup</label>
+                                <input type="time" id="jam_tutup" name="jam_tutup" class="form-control"
+                                    placeholder="Contoh:22:00" required>
                             </div>
 
                             <!-- Harga Berdasarkan Kategori -->

@@ -25,7 +25,8 @@ class AdminController extends Controller
                 'gyms.alamat',
                 'gyms.fasilitas',
                 'gyms.deskripsi',
-                'gyms.jam_operasional',
+                'gyms.jam_buka',
+                'gyms.jam_tutup',
                 'gym_prices.durasi',
                 'gym_prices.harga',
                 'gym_price_categories.nama_kategori'

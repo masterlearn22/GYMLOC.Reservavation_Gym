@@ -42,7 +42,8 @@
                                     <th>Alamat</th>
                                     <th>Fasilitas</th>
                                     <th>Deskripsi</th>
-                                    <th>Jam Operasional</th>
+                                    <th>Jam Buka</th>
+                                    <th>Jam Tutup</th>
                                     <th>Harga</th>
                                     <th>Action</th>
                                 </tr>
@@ -55,7 +56,8 @@
                                         <td>{{ $gym_group->first()->alamat }}</td>
                                         <td>{{ $gym_group->first()->fasilitas }}</td>
                                         <td>{{ $gym_group->first()->deskripsi }}</td>
-                                        <td>{{ $gym_group->first()->jam_operasional }}</td>
+                                        <td>{{ $gym_group->first()->jam_buka }}</td>
+                                        <td>{{ $gym_group->first()->jam_tutup }}</td>
                                         <td>
                                             <ul class="pricing-list">
                                                 @foreach ($gym_group as $gym)

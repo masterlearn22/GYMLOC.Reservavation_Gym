@@ -32,7 +32,6 @@
                     @endfor
                 </div>
                
-                
                 <div class="row">
                     <div class="col-md-6">
                         <h5>Lokasi</h5>
@@ -40,7 +39,7 @@
                     </div>
                     <div class="col-md-6">
                         <h5>Jam Operasional</h5>
-                        <p><i class="far fa-clock me-2"></i>{{ $gym->jam_operasional }}</p>
+                        <p><i class="far fa-clock me-2"></i>{{ $gym->jam_buka }} - {{ $gym->jam_tutup }}</p>
                     </div>
                 </div>
 
@@ -55,15 +54,57 @@
                         </li>
                     @endforeach
                 </ul>
+                <h5 class="mt-4">Deskripsi</h5>
                 <p class="text-dark">{{ $gym->deskripsi }}</p>
 
+               
+
+                <h5 class="mt-4">Harga Per Sesi</h5>
+                <ul class="list-group">
+                    @foreach($prices as $price)
+                        <li class="list-group-item">
+                            <strong>{{ $price->nama_kategori }}</strong>: {{ $price->durasi }} menit - Rp {{ number_format($price->harga, 0, ',', '.') }}
+                        </li>
+                    @endforeach
+                </ul>
+
                 <div class="mt-4">
-                    <a href="#" class="btn btn-primary">Booking Sekarang</a>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#bookingModal">Booking Sekarang</button>
                     <a href="{{ route('gym.list') }}" class="btn btn-outline-secondary ms-2">Kembali ke Daftar Gym</a>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- Modal Booking -->
+<div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bookingModalLabel">Booking Sesi</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('checkout.process') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label for="session" class="form-label">Pilih Sesi</label>
+                        <select class="form-select" id="session" name="category_id" required>
+                            @foreach($prices as $price)
+                                <option value="{{ $price->category_id }}">
+                                    {{ $price->nama_kategori }}: {{ $price->durasi }} menit - Rp {{ number_format($price->harga, 0, ',', '.') }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Konfirmasi Booking</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </section>
 @include('partials.jspage')
 @include('partials.jsglobal')

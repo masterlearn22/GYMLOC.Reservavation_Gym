@@ -23,7 +23,7 @@ class CheckMenuAccess
         $user = Auth::user();
 
         // Periksa apakah pengguna memiliki akses ke menu
-        $hasAccess = SETTING_MENU_USER::where('ID_JENIS_USER', $user->ID_JENIS_USER)
+        $hasAccess = SETTING_MENU_USER::where('id_role', $user->id_role)
                     ->where('MENU_ID', $menuId)
                     ->exists();
 

@@ -17,9 +17,11 @@ class CreateGymsTable extends Migration
             $table->string('koordinat', 150)->nullable();
             $table->integer('jarak')->nullable();
             $table->string('deskripsi', 200)->nullable();
-            $table->string('fasilitas', 200);
+            $table->string('fasilitas', 200)->nullable();
             $table->string('foto')->nullable();
-            $table->string('jam_operasional', 100);
+            $table->time('jam_buka');
+            $table->time('jam_tutup');
+            $table->enum('status',['unpaid','paid']);
             $table->timestamp('approved_at')->nullable(); // Tambahkan kolom approved_at
             $table->timestamps();
 
