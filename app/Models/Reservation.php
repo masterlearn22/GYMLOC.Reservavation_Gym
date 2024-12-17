@@ -22,7 +22,7 @@ class Reservation extends Model
     // Relasi dengan user
     public function user()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'id_user');
     }
 
     // Relasi dengan gym

@@ -135,6 +135,10 @@
                     <a href="{{ route('profile.edit', $user->id_user) }}" class="btn btn-primary">
                         <i class="fas fa-edit"></i> Edit Profil
                     </a>
+                    
+                    <a href="{{ route('reservasi.index') }}" class="btn btn-primary">
+                        <i class="fas fa-edit"></i> Detail Reservasi
+                    </a>
 
                     @if (Auth::user()->id_role == '3')
                         <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">

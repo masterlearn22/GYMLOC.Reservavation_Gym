@@ -86,3 +86,4 @@ Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index
 
 
 Route::middleware('auth')->post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
+Route::get('/reservasi', [ReservationController::class, 'index'])->name('reservasi.index');
