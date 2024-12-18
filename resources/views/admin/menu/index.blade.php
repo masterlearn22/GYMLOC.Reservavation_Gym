@@ -40,11 +40,11 @@
                 @endforeach
             </td>                 
             <td>
-                <a href="{{ route('menu.edit', $m->MENU_ID) }}" class="btn btn-light">Edit</a>
+                <a href="{{ route('menu.edit', $m->MENU_ID) }}" class="btn btn-danger">Edit</a>
                 <form action="{{ route('menu.destroy', $m->MENU_ID) }}" method="POST" style="display:inline;">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="btn btn-dark">Hapus</button>
+                    <button type="submit" class="btn btn-warning">Hapus</button>
                 </form>
             </td>
         </tr>

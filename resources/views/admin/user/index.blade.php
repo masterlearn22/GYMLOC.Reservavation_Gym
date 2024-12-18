@@ -26,12 +26,12 @@
                 <td>{{ $user->role ? $user->role->role : 'belom ada' }}</td>
                 <!-- Tampilkan Jenis User -->
                 <td>
-                    <a href="{{ route('user.edit', $user->id_user) }}" class="btn btn-light">Edit</a>
+                    <a href="{{ route('user.edit', $user->id_user) }}" class="btn btn-warning">Edit</a>
                     <form action="{{ route('user.destroy', $user->id_user) }}" method="POST"
                         style="display:inline;">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-dark">Delete</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                 </td>
             </tr>
