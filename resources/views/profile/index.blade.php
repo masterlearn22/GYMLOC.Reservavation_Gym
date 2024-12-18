@@ -136,7 +136,7 @@
                         <i class="fas fa-edit"></i> Edit Profil
                     </a>
 
-                    @if (Auth::user()->id_role == '2')
+                    @if (Auth::user()->id_role == '3')
                         <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Edit Profil Gym
                         </a>
@@ -144,7 +144,7 @@
                         <a href="{{ route('request.gym') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Buat Gym
                         </a>
-                    @elseif (Auth::user()->id_role == '3')
+                    @elseif (Auth::user()->id_role == '2')
                         <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Dashboard
                         </a>
