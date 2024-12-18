@@ -21,17 +21,17 @@ class MenuController extends Controller
         $menu = Menu::with('settings.Role')
                 ->whereNull('DELETE_MARK')
                 ->get(); // Menampilkan semua data menu yang belum dihapus
-        $jenis_user = Role::all(); // Ambil semua data jenis user
+        $roles = Role::all(); // Ambil semua data jenis user
         $allMenu = Menu::all();         // Ambil semua data menu
         
         // Ambil data akses menu dari tabel SETTING_MENU_USER
         $aksesMenu = DB::table('SETTING_MENU_USER')->get();
-        return view('menu.index', compact('menu','menus','jenis_user', 'allMenu', 'aksesMenu'));
+        return view('admin.menu.index', compact('menu','menus','roles', 'allMenu', 'aksesMenu'));
     }
 
 
     public function dashboard(){
-        return view('menu.dashboard');
+        return view('admin.menu.dashboard');
     }
 
     public function create()
@@ -44,7 +44,7 @@ class MenuController extends Controller
         return $route->uri();
     })->toArray();
     
-    return view('menu.create', compact('roles', 'selectedRoles', 'routes'));
+    return view('admin.menu.create', compact('roles', 'selectedRoles', 'routes'));
 }
 
 public function store(Request $request)
@@ -63,7 +63,7 @@ public function store(Request $request)
         SETTING_MENU_USER::create([
             'NO_SETTING' => uniqid(),
             'MENU_ID' => $menu->MENU_ID,
-            'ID_JENIS_USER' => $roleId,
+            'id_role' => $roleId,
         ]);
     }
     
@@ -81,9 +81,9 @@ public function store(Request $request)
         })->map(function ($route) {
             return $route->uri();
         })->toArray();
-        $selectedRoles = $menu->roles->pluck('ID_JENIS_USER')->toArray(); // Role yang saat ini terkait dengan menu
+        $selectedRoles = $menu->roles->pluck('id_role')->toArray(); // Role yang saat ini terkait dengan menu
     
-        return view('menu.edit', compact('menu', 'roles', 'selectedRoles','routes'));
+        return view('admin.menu.edit', compact('menu', 'roles', 'selectedRoles','routes'));
     }
     
 
@@ -104,7 +104,7 @@ public function store(Request $request)
     foreach ($roles as $roleId) {
         SETTING_MENU_USER::create([
             'NO_SETTING' => uniqid(20), // Buat NO_SETTING unik (atau gunakan mekanisme lain)
-            'ID_JENIS_USER' => $roleId,
+            'id_role' => $roleId,
             'MENU_ID' => $menu->MENU_ID,
         ]);
     }

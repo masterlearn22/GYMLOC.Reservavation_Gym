@@ -14,6 +14,7 @@ use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\KelolaUserController;
 
 Route::get('/anjay', function () {
     return view('welcome');
@@ -30,7 +31,7 @@ Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
 
 // Rute untuk Menu
-Route::resource('menu', MenuController::class);
+
 
 // Rute untuk Reservasi
 Route::get('/reservations/view', fn() => view('reservations'));
@@ -75,7 +76,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
         Route::post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-        Route::resource('jenis_user', RoleController::class);
+        Route::resource('/role', RoleController::class);
+        Route::resource('user', KelolaUserController::class);
+        Route::resource('menu', MenuController::class);
     });
 
     

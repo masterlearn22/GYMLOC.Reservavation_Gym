@@ -131,4 +131,6 @@ class AdminController extends Controller
         $user = User::where('id_user', $id)->firstOrFail();
         return view('admin.user-detail', compact('user'));
     }
+
+    
 }
