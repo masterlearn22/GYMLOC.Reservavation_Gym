@@ -6,7 +6,7 @@
         <div class="row">
             <div class="mt-5 text-center row my-sm-5">
                 <div class="mx-auto col-lg-8">
-                    <span class="mb-3 badge bg-success">Temukan Gym Terbaik</span>
+                    <span class="mb-3 badge bg-success" id = "gymsearch">Temukan Gym Terbaik</span>
                     <h2 class="display-4">Pilih Gym Sesuai Kebutuhanmu</h2>
                     <p class="lead">Kami menyediakan berbagai pilihan gym dengan fasilitas terlengkap di berbagai kota</p>
                 </div>
@@ -66,7 +66,7 @@
                             <h4 class="text-white">Temukan Gym Ideal Anda</h4>
                             <p>Gunakan filter pencarian kami untuk menemukan gym sesuai kebutuhan:</p>
                             <!-- Search Gym -->
-                            <form action="{{ route('gym.list') }}" method="GET">
+                            <form action="#gymsearch" method="GET">
                                 <div class="mb-3">
                                     <label class="text-white form-label">Lokasi</label>
                                     <select class="form-control" name="city">
