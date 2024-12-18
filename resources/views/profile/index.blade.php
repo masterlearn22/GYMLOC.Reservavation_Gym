@@ -136,7 +136,7 @@
                         <i class="fas fa-edit"></i> Edit Profil
                     </a>
                     
-                    <a href="/reservasi/index" class="btn btn-primary">
+                    <a href="/reservations/view" class="btn btn-primary">
                         <i class="fas fa-edit"></i> Detail Reservasi
                     </a>
 

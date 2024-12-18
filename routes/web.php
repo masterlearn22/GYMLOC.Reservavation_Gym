@@ -34,11 +34,8 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 
 // Rute untuk Reservasi
-Route::get('/reservations/view', fn() => view('reservations'));
-Route::get('/reservations/api', [ReservationController::class, 'index']);
-Route::post('/reservations/store', [ReservationController::class, 'create']);
-Route::put('/reservations/{id}/status', [ReservationController::class, 'updateStatus']);
-Route::post('/reservations/{id}/payment', [ReservationController::class, 'addPayment']);
+Route::get('/reservations/view',[ReservationController::class, 'index']);
+
 
 
 
