@@ -81,10 +81,12 @@ class KelolaUserController extends Controller
     }
     
 
-    public function destroy(User $admin)
+    public function destroy($id)
     {
-        $admin->delete();
-        return back();
+        $User = User::findOrFail($id);
+        $User->delete();
+
+        return redirect()->route('user.index')->with('success', 'User deleted successfully.');
     }
 
 
