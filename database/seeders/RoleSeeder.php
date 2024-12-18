@@ -23,7 +23,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'id_role' => 2,
-                'role' => 'gym',
+                'role' => 'admin',
                 'CREATE_BY' => 'system',
                 'CREATE_DATE' => Carbon::now(),
                 'DELETE_MARK' => null,
@@ -32,7 +32,7 @@ class RoleSeeder extends Seeder
             ],
             [
                 'id_role' =>3,
-                'role' => 'admin',
+                'role' => 'gym',
                 'CREATE_BY' => 'system',
                 'CREATE_DATE' => Carbon::now(),
                 'DELETE_MARK' => null,

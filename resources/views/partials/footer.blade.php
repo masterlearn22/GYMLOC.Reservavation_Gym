@@ -82,21 +82,6 @@
                                 Tentang Kami
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link footer-link" href="https://www.creative-tim.com/templates/free" target="_blank">
-                                Freebies
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link footer-link" href="https://www.creative-tim.com/templates/premium" target="_blank">
-                                Premium Tools
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link footer-link" href="https://www.creative-tim.com/blog" target="_blank">
-                                Blog
-                            </a>
-                        </li>
                     </ul>
                 </div>
             </div>

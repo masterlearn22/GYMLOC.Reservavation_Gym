@@ -40,7 +40,7 @@
                                 <option value="desc" {{ request('price_range') == 'desc' ? 'selected' : '' }}>Termahal</option>
                             </select>
 
-                            <button class="btn btn-primary btn-lg w-100" type="submit">Cari</button>
+                            <button class="btn btn-secondary" type="submit">Cari</button>
 
 
                         </form>
