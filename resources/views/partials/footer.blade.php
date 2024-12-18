@@ -1,4 +1,4 @@
-<footer class="pt-5 mt-5 footer" style="background-color: #c01616; padding: 40px 0;">
+<footer class="pt-5 mt-5 footer" style="background-color: #102C57; padding: 40px 0;">
     <style>
         /* Atur Semua Teks Menjadi Putih */
         .footer {

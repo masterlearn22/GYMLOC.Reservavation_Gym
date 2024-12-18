@@ -6,7 +6,7 @@
         <div class="row">
             <div class="mt-5 text-center row my-sm-5">
                 <div class="mx-auto col-lg-8">
-                    <span class="mb-3 badge bg-success">Temukan Gym Terbaik</span>
+                    <span class="mb-3 badge bg-success" id = "gymsearch">Temukan Gym Terbaik</span>
                     <h2 class="display-4">Pilih Gym Sesuai Kebutuhanmu</h2>
                     <p class="lead">Kami menyediakan berbagai pilihan gym dengan fasilitas terlengkap di berbagai kota</p>
                 </div>
@@ -16,8 +16,9 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-md-8">
+                <!-- Hasil Search Gym -->
                 <div class="mt-4 row">
-                    @foreach($gyms as $gym)
+                    @forelse($gyms as $gym)
                     <div class="mb-4 col-md-6">
                         <div class="card h-100 gym-card">
                             <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
@@ -46,32 +47,49 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="col-12">
+                        <p class="text-center">Tidak ada gym yang sesuai dengan filter Anda.</p>
+                    </div>
+                    @endforelse
                 </div>
                 
-                <!-- Pagination -->
+                <!-- Paginasi -->
                 <div class="d-flex justify-content-center">
-                    {{ $gyms->links() }}
+                    {{ $gyms->withQueryString()->links() }}
                 </div>
             </div>
-            
-            <!-- Sidebar Filter -->
             <div class="mx-auto mt-5 col-md-4 mt-md-0">
                 <div class="position-sticky" style="top:100px !important">
                     <div class="text-white card bg-gradient-dark">
                         <div class="card-body">
-                            <h4 class="text-white">Filter Gym</h4>
-                            <form action="{{ route('gym.list') }}" method="GET">
+                            <h4 class="text-white">Temukan Gym Ideal Anda</h4>
+                            <p>Gunakan filter pencarian kami untuk menemukan gym sesuai kebutuhan:</p>
+                            <!-- Search Gym -->
+                            <form action="#gymsearch" method="GET">
                                 <div class="mb-3">
                                     <label class="text-white form-label">Lokasi</label>
-                                    <select name="city" class="form-control">
-                                        <option value="">Semua Kota</option>
-                                        <option value="Jakarta">Jakarta</option>
-                                        <option value="Bandung">Bandung</option>
-                                        <option value="Surabaya">Surabaya</option>
+                                    <select class="form-control" name="city">
+                                        <option value="">Pilih Kota</option>
+                                        <option value="Jakarta" {{ request('city') == 'Jakarta' ? 'selected' : '' }}>Jakarta</option>
+                                        <option value="Bandung" {{ request('city') == 'Bandung' ? 'selected' : '' }}>Bandung</option>
+                                        <option value="Surabaya" {{ request('city') == 'Surabaya' ? 'selected' : '' }}>Surabaya</option>
                                     </select>
                                 </div>
-                                <button type="submit" class="btn btn-white w-100">Terapkan Filter</button>
+                                <div class="mb-3">
+                                    <label class="text-white form-label">Fasilitas</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="weightTraining" name="fasilitas[]" value="Weight Training" 
+                                        {{ is_array(request('fasilitas')) && in_array('Weight Training', request('fasilitas')) ? 'checked' : '' }}>
+                                        <label class="text-white form-check-label" for="weightTraining">Weight Training</label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="cardio" name="fasilitas[]" value="Cardio"
+                                        {{ is_array(request('fasilitas')) && in_array('Cardio', request('fasilitas')) ? 'checked' : '' }}>
+                                        <label class="text-white form-check-label" for="cardio">Cardio</label>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn btn-white w-100">Cari Gym</button>
                             </form>
                         </div>
                     </div>
