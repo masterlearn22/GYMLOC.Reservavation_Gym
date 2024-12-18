@@ -21,7 +21,7 @@
                                 <input type="search" 
                                        name="query" 
                                        class="form-control border-start-0" 
-                                       placeholder="Cari gym di kotamu..." 
+                                       placeholder="Cari gym" 
                                        aria-label="Search"
                                        value="{{ request('query') }}">
                             </div>
@@ -40,9 +40,7 @@
                                 <option value="desc" {{ request('price_range') == 'desc' ? 'selected' : '' }}>Termahal</option>
                             </select>
 
-                            <button class="btn btn-secondary" type="submit">Cari</button>
-
-
+                            <button class="btn btn-primary w-25 "  type="submit">Cari</button>
                         </form>
 
                         <ul class="navbar-nav ms-auto d-flex align-items-center">
