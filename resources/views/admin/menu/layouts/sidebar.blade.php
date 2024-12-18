@@ -10,13 +10,10 @@
   <div class="w-auto collapse navbar-collapse " id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="mt-3 nav-item">
-        <h6 class="text-xs ps-4 ms-2 text-uppercase text-dark font-weight-bolder opacity-5">Dashboard Admin</h6>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ route('role.index') }}">
-          <i class="material-symbols-rounded opacity-5">settings</i>
-          <span class="nav-link-text ms-1">Role</span>
-        </a>
+        <a href="{{route('admin.index')}}" class="nav-link text-dark">
+                    <i class="material-symbols-rounded opacity-5">dashboard</i>
+                    <span class="nav-link-text ms-1">Dashboard</span>
+                </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-dark" href="{{ route('user.index') }}">
@@ -25,9 +22,27 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ route('jenis_user.index') }}">
+          <i class="material-symbols-rounded opacity-5">people</i>
+          <span class="nav-link-text ms-1">Role</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link text-dark" href="{{ route('menu.index') }}">
           <i class="material-symbols-rounded opacity-5">people</i>
           <span class="nav-link-text ms-1">Menu</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ route('admin.dashboard') }}">
+          <i class="material-symbols-rounded opacity-5">settings</i>
+          <span class="nav-link-text ms-1">List Gym</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-dark" href="{{ route('profile.index') }}">
+          <i class="material-symbols-rounded opacity-5">arrow_back</i>
+          <span class="nav-link-text ms-1">Kembali</span>
         </a>
       </li>
     </ul>

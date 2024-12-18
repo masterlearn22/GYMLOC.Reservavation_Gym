@@ -150,7 +150,7 @@
                             <i class="fas fa-building"></i> Buat Gym
                         </a>
                     @elseif (Auth::user()->id_role == '2')
-                        <a href="{{ route('menu.index') }}" class="btn btn-primary">
+                        <a href="{{ route('admin.index') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Dashboard
                         </a>
                     @endif

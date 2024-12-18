@@ -7,7 +7,11 @@
                     <i class="fas fa-tachometer-alt me-2"></i> Dashboard
                 </a>
             </li>
-
+            <li class="list-group-item {{ request()->routeIs('user.index') ? 'active' : '' }}">
+                <a href="{{ route('user.index') }}" class="text-decoration-none">
+                    <i class="fas fa-users me-2"></i> User
+                </a>
+            </li>
             <!-- Jenis User -->
             <li class="list-group-item {{ request()->routeIs('jenis_user.index') ? 'active' : '' }}">
                 <a href="{{ route('jenis_user.index') }}" class="text-decoration-none">
