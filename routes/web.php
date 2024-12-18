@@ -56,6 +56,7 @@ Route::post('/profile/topup', [TopupController::class, 'processTopUp'])->name('p
 Route::get('/profile/transaksi', [ProfileController::class, 'transaksi'])->name('profile.transaksi');
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
+Route::get('/about/index', [AboutController::class, 'index'])->name('about.index');
 
 // Rute untuk Transaksi
 Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
