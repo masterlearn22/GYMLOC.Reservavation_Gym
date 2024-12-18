@@ -28,7 +28,7 @@ class Gym extends Model
     // Relasi dengan user
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user', 'id');
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 
     // Relasi dengan gym prices

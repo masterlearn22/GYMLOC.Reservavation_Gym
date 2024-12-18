@@ -21,10 +21,10 @@ class AdminController extends Controller
     }
     public function dashboard()
     {
-        $gymRequests = User::where('is_gym_requested', true)
-            ->select('id_user', 'name', 'email', 'created_at')
-            ->get();
-
+        // Ambil semua gym yang memiliki status 'aktif' dan sudah disetujui
+        $gymRequests = Gym::where('status', 'aktif')->with('user')->get(); 
+    
+        // Ambil data gym yang belum disetujui
         $gyms = DB::table('gyms')
             ->leftJoin('gym_prices', 'gyms.gym_id', '=', 'gym_prices.gym_id')
             ->leftJoin('gym_price_categories', 'gym_prices.category_id', '=', 'gym_price_categories.id')
@@ -43,7 +43,7 @@ class AdminController extends Controller
             ->whereNull('gyms.approved_at')
             ->get()
             ->groupBy('gym_id');
-
+    
         return view('admin.dashboard', [
             'gymRequests' => $gymRequests,
             'gyms' => $gyms
