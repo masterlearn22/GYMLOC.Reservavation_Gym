@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.app')
 
 @section('content')
 <div class="container">
@@ -22,13 +22,13 @@
         <tbody>
             @forelse($jenisUsers as $role)
             <tr>
-                <td>{{ $role->ID_JENIS_USER }}</td>
-                <td>{{ $role->JENIS_USER }}</td>
+                <td>{{ $role->id_role }}</td>
+                <td>{{ $role->role }}</td>
                 <td>{{ $role->CREATE_BY }}</td>
                 <td>{{ $role->CREATE_DATE }}</td>
                 <td>
-                    <a href="{{ route('jenis_user.edit', $role->ID_JENIS_USER) }}" class="btn btn-warning btn-sm">Edit</a>
-                    <form action="{{ route('jenis_user.destroy', $role->ID_JENIS_USER) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('jenis_user.edit', $role->id_role) }}" class="btn btn-warning btn-sm">Edit</a>
+                    <form action="{{ route('jenis_user.destroy', $role->id_role) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>

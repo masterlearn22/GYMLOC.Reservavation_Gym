@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    @include('partials.header')
-    @include('partials.styleGlobal')
-    <style>
-        .pricing-list {
-            padding-left: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="mb-4 d-flex justify-content-between align-items-center">
-        <a href="{{ route('profile.index') }}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Kembali
-        </a>
-    </div>
+@extends('admin.app')
+@section('content')
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="col-md-12 grid-margin stretch-card">
@@ -130,8 +115,4 @@
             </div>
         </div>
     </div>
-
-    @include('partials.jspage')
-    @include('partials.jsglobal')
-</body>
-</html>
+    @endsection

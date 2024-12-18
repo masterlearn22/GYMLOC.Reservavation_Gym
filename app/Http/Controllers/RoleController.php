@@ -11,7 +11,7 @@ class RoleController extends Controller
     public function index()
     {
         $jenisUsers = Role::all();
-        return view('jenis_user.index', compact('Roles'));
+        return view('jenis_user.index', compact('jenisUsers'));
     }
 
     public function create()
@@ -23,13 +23,13 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'ID_JENIS_USER' => 'required|unique:jenis_user',
-            'JENIS_USER' => 'required',
+            'id_role' => 'required|unique:role',
+            'role' => 'required',
         ]);
 
         Role::create([
-            'ID_JENIS_USER' => $request->ID_JENIS_USER,
-            'JENIS_USER' => $request->JENIS_USER,
+            'id_role' => $request->id_role,
+            'role' => $request->role,
             'CREATE_BY' =>  Auth::user()->name ?? 'system',
             'CREATE_DATE' => now(),
         ]);
@@ -46,12 +46,12 @@ class RoleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'JENIS_USER' => 'required',
+            'role' => 'required',
         ]);
 
         $Role = Role::findOrFail($id);
         $Role->update([
-            'JENIS_USER' => $request->JENIS_USER,
+            'role' => $request->role,
             'UPDATE_BY' =>  Auth::user()->name ?? 'system',
             'UPDATE_DATE' => now(),
         ]);
