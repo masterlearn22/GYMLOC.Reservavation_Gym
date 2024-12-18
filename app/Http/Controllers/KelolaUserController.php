@@ -47,29 +47,29 @@ class KelolaUserController extends Controller
     
     }
 
-    public function edit(User $admin)
+    public function edit(User $user)
     {
         
         $role = DB::table('role')->get();
-        return view('admin.user.edit', compact('admin','role'));
+        return view('admin.user.edit', compact('role','user'));
     }
 
-    public function update(Request $request, User $admin)
+    public function update(Request $request, User $user)
     {
-        dd($request->all());
+        //dd($request->all());
         Log::info('Memulai proses store');
         Log::info('Request data:', $request->all());
         Log::info('Files:', $request->allFiles());
     //    dd($request->all());
         $request->validate([
             'name' => 'required|string|max:60',
-            'username' => 'required|string|unique:users,username,' . $admin->id_user . ',id_user',
-            'email' => 'required|string|unique:users,email,' . $admin->id_user . ',id_user',
+            'username' => 'required|string|unique:users,username,' . $user->id_user . ',id_user',
+            'email' => 'required|string|unique:users,email,' . $user->id_user . ',id_user',
             'id_role' => 'required|exists:role,id_role' // Validasi untuk role
         ]);
     
         // Update user data             
-        $admin->update([
+        $user->update([
             'name' => $request->name,
             'username' => $request->username,
             'email' => $request->email,
