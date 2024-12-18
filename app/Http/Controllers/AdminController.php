@@ -64,6 +64,7 @@ class AdminController extends Controller
             // Update user jika ada
             if ($user) {
                 $user->is_gym_requested = false;
+                $user->id_role=3;
                 $user->save();
             }
 

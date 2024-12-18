@@ -15,17 +15,25 @@ class CheckoutController extends Controller
     public function process(Request $request)
     {
         // Debugging: Periksa semua data yang diterima
-       // dd($request->all());
+        //dd($request->all());
     
         // Ambil category_id dari request
         $categoryId = $request->input('category_id');
     
-        // Ambil harga berdasarkan category_id
-        $price = GymPrice::where('category_id', $categoryId)->first();
+        // Ambil harga dan durasi berdasarkan category_id
+        $gymPrice = GymPrice::where('category_id', $categoryId)->first();
     
         // Pastikan harga ada dan merupakan angka
-        if (!$price || !is_numeric($price->harga)) {
+        if (!$gymPrice || !is_numeric($gymPrice->harga)) {
             return response()->json(['error' => 'Invalid amount'], 400);
+        }
+    
+        // Ambil durasi dari gymPrice
+        $durasi = $gymPrice->durasi;
+    
+        // Jika durasi tidak ada, Anda bisa menetapkan nilai default
+        if (is_null($durasi)) {
+            $durasi = 30; // Misalnya, jika durasi tidak ditentukan, gunakan 30 hari sebagai default
         }
     
         Config::$serverKey = config('midtrans.server_key');
@@ -33,7 +41,7 @@ class CheckoutController extends Controller
     
         $transactionDetails = [
             'order_id' => uniqid(),
-            'gross_amount' => (float) $price->harga, // Pastikan ini adalah float
+            'gross_amount' => (float) $gymPrice->harga, // Pastikan ini adalah float
         ];
     
         $customerDetails = [
@@ -45,9 +53,10 @@ class CheckoutController extends Controller
             'transaction_details' => $transactionDetails,
             'customer_details' => $customerDetails,
             'metadata' => [
-        'user_id' => Auth::id(), // Menambahkan user_id ke metadata
-        'gym_id' => $request->gym_id, // Menambahkan gym_id ke metadata
-    ],
+                'user_id' => Auth::id(), // Menambahkan user_id ke metadata
+                'gym_id' => $request->gym_id, 
+                'category_id' => $categoryId,// Menambahkan gym_id ke metadata
+            ],
         ];
     
         try {
@@ -116,6 +125,21 @@ class CheckoutController extends Controller
                     Log::error('Gym ID not provided in notification metadata');
                     return response()->json(['status' => 'error', 'message' => 'Gym ID not provided'], 400);
                 }
+
+                $categoryId = $data['metadata']['category_id'] ?? null; // Mengambil category_id dari metadata
+            if (!$categoryId) {
+                Log::error('Category ID not provided in notification metadata');
+                return response()->json(['status' => 'error', 'message' => 'Category ID not provided'], 400);
+            }
+
+            // Ambil durasi berdasarkan category_id
+            $gymPrice = GymPrice::where('category_id', $categoryId)->first();
+            if (!$gymPrice) {
+                Log::error('Gym price not found for category', ['category_id' => $categoryId]);
+                return response()->json(['status' => 'error', 'message' => 'Gym price not found'], 400);
+            }
+
+            $durasi = $gymPrice->durasi;
     
                 // Simpan reservasi atau lakukan proses selanjutnya
                 $reservation = new Reservation();
@@ -123,7 +147,7 @@ class CheckoutController extends Controller
                 $reservation->gym_id = $gymId; // Menggunakan gym ID dari metadata
                 $reservation->total_harga = $data['gross_amount'];
                 $reservation->tgl_reservasi = now();
-                $reservation->tgl_berakhir = now()->addDays(30);
+                $reservation->tgl_berakhir = now()->addMonths($durasi);
                 $reservation->status = true;
                 $reservation->save();
     

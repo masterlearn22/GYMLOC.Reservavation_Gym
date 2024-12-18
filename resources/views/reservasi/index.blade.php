@@ -4,7 +4,7 @@
 <div class="container pt-5 mt-5"> <!-- Menambahkan padding-top untuk menghindari overlap -->
     <h2 class="mb-4 text-center">Daftar Reservasi Gym</h2>
     <div class="row justify-content-center">
-        <div class="col-md-10">
+        <div class="col-md-12">
             <div class="shadow card">
                 <div class="card-body">
                     <div class="table-responsive">
@@ -48,4 +48,9 @@
         </div>
     </div>
 </div>
+@if(!request()->is('reservasi.index'))
+    <footer>
+        <!-- Konten footer di sini -->
+    </footer>
+@endif
 @endsection
