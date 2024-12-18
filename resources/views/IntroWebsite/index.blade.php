@@ -16,38 +16,48 @@
     </header>
 
     <section class="pt-3 pb-4" id="count-stats">
-        <div class="container">
-            <div class="row">
-                <div class="py-3 mx-auto col-lg-9">
-                    <div class="row">
-                        <div class="col-md-4 position-relative">
-                            <div class="p-3 text-center">
-                                <h1 class="text-gradient text-dark"><span id="state1" countTo="100">0</span>+</h1>
-                                <h5 class="mt-3">Lokasi Gym</h5>
-                                <p class="text-sm font-weight-normal">Tersebar di berbagai kota</p>
-                            </div>
-                            <hr class="vertical dark">
+    <div class="container">
+        <div class="row">
+            <div class="py-3 mx-auto col-lg-9">
+                <div class="row">
+                    <!-- Lokasi Gym -->
+                    <div class="col-md-4 position-relative">
+                        <div class="p-3 text-center">
+                            <h1 class="text-gradient text-dark">
+                                <span id="state1" countTo="{{ $gymCount }}">{{ $gymCount }}</span>+
+                            </h1>
+                            <h5 class="mt-3">Lokasi Gym</h5>
+                            <p class="text-sm font-weight-normal">Tersebar di berbagai kota</p>
                         </div>
-                        <div class="col-md-4 position-relative">
-                            <div class="p-3 text-center">
-                                <h1 class="text-gradient text-dark"><span id="state2" countTo="50">0</span>+</h1>
-                                <h5 class="mt-3">Fasilitas Lengkap</h5>
-                                <p class="text-sm font-weight-normal">Peralatan modern dan berkualitas</p>
-                            </div>
-                            <hr class="vertical dark">
+                        <hr class="vertical dark">
+                    </div>
+
+                    <!-- Fasilitas Lengkap -->
+                    <div class="col-md-4 position-relative">
+                        <div class="p-3 text-center">
+                            <h1 class="text-gradient text-dark">
+                                <span id="state2" countTo="{{ $facilityCount }}">{{ $facilityCount }}</span>+
+                            </h1>
+                            <h5 class="mt-3">Fasilitas Lengkap</h5>
+                            <p class="text-sm font-weight-normal">Peralatan modern dan berkualitas</p>
                         </div>
-                        <div class="col-md-4">
-                            <div class="p-3 text-center">
-                                <h1 class="text-gradient text-dark" id="state3" countTo="25">0</h1>
-                                <h5 class="mt-3">Kota Tersedia</h5>
-                                <p class="text-sm font-weight-normal">Jangkauan luas di seluruh Indonesia</p>
-                            </div>
+                        <hr class="vertical dark">
+                    </div>
+
+                    <!-- Kota Tersedia -->
+                    <div class="col-md-4">
+                        <div class="p-3 text-center">
+                            <h1 class="text-gradient text-dark" id="state3" countTo="{{ $cityCount }}">{{ $cityCount }}</h1>
+                            <h5 class="mt-3">Kota Tersedia</h5>
+                            <p class="text-sm font-weight-normal">Jangkauan luas di seluruh Indonesia</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
+
 
 
     <section class="py-5 my-5">
