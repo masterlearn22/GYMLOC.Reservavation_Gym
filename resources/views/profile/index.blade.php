@@ -135,12 +135,17 @@
                     <a href="{{ route('profile.edit', $user->id_user) }}" class="btn btn-primary">
                         <i class="fas fa-edit"></i> Edit Profil
                     </a>
+<<<<<<< HEAD
                     
                     <a href="/reservasi/index" class="btn btn-primary">
                         <i class="fas fa-edit"></i> Detail Reservasi
                     </a>
                     
                     @if (Auth::user()->id_role == '2')
+=======
+
+                    @if (Auth::user()->id_role == '3')
+>>>>>>> 42c9ec59b5e436301c62e3f3a10ed08a332d1a98
                         <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Edit Profil Gym
                         </a>
@@ -148,7 +153,7 @@
                         <a href="{{ route('request.gym') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Buat Gym
                         </a>
-                    @elseif (Auth::user()->id_role == '3')
+                    @elseif (Auth::user()->id_role == '2')
                         <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Dashboard
                         </a>
