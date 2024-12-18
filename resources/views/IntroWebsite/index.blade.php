@@ -124,7 +124,7 @@
         </div>
     </section>
 
-<section class="py-5" id="gym-locations">
+    <section class="py-5" id="gym-locations">
     <div class="container">
         <div class="row">
             <div class="mt-5 text-center row my-sm-5">
@@ -138,9 +138,10 @@
     </div>
     <div class="container mt-5">
         <div class="row">
-        <div class="col-md-8">
+            <div class="col-md-8">
+                <!-- Hasil Search Gym -->
                 <div class="mt-4 row">
-                    @foreach($gyms as $gym)
+                    @forelse($gyms as $gym)
                     <div class="mb-4 col-md-6">
                         <div class="card h-100 gym-card">
                             <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
@@ -169,12 +170,16 @@
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <div class="col-12">
+                        <p class="text-center">Tidak ada gym yang sesuai dengan filter Anda.</p>
+                    </div>
+                    @endforelse
                 </div>
                 
-                <!-- Pagination -->
+                <!-- Paginasi -->
                 <div class="d-flex justify-content-center">
-                    {{ $gyms->links() }}
+                    {{ $gyms->withQueryString()->links() }}
                 </div>
             </div>
             <div class="mx-auto mt-5 col-md-4 mt-md-0">
@@ -183,29 +188,28 @@
                         <div class="card-body">
                             <h4 class="text-white">Temukan Gym Ideal Anda</h4>
                             <p>Gunakan filter pencarian kami untuk menemukan gym sesuai kebutuhan:</p>
-                            <form>
+                            <!-- Search Gym -->
+                            <form action="{{ Auth::check() ? route('awal') : route('intro') }}" method="GET">
                                 <div class="mb-3">
                                     <label class="text-white form-label">Lokasi</label>
-                                    <select class="form-control">
-                                        <option>Pilih Kota</option>
-                                        <option>Jakarta</option>
-                                        <option>Bandung</option>
-                                        <option>Surabaya</option>
+                                    <select class="form-control" name="city">
+                                        <option value="">Pilih Kota</option>
+                                        <option value="Jakarta" {{ request('city') == 'Jakarta' ? 'selected' : '' }}>Jakarta</option>
+                                        <option value="Bandung" {{ request('city') == 'Bandung' ? 'selected' : '' }}>Bandung</option>
+                                        <option value="Surabaya" {{ request('city') == 'Surabaya' ? 'selected' : '' }}>Surabaya</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label class="text-white form-label">Fasilitas</label>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="weightTraining">
-                                        <label class="text-white form-check-label" for="weightTraining">
-                                            Weight Training
-                                        </label>
+                                        <input class="form-check-input" type="checkbox" id="weightTraining" name="fasilitas[]" value="Weight Training" 
+                                        {{ is_array(request('fasilitas')) && in_array('Weight Training', request('fasilitas')) ? 'checked' : '' }}>
+                                        <label class="text-white form-check-label" for="weightTraining">Weight Training</label>
                                     </div>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cardio">
-                                        <label class="text-white form-check-label" for="cardio">
-                                            Cardio
-                                        </label>
+                                        <input class="form-check-input" type="checkbox" id="cardio" name="fasilitas[]" value="Cardio"
+                                        {{ is_array(request('fasilitas')) && in_array('Cardio', request('fasilitas')) ? 'checked' : '' }}>
+                                        <label class="text-white form-check-label" for="cardio">Cardio</label>
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-white w-100">Cari Gym</button>
@@ -217,6 +221,7 @@
         </div>
     </div>
 </section>
+
 
 <section class="bg-gray-100 py-7" id="gym-benefits">
     <div class="container">

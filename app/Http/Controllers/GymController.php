@@ -210,10 +210,36 @@ class GymController extends Controller
         return view('user.daftargym', compact('gyms', 'query', 'city'));
     }
 
-    public function list()
+    public function list(Request $request)
     {
-        // Tampilkan daftar gym dengan pagination
-        $gyms = Gym::paginate(12);
-        return view('user.daftargym', compact('gyms'));
+        // Ambil input dari request
+        $city = $request->input('city');
+        $fasilitas = $request->input('fasilitas');
+
+        // Query dasar untuk semua gym
+        $query = Gym::query();
+
+        // Tambahkan filter berdasarkan kota (jika ada)
+        if ($city) {
+            $query->where('city', $city);
+        }
+
+        // Tambahkan filter berdasarkan fasilitas (jika ada)
+        if ($fasilitas) {
+            $query->where(function ($q) use ($fasilitas) {
+                foreach ($fasilitas as $facility) {
+                    $q->orWhere('fasilitas', 'LIKE', '%' . $facility . '%');
+                }
+            });
+        }
+
+        // Dapatkan data gym yang difilter
+        $gyms = $query->paginate(12);
+
+        // Hitungan untuk statistik (opsional)
+        $gymCount = Gym::count(); 
+        $facilityCount = Gym::whereNotNull('fasilitas')->distinct('fasilitas')->count(); 
+        $cityCount = Gym::distinct('city')->count('city'); 
+        return view('user.daftargym', compact('gymCount', 'facilityCount', 'cityCount', 'gyms'));
     }
 }
