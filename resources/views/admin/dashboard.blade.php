@@ -67,7 +67,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">Belum ada gym yang tersedia</td>
+                                        <td colspan="8" class="text-center">Tidak ada pengajuan gym</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -107,7 +107,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">Tidak ada pengajuan gym</td>
+                                        <td colspan="6" class="text-center">Daftar Pengguna Yang Disetujui Sebagai Pihak Gym</td>
                                     </tr>
                                 @endforelse
                             </tbody>
