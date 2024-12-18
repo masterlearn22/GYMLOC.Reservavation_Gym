@@ -1,20 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    @include('partials.header')
-    @include('partials.styleGlobal')
-    <style>
-        .pricing-list {
-            padding-left: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="mb-4 d-flex justify-content-between align-items-center">
-        <a href="{{ route('profile.index') }}" class="btn btn-secondary">
-            <i class="fas fa-arrow-left"></i> Kembali
-        </a>
-    </div>
+@extends('admin.menu.layouts.app')
+@section('content')
     <div class="main-panel">
         <div class="content-wrapper">
             <div class="col-md-12 grid-margin stretch-card">
@@ -82,7 +67,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center">Belum ada gym yang tersedia</td>
+                                        <td colspan="8" class="text-center">Tidak ada pengajuan gym</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -96,12 +81,13 @@
                 <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">Daftar Pengguna Yang Disetujui Sebagai Pihak Gym</h4>
-                        
+
                         <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Nama</th>
+                                    <th>Nama Gym</th>
+                                    <th>Nama Pemilik</th>
                                     <th>Email</th>
                                     <th>Tanggal Pengajuan</th>
                                     <th>Action</th>
@@ -111,16 +97,17 @@
                                 @forelse ($gymRequests as $request)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $request->name }}</td>
-                                        <td>{{ $request->email }}</td>
+                                        <td>{{ $request->nama_gym }}</td>
+                                        <td>{{ $request->user->name }}</td> <!-- Menampilkan nama pemilik gym -->
+                                        <td>{{ $request->user->email }}</td>
                                         <td>{{ $request->created_at->format('d M Y H:i') }}</td>
                                         <td>
-                                            <a href="{{ route('admin.user.detail', ['id' => $request->id_user]) }}" class="btn btn-info btn-sm">Detail</a>
+                                            <a href="{{ route('admin.user.detail', ['id_user' => $request->id_user]) }}" class="btn btn-info btn-sm">Detail</a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center">Tidak ada pengajuan gym</td>
+                                        <td colspan="6" class="text-center">Daftar Pengguna Yang Disetujui Sebagai Pihak Gym</td>
                                     </tr>
                                 @endforelse
                             </tbody>
@@ -130,8 +117,4 @@
             </div>
         </div>
     </div>
-
-    @include('partials.jspage')
-    @include('partials.jsglobal')
-</body>
-</html>
+    @endsection

@@ -34,6 +34,6 @@ class Menu extends Model
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class, 'SETTING_MENU_USER', 'MENU_ID', 'ID_JENIS_USER');
+        return $this->belongsToMany(Role::class, 'SETTING_MENU_USER', 'MENU_ID', 'id_role');
     }
 }

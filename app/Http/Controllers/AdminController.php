@@ -5,17 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Gym;
 use App\Models\User;
 use App\Models\GymPrice;
+use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        $gymsCount = Gym::where('approved_at', 'null')->count();
+        $usersCount = User::count();
+        $roleCount = Role::count();
+
+        return view('admin.index', compact('usersCount','gymsCount','roleCount'));
+    }
     public function dashboard()
     {
-        $gymRequests = User::where('is_gym_requested', true)
-            ->select('id_user', 'name', 'email', 'created_at')
-            ->get();
-
+        // Ambil semua gym yang memiliki status 'aktif' dan sudah disetujui
+        $gymRequests = Gym::where('status', 'aktif')->with('user')->get(); 
+    
+        // Ambil data gym yang belum disetujui
         $gyms = DB::table('gyms')
             ->leftJoin('gym_prices', 'gyms.gym_id', '=', 'gym_prices.gym_id')
             ->leftJoin('gym_price_categories', 'gym_prices.category_id', '=', 'gym_price_categories.id')
@@ -34,7 +43,7 @@ class AdminController extends Controller
             ->whereNull('gyms.approved_at')
             ->get()
             ->groupBy('gym_id');
-
+    
         return view('admin.dashboard', [
             'gymRequests' => $gymRequests,
             'gyms' => $gyms
@@ -59,6 +68,7 @@ class AdminController extends Controller
 
             // Update status gym menjadi disetujui
             $gym->approved_at = now();
+            $gym->status = "aktif";
             $gym->save();
 
             // Update user jika ada
@@ -130,4 +140,6 @@ class AdminController extends Controller
         $user = User::where('id_user', $id)->firstOrFail();
         return view('admin.user-detail', compact('user'));
     }
+
+    
 }

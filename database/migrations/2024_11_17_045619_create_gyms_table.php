@@ -21,7 +21,7 @@ class CreateGymsTable extends Migration
             $table->string('foto')->nullable();
             $table->time('jam_buka');
             $table->time('jam_tutup');
-            $table->enum('status',['unpaid','paid']);
+            $table->enum('status',['aktif','nonaktif'])->default('nonaktif');
             $table->timestamp('approved_at')->nullable(); // Tambahkan kolom approved_at
             $table->timestamps();
 
