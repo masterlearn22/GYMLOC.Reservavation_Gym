@@ -12,12 +12,15 @@ class GymController extends Controller
 {
     public function index(Request $request)
     {
+        dd($request->all());
         // Filter berdasarkan kota jika ada
         $query = Gym::query();
         
+        if ($query->where('approved_at') != null){
         if ($request->has('city')) {
             $query->where('alamat', 'like', "%{$request->city}%");
         }
+    }
 
         $gyms = $query->paginate(6);
 
@@ -215,15 +218,15 @@ class GymController extends Controller
         // Ambil input dari request
         $city = $request->input('city');
         $fasilitas = $request->input('fasilitas');
-
-        // Query dasar untuk semua gym
-        $query = Gym::query();
-
+    
+        // Query dasar untuk semua gym dengan status aktif
+        $query = Gym::where('status', 'aktif'); // Memastikan hanya gym dengan status 'aktif' yang diambil
+    
         // Tambahkan filter berdasarkan kota (jika ada)
         if ($city) {
             $query->where('city', $city);
         }
-
+    
         // Tambahkan filter berdasarkan fasilitas (jika ada)
         if ($fasilitas) {
             $query->where(function ($q) use ($fasilitas) {
@@ -232,14 +235,15 @@ class GymController extends Controller
                 }
             });
         }
-
+    
         // Dapatkan data gym yang difilter
         $gyms = $query->paginate(12);
-
+    
         // Hitungan untuk statistik (opsional)
-        $gymCount = Gym::count(); 
-        $facilityCount = Gym::whereNotNull('fasilitas')->distinct('fasilitas')->count(); 
-        $cityCount = Gym::distinct('city')->count('city'); 
+        $gymCount = Gym::where('status', 'aktif')->count(); // Hitung gym aktif
+        $facilityCount = Gym::where('status', 'aktif')->whereNotNull('fasilitas')->distinct('fasilitas')->count(); 
+        $cityCount = Gym::where('status', 'aktif')->distinct('city')->count('city'); 
+    
         return view('user.daftargym', compact('gymCount', 'facilityCount', 'cityCount', 'gyms'));
     }
 }

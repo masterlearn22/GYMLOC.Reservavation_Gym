@@ -59,6 +59,7 @@ class AdminController extends Controller
 
             // Update status gym menjadi disetujui
             $gym->approved_at = now();
+            $gym->status = "aktif";
             $gym->save();
 
             // Update user jika ada
