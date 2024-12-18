@@ -25,9 +25,13 @@ class RoleController extends Controller
         $request->validate([
             'id_role' => 'required|unique:role',
             'role' => 'required',
+            'id_role' => 'required|unique:role',
+            'role' => 'required',
         ]);
 
         Role::create([
+            'id_role' => $request->id_role,
+            'role' => $request->role,
             'id_role' => $request->id_role,
             'role' => $request->role,
             'CREATE_BY' =>  Auth::user()->name ?? 'system',
@@ -47,10 +51,12 @@ class RoleController extends Controller
     {
         $request->validate([
             'role' => 'required',
+            'role' => 'required',
         ]);
 
         $Role = Role::findOrFail($id);
         $Role->update([
+            'role' => $request->role,
             'role' => $request->role,
             'UPDATE_BY' =>  Auth::user()->name ?? 'system',
             'UPDATE_DATE' => now(),

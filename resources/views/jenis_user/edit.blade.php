@@ -1,15 +1,15 @@
-@extends('layouts.app')
+@extends('admin.app')
 
 @section('content')
 <div class="container">
     <h1>Edit Jenis User</h1>
-    <form action="{{ route('jenis_user.update', $Role->ID_JENIS_USER) }}" method="POST">
+    <form action="{{ route('jenis_user.update', $Role->id_role) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
-            <label for="JENIS_USER" class="form-label">Jenis User</label>
-            <input type="text" class="form-control @error('JENIS_USER') is-invalid @enderror" id="JENIS_USER" name="JENIS_USER" value="{{ old('JENIS_USER', $Role->JENIS_USER) }}">
-            @error('JENIS_USER')
+            <label for="role" class="form-label">Jenis User</label>
+            <input type="text" class="form-control @error('role') is-invalid @enderror" id="role" name="role" value="{{ old('role', $Role->role) }}">
+            @error('role')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

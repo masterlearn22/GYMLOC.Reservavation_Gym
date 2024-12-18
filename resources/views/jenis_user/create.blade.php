@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('admin.app')
 
 @section('content')
 <div class="container">
@@ -6,16 +6,16 @@
     <form action="{{ route('jenis_user.store') }}" method="POST">
         @csrf
         <div class="mb-3">
-            <label for="ID_JENIS_USER" class="form-label">ID Jenis User</label>
-            <input type="text" class="form-control @error('ID_JENIS_USER') is-invalid @enderror" id="ID_JENIS_USER" name="ID_JENIS_USER" value="{{ old('ID_JENIS_USER') }}">
-            @error('ID_JENIS_USER')
+            <label for="id_role" class="form-label">ID Jenis User</label>
+            <input type="text" class="form-control @error('id_role') is-invalid @enderror" id="id_role" name="id_role" value="{{ old('id_role') }}">
+            @error('id_role')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
         <div class="mb-3">
-            <label for="JENIS_USER" class="form-label">Jenis User</label>
-            <input type="text" class="form-control @error('JENIS_USER') is-invalid @enderror" id="JENIS_USER" name="JENIS_USER" value="{{ old('JENIS_USER') }}">
-            @error('JENIS_USER')
+            <label for="role" class="form-label">Jenis User</label>
+            <input type="text" class="form-control @error('role') is-invalid @enderror" id="role" name="role" value="{{ old('role') }}">
+            @error('role')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

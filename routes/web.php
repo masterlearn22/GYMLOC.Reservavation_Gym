@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::middleware(['role:2'])->group(function () {
+        Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
         Route::post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');

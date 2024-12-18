@@ -5,11 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Gym;
 use App\Models\User;
 use App\Models\GymPrice;
+use App\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class AdminController extends Controller
 {
+    public function index()
+    {
+        $gymsCount = Gym::where('approved_at', 'null')->count();
+        $usersCount = User::count();
+        $roleCount = Role::count();
+
+        return view('admin.index', compact('usersCount','gymsCount','roleCount'));
+    }
     public function dashboard()
     {
         $gymRequests = User::where('is_gym_requested', true)
