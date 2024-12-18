@@ -114,21 +114,6 @@
         </div>
     </section>
 
-    <section class="py-7">
-        <div class="container">
-            <div class="row">
-                <div class="mx-auto text-center col-lg-8">
-                    <h2 class="mb-0 font-weight-bolder">Apa Kata Member Kami</h2>
-                    <p class="lead">Pengalaman nyata dari mereka yang telah bergabung</p>
-                </div>
-            </div>
-            <div class="mt-6 row">
-                <!-- Testimoni 1-3 disesuaikan dengan konteks gym -->
-            </div>
-        </div>
-    </section>
-
-
 <section class="py-5" id="gym-locations">
     <div class="container">
         <div class="row">
