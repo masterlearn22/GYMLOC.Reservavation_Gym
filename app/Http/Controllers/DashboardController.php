@@ -12,7 +12,8 @@ class DashboardController extends Controller
         $gymCount = Gym::count(); 
         $facilityCount = Gym::whereNotNull('fasilitas')->distinct('fasilitas')->count(); 
         $cityCount = Gym::distinct('city')->count('city'); 
+        $gyms = Gym::paginate(12);
     
-        return view('IntroWebsite.index', compact('gymCount', 'facilityCount', 'cityCount'));
+        return view('IntroWebsite.index', compact('gymCount', 'facilityCount', 'cityCount', 'gyms'));
     }
 }

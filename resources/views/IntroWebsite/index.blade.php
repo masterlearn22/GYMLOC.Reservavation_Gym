@@ -138,64 +138,43 @@
     </div>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8">
+        <div class="col-md-8">
                 <div class="mt-4 row">
+                    @foreach($gyms as $gym)
                     <div class="mb-4 col-md-6">
                         <div class="card h-100 gym-card">
                             <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
-                                <a href="#" class="d-block">
-                                    <img src="{{ asset('assets/img/gym-jakarta.jpg') }}" class="shadow-lg img-fluid border-radius-lg move-on-hover">
+                                <a href="{{ route('gym.show', $gym->gym_id) }}" class="d-block">
+                                    <img src="{{ asset('storage/' . $gym->foto) }}" 
+                                         class="shadow-lg img-fluid border-radius-lg move-on-hover"
+                                         alt="{{ $gym->nama_gym }}">
                                 </a>
                             </div>
                             <div class="pt-3 card-body">
                                 <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">Gym Central Jakarta</h5>
-                                    <span class="badge bg-success">Terdekat</span>
+                                    <h5 class="mb-0">{{ $gym->nama_gym }}</h5>
+                                    <span class="badge bg-success">Tersedia</span>
                                 </div>
                                 <p class="mt-2 text-sm">
-                                    <i class="fas fa-map-marker-alt me-1"></i> Jakarta Pusat
+                                    <i class="fas fa-map-marker-alt me-1"></i> {{ $gym->alamat }}
                                 </p>
                                 <div class="mt-3 d-flex justify-content-between align-items-center">
                                     <div class="rating">
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-muted"></i>
+                                        @for($i = 1; $i <= 5; $i++)
+                                            <i class="fas fa-star {{ $i <= 4 ? 'text-warning' : 'text-muted' }}"></i>
+                                        @endfor
                                     </div>
-                                    <a href="#" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
+                                    <a href="{{ route('gym.show', $gym->gym_id) }}" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="mb-4 col-md-6">
-                        <div class="card h-100 gym-card">
-                            <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
-                                <a href="#" class="d-block">
-                                    <img src="{{ asset('assets/img/gym-bandung.jpg') }}" class="shadow-lg img-fluid border-radius-lg move-on-hover">
-                                </a>
-                            </div>
-                            <div class="pt-3 card-body">
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <h5 class="mb-0">Gym Fitness Bandung</h5>
-                                    <span class="badge bg-primary">Promo</span>
-                                </div>
-                                <p class="mt-2 text-sm">
-                                    <i class="fas fa-map-marker-alt me-1"></i> Bandung
-                                </p>
-                                <div class="mt-3 d-flex justify-content-between align-items-center">
-                                    <div class="rating">
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                        <i class="fas fa-star text-warning"></i>
-                                    </div>
-                                    <a href="#" class="btn btn-sm btn-outline-primary">Lihat Detail</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
+                </div>
+                
+                <!-- Pagination -->
+                <div class="d-flex justify-content-center">
+                    {{ $gyms->links() }}
                 </div>
             </div>
             <div class="mx-auto mt-5 col-md-4 mt-md-0">
