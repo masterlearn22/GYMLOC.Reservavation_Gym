@@ -90,7 +90,7 @@
                 </a>
 
                 <!-- Foto Profil -->
-                <div class="text-center profile-photo-container">
+                <div class="profile-photo-container text-center">
                     @if($user->profile_photo)
                         <img class="profile-photo" src="{{ asset('storage/' . $user->profile_photo) }}" alt="Profile Photo">
                     @else
@@ -135,12 +135,8 @@
                     <a href="{{ route('profile.edit', $user->id_user) }}" class="btn btn-primary">
                         <i class="fas fa-edit"></i> Edit Profil
                     </a>
-                    
-                    <a href="{{ route('reservasi.index') }}" class="btn btn-primary">
-                        <i class="fas fa-edit"></i> Detail Reservasi
-                    </a>
 
-                    @if (Auth::user()->id_role == '3')
+                    @if (Auth::user()->id_role == '2')
                         <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Edit Profil Gym
                         </a>
@@ -148,7 +144,7 @@
                         <a href="{{ route('request.gym') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Buat Gym
                         </a>
-                    @elseif (Auth::user()->id_role == '2')
+                    @elseif (Auth::user()->id_role == '3')
                         <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Dashboard
                         </a>

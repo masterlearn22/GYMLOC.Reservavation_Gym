@@ -11,7 +11,6 @@ use App\Http\Controllers\TopupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\CheckoutController;
 
 Route::get('/anjay', function () {
     return view('welcome');
@@ -25,15 +24,18 @@ Route::get('/', function () {
 
 // Route untuk AuthController (Login, Logout, Register)
 Route::post('/simpanregist', [AuthController::class, 'Registrasi'])->name('register');
+Route::get('/register', [AuthController::class, 'TampilanRegistrasi']);
+Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');;
+//Route::get('/', [AuthController::class, 'Tampilanlogin']);
 Route::get('/login', [AuthController::class, 'Tampilanlogin']);
-Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');
 Route::post('/logout', [AuthController::class, 'logout']);
 
-// Rute untuk Menu
 Route::resource('menu', MenuController::class);
 
-// Rute untuk Reservasi
-Route::get('/reservations/view', fn() => view('reservations'));
+
+Route::get('/reservations/view', function () {
+    return view('reservations  ');
+});
 Route::get('/reservations/api', [ReservationController::class, 'index']);
 Route::post('/reservations/store', [ReservationController::class, 'create']);
 Route::put('/reservations/{id}/status', [ReservationController::class, 'updateStatus']);
@@ -47,36 +49,32 @@ Route::get('/index', function () {
 
 Route::get('/gyms', [GymController::class, 'index']);
 Route::post('/gym/store', [GymController::class, 'store']);
-Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
-Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
-Route::get('/gym/{id}', [GymController::class, 'show'])->name('gym.show');
-Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
-Route::post('/gym/edit/{id}', [GymController::class, 'update']);
-
-// Rute untuk Profile
-Route::resource('profile', ProfileController::class);
+Route::middleware(['auth', 'role:user'])->get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
+Route::middleware(['auth', 'role:user'])->post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
+Route::middleware(['auth', 'role:admin'])->get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::middleware(['auth', 'role:admin'])->post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
+Route::middleware(['auth', 'role:admin'])->post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
 Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
 Route::post('/profile/topup', [TopupController::class, 'processTopUp'])->name('profile.topup');
+Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
+
+Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
+Route::post('/gym/edit/{id}', [GymController::class, 'update']);
+Route::resource('profile', ProfileController::class);
+
+Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
+Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+Route::get('/about', function () {
+    return view('about.index');
+})->name('about.index');
 Route::get('/profile/transaksi', [ProfileController::class, 'transaksi'])->name('profile.transaksi');
+Route::get('/tentang-kami', function () {
+    return view('about'); 
+})->name('about.index');
+Route::get('/tentang-kami', [AboutController::class, 'index'])->name('about.index');
+
+
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-
-// Rute untuk Transaksi
-Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
-// Rute untuk Checkout
-Route::middleware('auth')->post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
-
-// Rute untuk Admin dan User
-Route::middleware(['auth'])->group(function () {
-    Route::middleware(['role:1'])->group(function () {
-        Route::get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
-        Route::post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-        Route::get('/user-detail', [UserController::class, 'User Detail'])->name('admin.user.detail');
-    });
-
-    Route::middleware(['role:2'])->group(function () {
-        Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        Route::post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
-        Route::post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-    });
-});
