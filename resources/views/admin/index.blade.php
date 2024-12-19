@@ -18,7 +18,9 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Pending Gyms</h5>
-                    <p class="card-text">{{ $gymsCount }} gyms pending approval</p>
+                    <p class="card-text">{{ $gymsCount }} gyms pending approval and<br>
+                    {{ $gymCount }} gyms 
+                    </p>
                     <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Manage Gyms</a>
                 </div>
             </div>

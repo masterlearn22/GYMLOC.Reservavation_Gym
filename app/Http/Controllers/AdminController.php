@@ -16,8 +16,9 @@ class AdminController extends Controller
         $gymsCount = Gym::where('approved_at', 'null')->count();
         $usersCount = User::count();
         $roleCount = Role::count();
+        $gymCount = Gym::whereNotNull('approved_at')->count();
 
-        return view('admin.index', compact('usersCount','gymsCount','roleCount'));
+        return view('admin.index', compact('usersCount','gymsCount','roleCount', 'gymCount'));
     }
     public function dashboard()
     {
