@@ -25,7 +25,7 @@
                                        aria-label="Search"
                                        value="{{ request('query') }}">
                             </div>
-
+                        
                             <select name="city" class="form-select me-3" style="max-width: 150px;" id="cityList">
                                 <option value="">Semua Kota</option>
                                 <option value="jakarta" {{ request('city') == 'jakarta' ? 'selected' : '' }}>Jakarta</option>
@@ -33,14 +33,17 @@
                                 <option value="surabaya" {{ request('city') == 'surabaya' ? 'selected' : '' }}>Surabaya</option>
                                 <option value="yogyakarta" {{ request('city') == 'yogyakarta' ? 'selected' : '' }}>Yogyakarta</option>
                             </select>
-
-                            <select name="price_range" class="form-select me-3" style="max-width: 200px;">
-                                <option value="">Harga</option>
-                                <option value="asc" {{ request('price_range') == 'asc' ? 'selected' : '' }}>Termurah</option>
-                                <option value="desc" {{ request('price_range') == 'desc' ? 'selected' : '' }}>Termahal</option>
+                        
+                            <select name="kategori" class="form-select me-3" style="max-width: 200px;">
+                                <option value="">Semua Kategori</option>
+                                <option value="Per Sesi" {{ request('kategori') == 'Per Sesi' ? 'selected' : '' }}>Per Sesi</option>
+                                <option value="1 Bulan" {{ request('kategori') == '1 Bulan' ? 'selected' : '' }}>1 Bulan</option>
+                                <option value="3 Bulan" {{ request('kategori') == '3 Bulan' ? 'selected' : '' }}>3 Bulan</option>
+                                <option value="6 Bulan" {{ request('kategori') == '6 Bulan' ? 'selected' : '' }}>6 Bulan</option>
+                                <option value="12 Bulan" {{ request('kategori') == '12 Bulan' ? 'selected' : '' }}>12 Bulan</option>
                             </select>
-
-                            <button class="btn btn-primary w-25 "  type="submit">Cari</button>
+                        
+                            <button class="btn btn-primary w-25" type="submit">Cari</button>
                         </form>
 
                         <ul class="navbar-nav ms-auto d-flex align-items-center">

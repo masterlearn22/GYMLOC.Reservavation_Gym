@@ -96,3 +96,5 @@ Route::get('login', [AuthController::class, 'TampilanLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
     
 });
+// Menambahkan route untuk edit gym
+Route::get('/gym/{id}/edit', [GymController::class, 'edit'])->name('pihakgym.edit');

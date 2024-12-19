@@ -218,54 +218,7 @@
     </div>
 
     <!-- Section Kenapa Gym Terbaik -->
-    <div class="why-gym">
-        <h2>Kenapa GYMLOC Gym Terbaik buat Kamu?</h2>
-        <div class="card-grid">
-            <!-- Kartu 1 -->
-            <div class="info-card">
-                <h3>100k+</h3>
-                <h4>Member Aktif</h4>
-                <p>Telah dipercaya oleh banyak orang untuk mendukung fitness journey mereka.</p>
-            </div>
-            <!-- Kartu 2 -->
-            <div class="info-card">
-                <h3>100+</h3>
-                <h4>Klub Bebas Akses</h4>
-                <p>Ada 100+ lokasi di berbagai kota yang bisa kamu kunjungi dengan bebas.</p>
-            </div>
-            <!-- Kartu 3 -->
-            <div class="info-card">
-                <h3>25</h3>
-                <h4>Kota Se-Indonesia</h4>
-                <p>Jelajahi kota-kota di Indonesia dan bebas kunjungi club di setiap perjalananmu.</p>
-            </div>
-            <!-- Kartu 4 -->
-            <div class="info-card">
-                <h3>600+</h3>
-                <h4>Trainer</h4>
-                <p>Pelatih kami sudah teredukasi dan berpengalaman dalam berbagai jenis kebugaran.</p>
-            </div>
-            <!-- Kartu 5 -->
-            <div class="info-card">
-                <h3>40+</h3>
-                <h4>Kelas Fitness</h4>
-                <p>Akses ke lebih dari 40 kelas fitness tanpa batas dengan instruktur profesional.</p>
-            </div>
-            <!-- Kartu 6 -->
-            <div class="info-card">
-                <h3>1500+</h3>
-                <h4>Alat Premium</h4>
-                <p>Nikmati peralatan dan fasilitas gym premium yang lengkap.</p>
-            </div>
-            <!-- Kartu 7 -->
-            <div class="info-card">
-                <h3>1</h3>
-                <h4>Aplikasi</h4>
-                <p>Olahraga semakin menyenangkan dengan aplikasi yang memudahkanmu.</p>
-            </div>
-        </div>
-    </div>
-
+    
     @include('partials.jspage')
     @include('partials.jsglobal')
 </body>
