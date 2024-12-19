@@ -47,19 +47,16 @@
                         </form>
 
                         <ul class="navbar-nav ms-auto d-flex align-items-center">
-                            <li class="nav-item">
-                                <a href="{{ route('gym.list') }}" class="nav-link d-flex align-items-center">Daftar Gym</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('about.index') }}" class="nav-link d-flex align-items-center">Tentang Kami</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#" class="nav-link d-flex align-items-center">Kontak</a>
-                            </li>
+                            <a class="text-sm navbar-brand font-weight-bolder ms-sm-3" href="{{route('gym.list')}}" rel="tooltip">
+                                Daftar Gym
+                            </a>
+                            <a class="text-sm navbar-brand font-weight-bolder ms-sm-3" href="{{route('about.index')}}" rel="tooltip">
+                                Tentang Kami
+                            </a>
                             <li class="nav-item ms-2 d-flex align-items-center">
                                 @if (Auth::check())
                                     <div class="dropdown">
-                                        <a href="#" class="nav-link d-flex align-items-center dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a href="#" class="navbar-brand font-weight-bolder ms-sm-2ounded-circle me-1" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                             @if (Auth::user()->profile_photo)
                                                 <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="profile" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
                                             @else
@@ -67,9 +64,8 @@
                                             @endif
                                             {{ Auth::user()->name }}
                                         </a>
-                                        <ul class="dropdown-menu" aria-labelledby="userDropdown">
-                                            <li><a class="dropdown-item" href="{{ route('profile.index') }}">Profil Saya</a></li>
-                                            <li><a class="dropdown-item" href="#">Keanggotaan</a></li>
+                                        <ul class="dropdown-menu navbar-brand font-weight-bolder ms-sm-3" aria-labelledby="userDropdown">
+                                            <li><a class="text-sm dropdown-item navbar-brand font-weight-bolder ms-sm-3" href="{{ route('profile.index') }}">Profil Saya</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
                                                 <form action="/logout" method="POST" class="dropdown-item">
