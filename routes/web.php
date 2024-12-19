@@ -44,8 +44,8 @@ Route::post('/gym/store', [GymController::class, 'store']);
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
 Route::get('/gym/{id}', [GymController::class, 'show'])->name('gym.show');
-Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('pihakgym.edit');
-Route::post('/gym/edit/{id}', [GymController::class, 'update']);
+Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('gym.edit');
+Route::post('/gym/edit/{id}', [GymController::class, 'update'])->name('gym.update');
 
 // Rute untuk Profile
 Route::resource('profile', ProfileController::class);

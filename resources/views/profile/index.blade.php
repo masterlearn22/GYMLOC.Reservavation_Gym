@@ -142,7 +142,7 @@
 
 
                     @if (Auth::user()->id_role == '3')
-                        <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
+                        <a href="{{ route('gym.edit', $user->id_user) }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Edit Profil Gym
                         </a>
                     @elseif (Auth::user()->id_role == '1')

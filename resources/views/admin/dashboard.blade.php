@@ -25,6 +25,7 @@
                                     <th>#</th>
                                     <th>Nama Gym</th>
                                     <th>Alamat</th>
+                                    <th>Kota</th>
                                     <th>Fasilitas</th>
                                     <th>Deskripsi</th>
                                     <th>Jam Buka</th>
@@ -38,6 +39,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $gym_group->first()->nama_gym }}</td>
+                                        <td>{{$gym_group->first()->city}}</td>
                                         <td>{{ $gym_group->first()->alamat }}</td>
                                         <td>{{ $gym_group->first()->fasilitas }}</td>
                                         <td>{{ $gym_group->first()->deskripsi }}</td>
@@ -87,6 +89,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Nama Gym</th>
+                                    <th>Kota</th>
                                     <th>Nama Pemilik</th>
                                     <th>Email</th>
                                     <th>Tanggal Pengajuan</th>
@@ -98,6 +101,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $request->nama_gym }}</td>
+                                        <td>{{$request->city}}</td>
                                         <td>{{ $request->user->name }}</td> <!-- Menampilkan nama pemilik gym -->
                                         <td>{{ $request->user->email }}</td>
                                         <td>{{ $request->created_at->format('d M Y H:i') }}</td>

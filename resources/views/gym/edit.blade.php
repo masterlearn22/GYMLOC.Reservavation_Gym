@@ -34,7 +34,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('pihakgym.update', $gym->gym_id) }}" method="POST">
+                        <form action="{{ route('gym.update', $gym->gym_id) }}" method="POST">
                             @csrf
                             <!-- Informasi Gym -->
                             <div class="mb-3">
@@ -43,9 +43,14 @@
                                     value="{{ old('nama_gym', $gym->nama_gym) }}" required>
                             </div>
                             <div class="mb-3">
-                                <label for="city" class="form-label">Kota</label>
-                                <input type="text" id="city" name="city" class="form-control"
-                                    value="{{ old('city', $gym->city) }}" required>
+                                <label for="nama_gym" class="form-label">Pilih Kota</label>
+                            <select name="city" class="form-select me-3" style="max-width: 150px;" id="cityList">
+                                <option value="{{ old('city', $gym->city) }}">{{ old('city', $gym->city) }}</option>
+                                <option value="jakarta">Jakarta</option>
+                                <option value="bandung">Bandung</option>
+                                <option value="surabaya">Surabaya</option>
+                                <option value="yogyakarta">Yogyakarta</option>
+                            </select>
                             </div>
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat</label>
@@ -54,19 +59,22 @@
                             </div>
                             <div class="mb-3">
                                 <label for="fasilitas" class="form-label">Fasilitas</label>
-                                <textarea id="fasilitas" name="fasilitas" class="form-control" required>{{ old('fasilitas', $gym->fasilitas) }}</textarea>
+                                <textarea id="fasilitas" name="fasilitas" class="form-control">{{ old('fasilitas', $gym->fasilitas) }}</textarea>
                             </div>
                             <div class="mb-3">
                                 <label for="deskripsi" class="form-label">Deskripsi</label>
-                                <textarea id="deskripsi" name="deskripsi" class="form-control" required>{{ old('deskripsi', $gym->deskripsi) }}</textarea>
+                                <textarea id="deskripsi" name="deskripsi" class="form-control">{{ old('deskripsi', $gym->deskripsi) }}</textarea>
                             </div>
                             <div class="mb-3">
-                                <label for="jam_operasional" class="form-label">Jam Operasional</label>
-                                <input type="text" id="jam_operasional" name="jam_operasional" class="form-control"
-                                    placeholder="Contoh: 08:00 - 22:00"
-                                    value="{{ old('jam_operasional', $gym->jam_operasional) }}" required>
+                                <label for="jam_buka" class="form-label">Jam Buka</label>
+                                <input type="time" id="jam_buka" name="jam_buka" class="form-control"
+                                    placeholder="Contoh: 08:00" required value="{{ old('jam_buka', $gym->jam_buka) }}">
                             </div>
-
+                            <div class="mb-3">
+                                <label for="jam_tutup" class="form-label">Jam Tutup</label>
+                                <input type="time" id="jam_tutup" name="jam_tutup" class="form-control"
+                                    placeholder="Contoh:22:00" value="{{ old('jam_tutup', $gym->jam_tutup) }}" required>
+                            </div>
                             <!-- Harga Berdasarkan Kategori -->
                             <div>
                                 <h5 class="mb-3">Harga Berdasarkan Kategori</h5>
