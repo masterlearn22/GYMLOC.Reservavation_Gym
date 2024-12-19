@@ -2,6 +2,7 @@
 
 
 @section('content')
+<div class="container">
 <h1>Data User</h1>
 <a href="{{ route('user.create') }}" class="btn btn-primary">Create New User</a>
 <!-- Tabel Data Warga -->
@@ -38,6 +39,7 @@
         @endforeach
     </tbody>
 </table>
+</div>
 @endsection
 <!-- Inisialisasi DataTables -->
 
