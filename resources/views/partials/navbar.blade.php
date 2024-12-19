@@ -28,6 +28,10 @@
 
                             <select name="city" class="form-select me-3" style="max-width: 150px;" id="cityList">
                                 <option value="">Semua Kota</option>
+                                <option value="jakarta" {{ request('city') == 'jakarta' ? 'selected' : '' }}>Jakarta</option>
+                                <option value="bandung" {{ request('city') == 'bandung' ? 'selected' : '' }}>Bandung</option>
+                                <option value="surabaya" {{ request('city') == 'surabaya' ? 'selected' : '' }}>Surabaya</option>
+                                <option value="yogyakarta" {{ request('city') == 'yogyakarta' ? 'selected' : '' }}>Yogyakarta</option>
                             </select>
 
                             <select name="price_range" class="form-select me-3" style="max-width: 200px;">
