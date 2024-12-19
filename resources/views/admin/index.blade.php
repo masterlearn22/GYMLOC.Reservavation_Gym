@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Users</h5>
                     <p class="card-text">{{ $usersCount }} total users</p>
-                    <a href="{{ route('jenis_user.index') }}" class="btn btn-primary">Manage Users</a>
+                    <a href="{{ route('user.index') }}" class="btn btn-primary">Manage Users</a>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Role</h5>
                     <p class="card-text">{{ $roleCount }} Total role</p>
-                    <a href="{{ route('jenis_user.index') }}" class="btn btn-primary">Manage Role</a>
+                    <a href="{{ route('role.index') }}" class="btn btn-primary">Manage Role</a>
                 </div>
             </div>
         </div>
