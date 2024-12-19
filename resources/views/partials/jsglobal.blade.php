@@ -3,7 +3,8 @@
     <script src="{{asset('assets/js/material-kit.min.js?v=3.1.0')}}" type="text/javascript"></script>
     <!-- Di bagian bawah body, sebelum penutup </body> -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+{{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     {{-- <script type="text/javascript">
             <script>
         if (document.getElementById('state1')) {
