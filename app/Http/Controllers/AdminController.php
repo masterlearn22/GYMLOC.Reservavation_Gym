@@ -33,6 +33,7 @@ class AdminController extends Controller
                 'gyms.gym_id',
                 'gyms.nama_gym',
                 'gyms.alamat',
+                'gyms.city',
                 'gyms.fasilitas',
                 'gyms.deskripsi',
                 'gyms.jam_buka',

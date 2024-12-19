@@ -35,8 +35,14 @@
                                 <input type="text" id="nama_gym" name="nama_gym" class="form-control" required>
                             </div>
                             <div class="mb-3">
-                                <label for="city" class="form-label">Kota</label>
-                                <input type="text" id="city" name="city" class="form-control" required>
+                                <label for="nama_gym" class="form-label">Pilih Kota</label>
+                            <select name="city" class="form-select me-3" style="max-width: 150px;" id="cityList">
+                                <option value="">Semua Kota</option>
+                                <option value="jakarta">Jakarta</option>
+                                <option value="bandung">Bandung</option>
+                                <option value="surabaya">Surabaya</option>
+                                <option value="yogyakarta">Yogyakarta</option>
+                            </select>
                             </div>
                             <div class="mb-3">
                                 <label for="alamat" class="form-label">Alamat</label>
