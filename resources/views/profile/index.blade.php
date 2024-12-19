@@ -113,15 +113,15 @@
                         <td>{{ $user->email }}</td>
                     </tr>
                     <tr>
-                        <th>Saldo</th>
+                        <th>Saldo (fitur useless)</th>
                         <td>
                             <div class="saldo-section">
                                 <span class="saldo-amount">Rp {{ number_format($user->saldo, 0, ',', '.') }}</span>
                                 <div class="btn-topup">
-                                    <a href="{{ route('profile.topup') }}" class="btn btn-success btn-sm">
+                                    <a href="{{ route('topup') }}" class="btn btn-success btn-sm">
                                         <i class="fas fa-plus-circle"></i> Top Up
                                     </a>
-                                    <a href="{{ route('profile.transaksi') }}" class="btn btn-info btn-sm">
+                                    <a href="{{ route('transaksi') }}" class="btn btn-info btn-sm">
                                         <i class="fas fa-history"></i> Riwayat
                                     </a>
                                 </div>

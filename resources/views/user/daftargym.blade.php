@@ -21,13 +21,13 @@
                     @forelse($gyms as $gym)
                     <div class="mb-4 col-md-6">
                         <div class="card h-100 gym-card">
-                            <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
+                            {{-- <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
                                 <a href="{{ route('gym.show', $gym->gym_id) }}" class="d-block">
                                     <img src="{{ asset('storage/' . $gym->foto) }}" 
                                          class="shadow-lg img-fluid border-radius-lg move-on-hover"
                                          alt="{{ $gym->nama_gym }}">
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="pt-3 card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="mb-0">{{ $gym->nama_gym }}</h5>

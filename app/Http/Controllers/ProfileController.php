@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 class ProfileController extends Controller
 {
@@ -40,7 +41,8 @@ class ProfileController extends Controller
     public function transaksi()
     {
         // Logika untuk menampilkan riwayat transaksi
-        return view('profile.transaksi');
+        $transactions = Transaksi::where('id_user', Auth::id())->get();
+        return view('profile.transaksi',compact('transactions'));
     }
 
     /**
