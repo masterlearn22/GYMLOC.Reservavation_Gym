@@ -49,9 +49,9 @@ Route::post('/gym/edit/{id}', [GymController::class, 'update'])->name('gym.updat
 
 // Rute untuk Profile
 Route::resource('profile', ProfileController::class);
-Route::get('/profile/topup', [TopupController::class, 'showTopUpForm'])->name('profile.topup');
-Route::post('/profile/topup', [TopupController::class, 'processTopUp'])->name('profile.topup');
-Route::get('/profile/transaksi', [ProfileController::class, 'transaksi'])->name('profile.transaksi');
+Route::get('/topup', [TopupController::class, 'showTopUpForm'])->name('topup');
+Route::post('/processtopup', [TopupController::class, 'processTopUp'])->name('process.topup');
+Route::get('/transaksi', [ProfileController::class, 'transaksi'])->name('transaksi');
 Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/about/index', [AboutController::class, 'index'])->name('about.index');

@@ -1,4 +1,4 @@
-<!-- resources/views/profile/topup.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -107,7 +107,7 @@
                             <div class="alert alert-danger">{{ session('error') }}</div>
                         @endif
 
-                        <form id="topupForm" action="{{ route('profile.topup') }}" method="POST">
+                        <form id="topupForm" action="{{ route('process.topup') }}" method="POST">
                             @csrf
                             
                             <div class="form-group">

@@ -49,7 +49,7 @@ class TopupController extends Controller
     
             // Redirect dengan pesan sukses
             return redirect()
-                ->route('profile.topup')
+                ->route('topup')
                 ->with('success', 'Top up saldo berhasil. Saldo Anda bertambah Rp ' . number_format($validated['amount'], 0, ',', '.'));
     
         } catch (\Exception $e) {
