@@ -144,13 +144,13 @@
                     @forelse($gyms as $gym)
                     <div class="mb-4 col-md-6">
                         <div class="card h-100 gym-card">
-                            <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
+                            {{-- <div class="p-0 mx-3 mt-3 card-header position-relative z-index-1">
                                 <a href="{{ route('gym.show', $gym->gym_id) }}" class="d-block">
                                     <img src="{{ asset('storage/' . $gym->foto) }}" 
                                          class="shadow-lg img-fluid border-radius-lg move-on-hover"
                                          alt="{{ $gym->nama_gym }}">
                                 </a>
-                            </div>
+                            </div> --}}
                             <div class="pt-3 card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="mb-0">{{ $gym->nama_gym }}</h5>
@@ -192,25 +192,13 @@
                             <form action="#gymsearch" method="GET">
                                 <div class="mb-3">
                                     <label class="text-white form-label">Lokasi</label>
-                                    <select class="form-control" name="city">
-                                        <option value="">Pilih Kota</option>
-                                        <option value="Jakarta" {{ request('city') == 'Jakarta' ? 'selected' : '' }}>Jakarta</option>
-                                        <option value="Bandung" {{ request('city') == 'Bandung' ? 'selected' : '' }}>Bandung</option>
-                                        <option value="Surabaya" {{ request('city') == 'Surabaya' ? 'selected' : '' }}>Surabaya</option>
+                                    <select name="city" class="mb-3 form-select" id="cityList">
+                                        <option value="">Semua Kota</option>
+                                        <option value="jakarta" {{ request('city') == 'jakarta' ? 'selected' : '' }}>Jakarta</option>
+                                        <option value="bandung" {{ request('city') == 'bandung' ? 'selected' : '' }}>Bandung</option>
+                                        <option value="surabaya" {{ request('city') == 'surabaya' ? 'selected' : '' }}>Surabaya</option>
+                                        <option value="yogyakarta" {{ request('city') == 'yogyakarta' ? 'selected' : '' }}>Yogyakarta</option>
                                     </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="text-white form-label">Fasilitas</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="weightTraining" name="fasilitas[]" value="Weight Training" 
-                                        {{ is_array(request('fasilitas')) && in_array('Weight Training', request('fasilitas')) ? 'checked' : '' }}>
-                                        <label class="text-white form-check-label" for="weightTraining">Weight Training</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cardio" name="fasilitas[]" value="Cardio"
-                                        {{ is_array(request('fasilitas')) && in_array('Cardio', request('fasilitas')) ? 'checked' : '' }}>
-                                        <label class="text-white form-check-label" for="cardio">Cardio</label>
-                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-white w-100">Cari Gym</button>
                             </form>
