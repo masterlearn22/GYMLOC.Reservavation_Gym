@@ -90,7 +90,7 @@
                                     <th>Nama Pemilik</th>
                                     <th>Email</th>
                                     <th>Tanggal Pengajuan</th>
-                                    <th>Action</th>
+                                    {{-- <th>Action</th> --}}
                                 </tr>
                             </thead>
                             <tbody>
@@ -101,13 +101,14 @@
                                         <td>{{ $request->user->name }}</td> <!-- Menampilkan nama pemilik gym -->
                                         <td>{{ $request->user->email }}</td>
                                         <td>{{ $request->created_at->format('d M Y H:i') }}</td>
-                                        <td>
-                                            <a href="{{ route('admin.user.detail', ['id_user' => $request->id_user]) }}" class="btn btn-info btn-sm">Detail</a>
-                                        </td>
+                                        {{-- <td>
+                                            @dd($request->id_role)
+                                            <a href="{{ route('admin.user.detail', ['id_role' => $request->id_role]) }}" class="btn btn-info btn-sm">Detail</a>
+                                        </td> --}}
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center">Daftar Pengguna Yang Disetujui Sebagai Pihak Gym</td>
+                                        <td colspan="6" class="text-center">Belum Ada GYM yang Terdaftar</td>
                                     </tr>
                                 @endforelse
                             </tbody>

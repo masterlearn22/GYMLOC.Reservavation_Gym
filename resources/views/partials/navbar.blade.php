@@ -26,7 +26,7 @@
                                        value="{{ request('query') }}">
                             </div>
 
-                            <select name="city" class="form-select me-3" style="max-width: 150px;">
+                            <select name="city" class="form-select me-3" style="max-width: 150px;" id="cityList">
                                 <option value="">Semua Kota</option>
                                 <option value="jakarta" {{ request('city') == 'jakarta' ? 'selected' : '' }}>Jakarta</option>
                                 <option value="bandung" {{ request('city') == 'bandung' ? 'selected' : '' }}>Bandung</option>
@@ -87,3 +87,30 @@
         </div>
     </div>
 </div>
+
+<script>
+    // const provinces = [32, 33, 34,35]; // ID untuk Jawa Barat, Jawa Tengah, Jawa Timur
+
+    // Mengambil data kota untuk setiap provinsi
+    provinces.forEach(provinceId => {
+        fetch(`https://emsifa.github.io/api-wilayah-indonesia/api/regencies/35.json`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                const cityList = document.getElementById('cityList');
+                data.forEach(city => {
+                    const option = document.createElement('option'); // Buat elemen option
+                    option.value = city.id; // Set nilai option ke ID kota
+                    option.textContent = city.name; // Set teks option ke nama kota
+                    cityList.appendChild(option); // Tambahkan option ke dropdown
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching city data:', error);
+            });
+    });
+</script>

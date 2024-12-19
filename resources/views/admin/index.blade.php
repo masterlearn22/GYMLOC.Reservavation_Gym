@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Users</h5>
                     <p class="card-text">{{ $usersCount }} total users</p>
-                    <a href="{{ route('jenis_user.index') }}" class="btn btn-primary">Manage Users</a>
+                    <a href="{{ route('user.index') }}" class="btn btn-primary">Manage Users</a>
                 </div>
             </div>
         </div>
@@ -18,7 +18,9 @@
             <div class="card mb-4">
                 <div class="card-body">
                     <h5 class="card-title">Pending Gyms</h5>
-                    <p class="card-text">{{ $gymsCount }} gyms pending approval</p>
+                    <p class="card-text">{{ $gymsCount }} gyms pending approval and<br>
+                    {{ $gymCount }} gyms 
+                    </p>
                     <a href="{{ route('admin.dashboard') }}" class="btn btn-primary">Manage Gyms</a>
                 </div>
             </div>
@@ -29,7 +31,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Role</h5>
                     <p class="card-text">{{ $roleCount }} Total role</p>
-                    <a href="{{ route('jenis_user.index') }}" class="btn btn-primary">Manage Role</a>
+                    <a href="{{ route('role.index') }}" class="btn btn-primary">Manage Role</a>
                 </div>
             </div>
         </div>

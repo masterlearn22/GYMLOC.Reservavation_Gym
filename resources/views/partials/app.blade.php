@@ -14,6 +14,7 @@
     @include('partials.footer')
     @include('partials.jspage')
     @include('partials.jsglobal')
+    
 </body>
 
 </html>
