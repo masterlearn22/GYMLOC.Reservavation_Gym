@@ -15,7 +15,7 @@
     </div>
     <div class="container mt-5">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12">
                 <!-- Hasil Search Gym -->
                 <div class="mt-4 row">
                     @forelse($gyms as $gym)
@@ -28,7 +28,7 @@
                                          alt="{{ $gym->nama_gym }}">
                                 </a>
                             </div> --}}
-                            <div class="pt-3 card-body">
+                            <div class="pt-6 card-body">
                                 <div class="d-flex justify-content-between align-items-center">
                                     <h5 class="mb-0">{{ $gym->nama_gym }}</h5>
                                     <span class="badge bg-success">Tersedia</span>
@@ -59,42 +59,7 @@
                     {{ $gyms->withQueryString()->links() }}
                 </div>
             </div>
-            <div class="mx-auto mt-5 col-md-4 mt-md-0">
-                <div class="position-sticky" style="top:100px !important">
-                    <div class="text-white card bg-gradient-dark">
-                        <div class="card-body">
-                            <h4 class="text-white">Temukan Gym Ideal Anda</h4>
-                            <p>Gunakan filter pencarian kami untuk menemukan gym sesuai kebutuhan:</p>
-                            <!-- Search Gym -->
-                            <form action="#gymsearch" method="GET">
-                                <div class="mb-3">
-                                    <label class="text-white form-label">Lokasi</label>
-                                    <select class="form-control" name="city">
-                                        <option value="">Pilih Kota</option>
-                                        <option value="Jakarta" {{ request('city') == 'Jakarta' ? 'selected' : '' }}>Jakarta</option>
-                                        <option value="Bandung" {{ request('city') == 'Bandung' ? 'selected' : '' }}>Bandung</option>
-                                        <option value="Surabaya" {{ request('city') == 'Surabaya' ? 'selected' : '' }}>Surabaya</option>
-                                    </select>
-                                </div>
-                                <div class="mb-3">
-                                    <label class="text-white form-label">Fasilitas</label>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="weightTraining" name="fasilitas[]" value="Weight Training" 
-                                        {{ is_array(request('fasilitas')) && in_array('Weight Training', request('fasilitas')) ? 'checked' : '' }}>
-                                        <label class="text-white form-check-label" for="weightTraining">Weight Training</label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" id="cardio" name="fasilitas[]" value="Cardio"
-                                        {{ is_array(request('fasilitas')) && in_array('Cardio', request('fasilitas')) ? 'checked' : '' }}>
-                                        <label class="text-white form-check-label" for="cardio">Cardio</label>
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-white w-100">Cari Gym</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
         </div>
     </div>
 </section>

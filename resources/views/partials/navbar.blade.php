@@ -4,7 +4,7 @@
             <div class="col-12">
                 <nav class="top-0 mx-4 my-3 shadow navbar navbar-expand-lg blur border-radius-xl position-absolute start-0 end-0 z-index-fixed">
                     <div class="px-0 container-fluid">
-                        <a class="flex-shrink-0 text-sm navbar-brand font-weight-bolder ms-sm-3 me-3" rel="tooltip"> <!-- Tambahkan me-3 di sini -->
+                        <a class="flex-shrink-0 text-sm navbar-brand font-weight-bolder ms-sm-3 me-3"href="/" rel="tooltip"> <!-- Tambahkan me-3 di sini -->
                             GYMLOC
                         </a>
                         
