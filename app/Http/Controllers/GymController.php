@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class GymController extends Controller
 {
@@ -49,6 +50,11 @@ class GymController extends Controller
         // Ambil data gym berdasarkan id_user
         $gym = Gym::where('id_user', $id_user)->first(); // Menggunakan first() untuk mendapatkan satu record
     
+        // Periksa apakah gym ditemukan
+        if (!$gym) {
+            return redirect()->back()->with('error', 'Gym tidak ditemukan.');
+        }
+    
         // Ambil harga-harga sebelumnya
         $previousPrices = DB::table('gym_prices')
             ->join('gym_price_categories', 'gym_prices.category_id', '=', 'gym_price_categories.id')
@@ -60,7 +66,8 @@ class GymController extends Controller
 
     public function update(Request $request, $gym_id)
     {
-       // dd($request->all());
+       //dd($request->file('foto'));
+       $gym = gym::findOrFail($gym_id);
 
         $validated = $request->validate([
             'nama_gym' => 'required|string|max:50',
@@ -76,10 +83,32 @@ class GymController extends Controller
             'durasi.*' => 'nullable|integer|min:0',
             'harga' => 'required|array|min:1|max:5',
             'harga.*' => 'required|integer|min:0',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:10048',
         ]);
-    
+
+        $gambarPathArray = json_decode($gym->foto, true) ?? [];
+
+        // Hapus gambar yang dipilih
+        if ($request->has('delete_gambar') && !empty($request->input('delete_gambar'))) {
+            foreach ($request->input('delete_gambar') as $gambar) {
+                if (Storage::exists('public/' . $gambar)) {
+                    Storage::delete('public/' . $gambar);
+                    $gambarPathArray = array_diff($gambarPathArray, [$gambar]);
+                }
+            }
+        }
+
+        // Unggah gambar baru
+        if ($request->hasFile('foto')) {
+            foreach ($request->file('foto') as $file) {
+                $gambarPath = $file->store('attachments', 'public');
+                $gambarPathArray[] = $gambarPath;
+            }
+        }
         // Mulai transaksi database
         DB::beginTransaction();
+
+
     
         try {
             // Update data gym
@@ -92,7 +121,10 @@ class GymController extends Controller
                 'deskripsi' => $validated['deskripsi'],
                 'jam_buka' => $validated['jam_buka'],
                 'jam_tutup' => $validated['jam_tutup'],
+                'foto' => !empty($gambarPathArray) ? json_encode($gambarPathArray) : null,
             ]);
+
+            
     
             // Hapus harga lama
             DB::table('gym_prices')->where('gym_id', $gym_id)->delete();
@@ -126,7 +158,7 @@ class GymController extends Controller
             // Commit transaksi
             DB::commit();
     
-            return redirect()->route('pihakgym.edit', $gym_id)
+            return redirect()->route('gym.edit', $gym_id)
                 ->with('success', 'Gym dan harga berhasil diupdate');
     
         } catch (\Exception $e) {
