@@ -34,7 +34,10 @@
                                     <span class="badge bg-success">Tersedia</span>
                                 </div>
                                 <p class="mt-2 text-sm">
-                                    <i class="fas fa-map-marker-alt me-1"></i> {{ $gym->alamat }}
+                                    <i class="fas fa-map-marker-alt me-1"></i> {{ $gym->city }}
+                                </p>
+                                <p class="mt-2 text-sm">
+                                    <i class="fas fa-map-marker-alt me-1"></i>Rp {{ number_format($gym->harga) }}
                                 </p>
                                 <div class="mt-3 d-flex justify-content-between align-items-center">
                                     <div class="rating">
