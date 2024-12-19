@@ -37,9 +37,6 @@
         <div class="row">
             <div class="mb-4 col-md-3 ms-auto">
                 <div>
-                    <a href="https://www.creative-tim.com/product/material-kit">
-                        <img src="./assets/img/logo-ct-dark.png" class="mb-3 footer-logo" alt="main_logo">
-                    </a>
                     <h6 class="mb-4 font-weight-bolder footer-title">GYMLOC</h6>
                 </div>
                 <div>
