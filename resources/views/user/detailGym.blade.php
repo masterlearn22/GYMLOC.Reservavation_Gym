@@ -3,6 +3,7 @@
 <head>
     @include('partials.header')
     @include('partials.styleGlobal')
+    <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
     <style>
         .pricing-group {
             margin-bottom: 15px;
@@ -77,6 +78,7 @@
     </div>
     
     <!-- Modal Booking -->
+<!-- Modal Booking -->
 <div class="modal fade" id="bookingModal" tabindex="-1" aria-labelledby="bookingModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -85,7 +87,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('checkout.process') }}" method="POST">
+                <form id="bookingForm">
                     @csrf
                     <div class="mb-3">
                         <label for="session" class="form-label">Pilih Sesi</label>
@@ -102,14 +104,53 @@
                     <input type="hidden" name="id_user" value="{{ Auth::id() }}">
                 
                     <!-- Input tersembunyi untuk gym_id -->
-                    <input type="hidden" name="gym_id" value="{{ $gym->gym_id }}"> <!-- Pastikan ini adalah ID gym yang benar -->
+                    <input type="hidden" name="gym_id" value="{{ $gym->gym_id }}">
                 
-                    <button type="submit" class="btn btn-primary">Konfirmasi Booking</button>
+                    <button type="button" class="btn btn-primary" id="confirmBooking">Konfirmasi Booking</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
+<script>
+    document.getElementById('confirmBooking').onclick = function () {
+        var form = document.getElementById('bookingForm');
+        var formData = new FormData(form);
+
+        // Kirim data ke server untuk mendapatkan snap token
+        fetch("{{ route('checkout.process') }}", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.snapToken) {
+                // Jika berhasil mendapatkan snap token, lakukan pembayaran
+                snap.pay(data.snapToken, {
+                    onSuccess: function(result) {
+                        console.log(result);
+                        // Anda bisa menambahkan logika untuk menyimpan transaksi di sini
+                    },
+                    onPending: function(result) {
+                        console.log(result);
+                    },
+                    onError: function(result) {
+                        console.log(result);
+                    }
+                });
+            } else {
+                console.error('Error getting snap token:', data);
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+</script>
 
 
 </section>

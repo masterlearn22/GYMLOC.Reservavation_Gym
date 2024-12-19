@@ -14,9 +14,6 @@ class CheckoutController extends Controller
 {
     public function process(Request $request)
     {
-        // Debugging: Periksa semua data yang diterima
-        //dd($request->all());
-    
         // Ambil category_id dari request
         $categoryId = $request->input('category_id');
     
@@ -28,44 +25,35 @@ class CheckoutController extends Controller
             return response()->json(['error' => 'Invalid amount'], 400);
         }
     
-        // Ambil durasi dari gymPrice
-        $durasi = $gymPrice->durasi;
-    
-        // Jika durasi tidak ada, Anda bisa menetapkan nilai default
-        if (is_null($durasi)) {
-            $durasi = 30; // Misalnya, jika durasi tidak ditentukan, gunakan 30 hari sebagai default
-        }
-    
         Config::$serverKey = config('midtrans.server_key');
         Config::$clientKey = config('midtrans.client_key');
     
         $transactionDetails = [
             'order_id' => uniqid(),
-            'gross_amount' => (float) $gymPrice->harga, // Pastikan ini adalah float
+            'gross_amount' => (float) $gymPrice->harga,
         ];
     
         $customerDetails = [
-            'first_name' => $request->username, // Ganti dengan username yang benar
-            'email' => $request->email, // Ganti dengan email yang benar
+            'first_name' => Auth::user()->name,
+            'email' => Auth::user()->email,
         ];
     
         $transaction = [
             'transaction_details' => $transactionDetails,
             'customer_details' => $customerDetails,
             'metadata' => [
-                'user_id' => Auth::id(), // Menambahkan user_id ke metadata
-                'gym_id' => $request->gym_id, 
-                'category_id' => $categoryId,// Menambahkan gym_id ke metadata
+                'user_id' => Auth::id(),
+                'gym_id' => $request->gym_id,
+                'category_id' => $categoryId,
             ],
         ];
     
         try {
             $snapToken = Snap::getSnapToken($transaction);
+            return response()->json(['snapToken' => $snapToken]);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
-    
-        return view('checkout.payment', ['snapToken' => $snapToken]);
     }
 
     public function notification(Request $request)
