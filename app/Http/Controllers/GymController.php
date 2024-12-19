@@ -191,12 +191,9 @@ class GymController extends Controller
                 });
             })
             ->groupBy('gym_id');
-    
-        // Query pencarian gym berdasarkan nama, kota, dan kategori
-<<<<<<< HEAD
-=======
+
         // Query pencarian gym berdasarkan nama dan kota
->>>>>>> 5dbf9e4b34db4135f2dd8b353eadfa136a4b04a3
+
         $gyms = Gym::where('nama_gym', 'like', "%{$query}%")
             ->when($city, function ($q) use ($city) {
                 return $q->where('city', $city);
