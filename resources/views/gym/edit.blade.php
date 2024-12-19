@@ -34,7 +34,7 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('gym.update', $gym->gym_id) }}" method="POST">
+                        <form action="{{ route('gym.update', $gym->gym_id) }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <!-- Informasi Gym -->
                             <div class="mb-3">
@@ -75,6 +75,26 @@
                                 <input type="time" id="jam_tutup" name="jam_tutup" class="form-control"
                                     placeholder="Contoh:22:00" value="{{ old('jam_tutup', $gym->jam_tutup) }}" required>
                             </div>
+                            <div class="form-group">
+                                <label for="existing_image">Gambar Sebelumnya:</label>
+                                {{-- @if($gambarPathArray)
+                                    <div>
+                                        <!-- Loop untuk menampilkan setiap gambar -->
+                                        @foreach ($gambarPathArray as $index => $gambar)
+                                            <div>
+                                                <img src="{{ asset('storage/' . $gambar) }}" alt="Gambar Postingan" class="img-fluid" style="max-width: 20%; height: auto; margin-bottom: 10px;">
+                                                <input type="checkbox" name="delete_gambar[]" value="{{ $gambar }}"> Hapus
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                @else
+                                    <p>Tidak ada gambar sebelumnya.</p>
+                                @endif
+                                <div class="form-group">
+                                    <label for="foto">Upload Gambar Baru (Opsional):</label>
+                                    <input type="file" name="foto[]" class="form-control" multiple> <!-- Tambahkan multiple jika ingin memungkinkan upload beberapa gambar -->
+                                </div>
+                            </div> --}}
                             <!-- Harga Berdasarkan Kategori -->
                             <div>
                                 <h5 class="mb-3">Harga Berdasarkan Kategori</h5>

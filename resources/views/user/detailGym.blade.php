@@ -14,17 +14,16 @@
 <section class="py-7">
     <div class="container">
         <div class="mb-4 d-flex justify-content-between align-items-center">
-            <h4 class="card-title">Riwayat Transaksi</h4>
             <a href="{{ route('gym.list') }}" class="btn btn-secondary">
                 <i class="fas fa-arrow-left"></i> Kembali
             </a>
         </div>
         <div class="row">
-            <div class="col-lg-6">
+            {{-- <div class="col-lg-6">
                 <img src="{{ asset('storage/' . $gym->foto) }}" 
                      class="rounded shadow-lg img-fluid" 
                      alt="{{ $gym->nama_gym }}">
-            </div>
+            </div> --}}
             <div class="col-lg-6">
                 <h2 class="mb-3">{{ $gym->nama_gym }}</h2>
                 <div class="mb-3 rating">
