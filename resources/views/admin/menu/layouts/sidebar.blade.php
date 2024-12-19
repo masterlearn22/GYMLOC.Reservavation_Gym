@@ -22,7 +22,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-dark" href="{{ route('jenis_user.index') }}">
+        <a class="nav-link text-dark" href="{{ route('role.index') }}">
           <i class="material-symbols-rounded opacity-5">people</i>
           <span class="nav-link-text ms-1">Role</span>
         </a>

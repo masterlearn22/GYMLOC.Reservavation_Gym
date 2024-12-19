@@ -11,13 +11,13 @@ class RoleController extends Controller
     public function index()
     {
         $jenisUsers = Role::all();
-        return view('jenis_user.index', compact('jenisUsers'));
+        return view('admin.role.index', compact('jenisUsers'));
     }
 
     public function create()
     {
         $Role = Role::all();
-        return view('jenis_user.create', compact('Role'));
+        return view('admin.role.create', compact('Role'));
     }
 
     public function store(Request $request)
@@ -34,13 +34,13 @@ class RoleController extends Controller
             'CREATE_DATE' => now(),
         ]);
 
-        return redirect()->route('jenis_user.index')->with('success', 'Jenis User created successfully.');
+        return redirect()->route('role.index')->with('success', 'Jenis User created successfully.');
     }
 
     public function edit($id)
     {
         $Role = Role::findOrFail($id);
-        return view('jenis_user.edit', compact('Role'));
+        return view('admin.role.edit', compact('Role'));
     }
 
     public function update(Request $request, $id)
@@ -56,7 +56,7 @@ class RoleController extends Controller
             'UPDATE_DATE' => now(),
         ]);
 
-        return redirect()->route('jenis_user.index')->with('success', 'Jenis User updated successfully.');
+        return redirect()->route('role.index')->with('success', 'Jenis User updated successfully.');
     }
 
     public function destroy($id)
@@ -65,6 +65,6 @@ class RoleController extends Controller
         $Role->update(['DELETE_MARK' => 'Y']);
         $Role->delete();
 
-        return redirect()->route('jenis_user.index')->with('success', 'Jenis User deleted successfully.');
+        return redirect()->route('role.index')->with('success', 'Jenis User deleted successfully.');
     }
 }

@@ -66,7 +66,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:1'])->group(function () {
         Route::get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
         Route::post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-        Route::get('/user-detail', [UserController::class, 'User Detail'])->name('admin.user.detail');
+        
     });
 
     Route::middleware(['role:2'])->group(function () {
@@ -74,7 +74,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
         Route::post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-        Route::resource('jenis_user', RoleController::class);
+        Route::get('/user-detail/{id_role}', [AdminController::class, 'userDetail'])->name('admin.user.detail');
+        Route::resource('role', RoleController::class);
         Route::resource('user', KelolaUserController::class);
         Route::resource('menu', MenuController::class);
     });

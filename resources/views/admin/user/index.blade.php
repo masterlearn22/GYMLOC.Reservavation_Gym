@@ -12,7 +12,7 @@
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>
-            <th>Jenis User</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -41,14 +41,4 @@
 @endsection
 <!-- Inisialisasi DataTables -->
 
-<script>
-$(document).ready(function() {
-$('#myTable').DataTable({
-"paging": true, // Menampilkan pagination
-"searching": true, // Menampilkan kotak pencarian
-"ordering": true, // Mengaktifkan pengurutan kolom
-"info": true, // Menampilkan informasi jumlah data
-});
-});
-</script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+

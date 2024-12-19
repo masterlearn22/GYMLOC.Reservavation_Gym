@@ -23,7 +23,7 @@ class AdminController extends Controller
     {
         // Ambil semua gym yang memiliki status 'aktif' dan sudah disetujui
         $gymRequests = Gym::where('status', 'aktif')->with('user')->get(); 
-    
+        $id_role =  User::where('id_role'== 2);
         // Ambil data gym yang belum disetujui
         $gyms = DB::table('gyms')
             ->leftJoin('gym_prices', 'gyms.gym_id', '=', 'gym_prices.gym_id')
@@ -46,7 +46,8 @@ class AdminController extends Controller
     
         return view('admin.dashboard', [
             'gymRequests' => $gymRequests,
-            'gyms' => $gyms
+            'gyms' => $gyms, 
+            'user'
         ]);
     }
 
@@ -135,9 +136,10 @@ class AdminController extends Controller
         }
     }
 
-    public function userDetail($id)
+    public function userDetail($id_role)
     {
-        $user = User::where('id_user', $id)->firstOrFail();
+        
+        $user = User::where('id_role', $id_role)->first(); // Pastikan Anda menggunakan kolom yang benar
         return view('admin.user-detail', compact('user'));
     }
 
