@@ -99,7 +99,7 @@
                         <option value="12 Bulan" {{ request('kategori') == '12 Bulan' ? 'selected' : '' }}>12 Bulan</option>
                     </select>
                 
-                    <button class="btn btn-primary" type="submit">Cari</button>
+                    <button class="btn btn-outline-dark" type="submit">Cari</button>
                 </form>
             </div>
         </div>
