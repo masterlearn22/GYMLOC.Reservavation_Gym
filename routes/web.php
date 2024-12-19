@@ -88,5 +88,9 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('menu', MenuController::class);
     });
 
+    Route::get('register', [AuthController::class, 'TampilanRegistrasi'])->name('register');
+Route::post('register', [AuthController::class, 'Registrasi']);
+Route::get('login', [AuthController::class, 'TampilanLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
     
 });
