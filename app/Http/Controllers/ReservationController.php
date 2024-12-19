@@ -16,4 +16,10 @@ class ReservationController extends Controller
         
         return view('reservasi.index', compact('reservations'));
     }
+    public function views()
+    {
+        $reservations = Reservation::all(); // Ambil semua data gym
+        
+        return view('reservasi.admin', compact('reservations'));
+    }
 }

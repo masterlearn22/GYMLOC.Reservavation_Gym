@@ -41,6 +41,7 @@ Route::post('/logout', [AuthController::class, 'logout']);
 
 // Rute untuk Reservasi
 Route::get('/reservations/view',[ReservationController::class, 'index']);
+Route::get('/gym/reservasi', [ReservationController::class, 'views'])->name('pihakgym.view');
 
 
 Route::get('/index', function () {
@@ -98,3 +99,4 @@ Route::post('login', [AuthController::class, 'login']);
 });
 // Menambahkan route untuk edit gym
 Route::get('/gym/{id}/edit', [GymController::class, 'edit'])->name('pihakgym.edit');
+
