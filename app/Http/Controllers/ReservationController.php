@@ -2,17 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Reservation;
 use App\Models\Gym;
-use Auth;
+use App\Models\Reservation;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class ReservationController extends Controller
 {
     // Menampilkan halaman reservasi
     public function index()
     {
-        $reservations = Reservation::all(); // Ambil semua data gym
+        $userId = Auth::user()->id_user; // Ambil ID pengguna yang sedang login
+
+        // Ambil reservasi yang sesuai dengan id_user
+        $reservations = Reservation::where('id_user', $userId)->get();// Ambil semua data gym
         
         return view('reservasi.index', compact('reservations'));
     }

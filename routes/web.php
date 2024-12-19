@@ -9,7 +9,6 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\TopupController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
 
 use App\Http\Controllers\CheckoutController;
@@ -65,8 +64,6 @@ Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('prof
 Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
 Route::get('/about/index', [AboutController::class, 'index'])->name('about.index');
 
-// Rute untuk Transaksi
-Route::get('/transaction/{id}', [TransaksiController::class, 'show'])->name('transaction.details');
 // Rute untuk Checkout
 Route::middleware('auth')->post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 

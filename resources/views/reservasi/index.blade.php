@@ -1,8 +1,12 @@
 @extends('partials.app')
 
 @section('content')
-<div class="container pt-5 mt-5"> <!-- Menambahkan padding-top untuk menghindari overlap -->
+<div class="container pt-8 mt-4">
+    <a href="{{route('profile.index')}}" class="btn btn-secondary back-button">
+        <i class="fas fa-arrow-left"></i> Kembali
+    </a> <!-- Menambahkan padding-top untuk menghindari overlap -->
     <h2 class="mb-4 text-center">Daftar Reservasi Gym</h2>
+    
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="shadow card">
