@@ -178,33 +178,16 @@ class GymController extends Controller
     {
         $query = $request->input('query');
         $city = $request->input('city');
-        $kategori = $request->input('kategori');
-    
-        // Subquery untuk mendapatkan harga sesuai kategori
-        $subquery = DB::table('gym_prices')
-            ->select('gym_id', DB::raw('MIN(harga) as harga'))
-            ->when($kategori, function ($q) use ($kategori) {
-                return $q->where('category_id', function ($query) use ($kategori) {
-                    return $query->select('id')
-                        ->from('gym_price_categories')
-                        ->where('nama_kategori', $kategori);
-                });
-            })
-            ->groupBy('gym_id');
-    
-        // Query pencarian gym berdasarkan nama, kota, dan kategori
+
+        // Query pencarian gym berdasarkan nama dan kota
         $gyms = Gym::where('nama_gym', 'like', "%{$query}%")
             ->when($city, function ($q) use ($city) {
                 return $q->where('city', $city);
             })
-            ->leftJoinSub($subquery, 'filtered_prices', function ($join) {
-                $join->on('gyms.gym_id', '=', 'filtered_prices.gym_id');
-            })
-            ->select('gyms.*', DB::raw('COALESCE(filtered_prices.harga, (SELECT harga FROM gym_prices WHERE gym_id = gyms.gym_id AND category_id = (SELECT id FROM gym_price_categories WHERE nama_kategori = "1 Bulan") LIMIT 1)) as harga')) // Ambil harga sesuai kategori atau harga 1 bulan jika tidak ada
-            ->orderBy('harga', 'asc') // Urutkan berdasarkan harga dari termurah ke termahal
             ->paginate(10);
-    
-        return view('user.daftargym', compact('gyms', 'query', 'city', 'kategori'));
+        
+
+        return view('user.daftargym', compact('gyms', 'query', 'city'));
     }
 
     public function list(Request $request)

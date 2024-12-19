@@ -11,6 +11,7 @@ use App\Http\Controllers\TopupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransaksiController;
 use App\Http\Controllers\ReservationController;
+
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RoleController;
@@ -18,6 +19,11 @@ use App\Http\Controllers\KelolaUserController;
 
 Route::get('/anjay', function () {
     return view('welcome');
+});
+
+//Dashboard Page
+Route::get('/', function () {
+    return view('IntroWebsite.index');
 });
 
 
@@ -37,6 +43,9 @@ Route::post('/logout', [AuthController::class, 'logout']);
 Route::get('/reservations/view',[ReservationController::class, 'index']);
 
 
+Route::get('/index', function () {
+    return view('IntroWebsite.index');
+});
 
 
 Route::get('/gyms', [GymController::class, 'index']);
@@ -66,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::middleware(['role:1'])->group(function () {
         Route::get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
         Route::post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
+        Route::get('/user-detail', [UserController::class, 'User Detail'])->name('admin.user.detail');
         
     });
 
@@ -80,5 +90,11 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('menu', MenuController::class);
     });
 
+    Route::get('register', [AuthController::class, 'TampilanRegistrasi'])->name('register');
+Route::post('register', [AuthController::class, 'Registrasi']);
+Route::get('login', [AuthController::class, 'TampilanLogin'])->name('login');
+Route::post('login', [AuthController::class, 'login']);
     
 });
+// Menambahkan route untuk edit gym
+Route::get('/gym/{id}/edit', [GymController::class, 'edit'])->name('pihakgym.edit');

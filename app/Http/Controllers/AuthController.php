@@ -71,7 +71,7 @@ class AuthController extends Controller
             // Regenerasi session ID untuk keamanan
             $request->session()->regenerate();
     
-            return redirect('index');
+            return redirect('/');
         } else {
             return back()->withErrors(['message' => 'Login failed']);
         }
