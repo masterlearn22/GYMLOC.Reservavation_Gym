@@ -26,14 +26,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/', [DashboardController::class, 'index'])->name('dasboard.index');
-Route::get('/index', [DashboardController::class, 'index'])->name('dasboard.login');
-Route::get('/tentangkami', [AboutController::class, 'index'])->name('about.index');
-// Route untuk AuthController (Login, Logout, Register)
-Route::post('/simpanregist', [AuthController::class, 'Registrasi'])->name('register');
-Route::get('/login', [AuthController::class, 'Tampilanlogin']);
-Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout']);
 
 // Rute untuk Menu
 
@@ -88,10 +80,17 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('menu', MenuController::class);
     });
 
-    Route::get('register', [AuthController::class, 'TampilanRegistrasi'])->name('register');
-Route::post('register', [AuthController::class, 'Registrasi']);
-Route::get('login', [AuthController::class, 'TampilanLogin'])->name('login');
-Route::post('login', [AuthController::class, 'login']);
+Route::get('register', [AuthController::class, 'TampilanRegistrasi'])->name('regis');
+Route::get('login', [AuthController::class, 'TampilanLogin'])->name('log');
+Route::post('/simpanregist', [AuthController::class, 'Registrasi'])->name('register');
+Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/', [DashboardController::class, 'index'])->name('dasboard.index');
+Route::get('/index', [DashboardController::class, 'index'])->name('dasboard.login');
+Route::get('/tentangkami', [AboutController::class, 'index'])->name('about.index');
+// Route untuk AuthController (Login, Logout, Register)
+
     
 });
 // Menambahkan route untuk edit gym

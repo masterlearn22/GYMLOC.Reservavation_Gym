@@ -14,13 +14,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id('id_user');
             $table->string('name', 60);
-            $table->string('username', 60);
+            $table->string('username', 60)->default('user_default');
             $table->string('password', 60);
             $table->string('email', 60);
             $table->longText('profile_photo')->nullable();
             $table->string('id_role', 30)->nullable();
             $table->boolean('is_gym_requested')->default(false);
             $table->decimal('saldo', 10, 2)->default(0.00); // Kolom saldo dengan default 0.00
+            $table->string('remember_token')->nullable();
             $table->timestamps();
             
             $table->foreign('id_role')->references('id_role')->on('role');
@@ -48,6 +49,7 @@ return new class extends Migration
         Schema::dropIfExists('users');
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('profile_photo');
+            $table->dropColumn('remember_token');
         });
         Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('sessions');
