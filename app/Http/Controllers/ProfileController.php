@@ -112,14 +112,6 @@ class ProfileController extends Controller
         return redirect()->route('profile.index', $user->id_user)->with('success', 'Foto profil berhasil diperbarui.');
     }
 
-    /**
-     * Menampilkan halaman pengaturan pengguna.
-     */
-    public function settings()
-    {
-        $user = Auth::user();
-        return view('profile.settings', compact('user'));
-    }
 
     /**
      * Logika untuk menghapus akun pengguna.

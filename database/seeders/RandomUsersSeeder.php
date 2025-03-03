@@ -119,7 +119,7 @@ class RandomUsersSeeder extends Seeder
             'TITO MUHAMMAD GAFA',
             'MUCHAMAD ERLANGGA SETIAWAN',
             'MUHAMMAD ZAKI FIKRI HARIYADI',
-            'SYAHREN MAULANA ADIL HAKIM',
+            'SYAHREN MASTER',
             'PEDJA RAFSANJANI',
             'INDAH TASYA KURINA',
             'MUHAMMAD CATRA HANIF \'AZMI',
@@ -133,7 +133,7 @@ class RandomUsersSeeder extends Seeder
         ];
 
         // Daftar role yang tersedia
-        $roles = [1, 2, 3]; // Misalnya, 1 = Admin, 2 = Member, 3 = Guest
+        $roles = [1, 2]; // Misalnya, 1 = Admin, 2 = Member, 3 = Guest
 
         // Buat pengguna dengan nama lengkap dan username yang unik
         foreach ($fullNames as $fullName) {

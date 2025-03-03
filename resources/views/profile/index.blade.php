@@ -145,6 +145,9 @@
                         <a href="{{ route('pihakgym.edit', $user->id_user) }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Edit Profil Gym
                         </a>
+                        <a href="{{ route('pihakgym.view') }}" class="btn btn-primary">
+                            <i class="fas fa-building"></i> List Reservasi
+                        </a>
                     @elseif (Auth::user()->id_role == '1')
                         <a href="{{ route('request.gym') }}" class="btn btn-primary">
                             <i class="fas fa-building"></i> Buat Gym

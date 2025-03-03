@@ -3,7 +3,7 @@
     <i class="top-0 p-3 cursor-pointer fas fa-times text-dark opacity-5 position-absolute end-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
     <a class="px-4 py-3 m-0 navbar-brand" href="#" target="_blank">
       <img src="../assets/img/logo-ct-dark.png" class="navbar-brand-img" width="26" height="26" alt="main_logo">
-      <span class="text-sm ms-1 text-dark">Transaksi Basis Data</span>
+      <span class="text-sm ms-1 text-dark">Dashboard Admin</span>
     </a>
   </div>
   <hr class="mt-0 mb-2 horizontal dark">
