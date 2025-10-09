@@ -1,98 +1,101 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GymController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\MenuController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AboutController;
-use App\Http\Controllers\AdminController;
-use App\Http\Controllers\TopupController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\{
+    GymController,
+    AuthController,
+    MenuController,
+    UserController,
+    AboutController,
+    AdminController,
+    TopupController,
+    ProfileController,
+    ReservationController,
+    CheckoutController,
+    DashboardController,
+    RoleController,
+    KelolaUserController
+};
 
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\KelolaUserController;
+// -----------------------------
+// Public Routes
+// -----------------------------
+Route::get('/anjay', fn() => view('welcome'));
+Route::get('/', fn() => view('IntroWebsite.index'))->name('home');
+Route::get('/index', fn() => view('IntroWebsite.index'));
 
-Route::get('/anjay', function () {
-    return view('welcome');
-});
-
-//Dashboard Page
-Route::get('/', function () {
-    return view('IntroWebsite.index');
-});
-
-
-
-// Rute untuk Menu
-
-
-// Rute untuk Reservasi
-Route::get('/reservations/view',[ReservationController::class, 'index']);
-Route::get('/gym/reservasi', [ReservationController::class, 'views'])->name('pihakgym.view');
-
-
-Route::get('/index', function () {
-    return view('IntroWebsite.index');
-});
-
-
-Route::get('/gyms', [GymController::class, 'index']);
-Route::post('/gym/store', [GymController::class, 'store']);
+// -----------------------------
+// Gym & Reservation
+// -----------------------------
+Route::get('/gyms', [GymController::class, 'index'])->name('gym.index');
+Route::post('/gym/store', [GymController::class, 'store'])->name('gym.store');
 Route::get('/gym/search', [GymController::class, 'search'])->name('gym.search');
 Route::get('/gym/list', [GymController::class, 'list'])->name('gym.list');
 Route::get('/gym/{id}', [GymController::class, 'show'])->name('gym.show');
-Route::get('/gym/edit/{id}', [GymController::class, 'edit'])->name('gym.edit');
+Route::get('/gym/{id}/edit', [GymController::class, 'edit'])->name('gym.edit');
 Route::post('/gym/edit/{id}', [GymController::class, 'update'])->name('gym.update');
 
-// Rute untuk Profile
-Route::resource('profile', ProfileController::class);
-Route::get('/topup', [TopupController::class, 'showTopUpForm'])->name('topup');
-Route::post('/processtopup', [TopupController::class, 'processTopUp'])->name('process.topup');
-Route::get('/transaksi', [ProfileController::class, 'transaksi'])->name('transaksi');
-Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');
-Route::get('/about/index', [AboutController::class, 'index'])->name('about.index');
+Route::get('/reservations/view', [ReservationController::class, 'index'])->name('reservation.index');
+Route::get('/gym/reservasi', [ReservationController::class, 'views'])->name('gym.reservasi');
 
-// Rute untuk Checkout
+// -----------------------------
+// Profile & Topup
+// -----------------------------
+Route::resource('profile', ProfileController::class);
+Route::get('/profile/edit/{id}', [ProfileController::class, 'edit'])->name('profile.edit.id'); // custom edit route
+Route::get('/topup', [TopupController::class, 'showTopUpForm'])->name('topup.form');
+Route::post('/processtopup', [TopupController::class, 'processTopUp'])->name('topup.process');
+Route::get('/transaksi', [ProfileController::class, 'transaksi'])->name('profile.transaksi');
+
+// -----------------------------
+// About Page
+// -----------------------------
+Route::get('/about', [AboutController::class, 'index'])->name('about.index');
+
+// -----------------------------
+// Checkout (protected)
+// -----------------------------
 Route::middleware('auth')->post('/checkout/process', [CheckoutController::class, 'process'])->name('checkout.process');
 
-// Rute untuk Admin dan User
+// -----------------------------
+// Auth Routes
+// -----------------------------
+Route::get('/register', [AuthController::class, 'TampilanRegistrasi'])->name('register.form');
+Route::post('/register', [AuthController::class, 'Registrasi'])->name('register.save');
+Route::get('/login', [AuthController::class, 'TampilanLogin'])->name('login.form');
+Route::post('/login', [AuthController::class, 'login'])->name('login.process');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// -----------------------------
+// Dashboard Routes
+// -----------------------------
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard/login', [DashboardController::class, 'index'])->name('dashboard.login');
+Route::get('/tentangkami', [AboutController::class, 'index'])->name('about.tentangkami');
+
+// -----------------------------
+// Protected Routes (auth required)
+// -----------------------------
 Route::middleware(['auth'])->group(function () {
+
+    // ---- USER ROLE 1 ----
     Route::middleware(['role:1'])->group(function () {
-        Route::get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('request.gym');
-        Route::post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('submit.gym.request');
-        Route::get('/user-detail', [UserController::class, 'User Detail'])->name('admin.user.detail');
-        
+        Route::get('/request-gym', [UserController::class, 'showGymRequestForm'])->name('user.request.gym');
+        Route::post('/submit-gym-request', [UserController::class, 'submitGymRequest'])->name('user.submit.gym');
+        Route::get('/user-detail', [UserController::class, 'userDetail'])->name('user.detail');
     });
 
+    // ---- ADMIN ROLE 2 ----
     Route::middleware(['role:2'])->group(function () {
         Route::get('/admin/index', [AdminController::class, 'index'])->name('admin.index');
         Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        Route::post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.approve.gym');
-        Route::post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.reject.gym');
-        Route::get('/user-detail/{id_role}', [AdminController::class, 'userDetail'])->name('admin.user.detail');
+        Route::post('/admin/approve-gym/{user}', [AdminController::class, 'approveGym'])->name('admin.gym.approve');
+        Route::post('/admin/reject-gym/{user}', [AdminController::class, 'rejectGym'])->name('admin.gym.reject');
+        Route::get('/admin/user-detail/{id_role}', [AdminController::class, 'userDetail'])->name('admin.user.detail.id');
+        
+        // Resource controllers for admin
         Route::resource('role', RoleController::class);
         Route::resource('user', KelolaUserController::class);
         Route::resource('menu', MenuController::class);
     });
-
-Route::get('register', [AuthController::class, 'TampilanRegistrasi'])->name('regis');
-Route::get('login', [AuthController::class, 'TampilanLogin'])->name('log');
-Route::post('/simpanregist', [AuthController::class, 'Registrasi'])->name('register');
-Route::post('/simpanlogin', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout']);
-
-Route::get('/', [DashboardController::class, 'index'])->name('dasboard.index');
-Route::get('/index', [DashboardController::class, 'index'])->name('dasboard.login');
-Route::get('/tentangkami', [AboutController::class, 'index'])->name('about.index');
-// Route untuk AuthController (Login, Logout, Register)
-
-    
 });
-// Menambahkan route untuk edit gym
-Route::get('/gym/{id}/edit', [GymController::class, 'edit'])->name('pihakgym.edit');
-
