@@ -3,6 +3,7 @@
 
     @include('partials.header')
     @include('partials.styleGlobal')
+    @yield('style')
 </head>
 
 <body class="bg-gray-200 index-page">

@@ -21,8 +21,36 @@ use App\Http\Controllers\{
 // Public Routes
 // -----------------------------
 Route::get('/anjay', fn() => view('welcome'));
-Route::get('/', fn() => view('IntroWebsite.index'))->name('home');
-Route::get('/index', fn() => view('IntroWebsite.index'));
+
+Route::get('/', function () {
+    $gymCount = \App\Models\Gym::count();
+    $cityCount = \App\Models\Gym::distinct('city')->count();
+    $facilityCount = 50; 
+    
+    // Fetch gyms with pagination and optional city filter
+    $query = \App\Models\Gym::query();
+    if (request('city')) {
+        $query->where('city', 'like', '%' . request('city') . '%');
+    }
+    $gyms = $query->paginate(6);
+    
+    return view('IntroWebsite.index', compact('gymCount', 'cityCount', 'facilityCount', 'gyms'));
+})->name('home');
+
+Route::get('/index', function () {
+    $gymCount = \App\Models\Gym::count();
+    $cityCount = \App\Models\Gym::distinct('city')->count();
+    $facilityCount = 50;
+    
+    // Fetch gyms with pagination and optional city filter
+    $query = \App\Models\Gym::query();
+    if (request('city')) {
+        $query->where('city', 'like', '%' . request('city') . '%');
+    }
+    $gyms = $query->paginate(6);
+    
+    return view('IntroWebsite.index', compact('gymCount', 'cityCount', 'facilityCount', 'gyms'));
+});
 
 // -----------------------------
 // Gym & Reservation

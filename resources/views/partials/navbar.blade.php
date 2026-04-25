@@ -13,55 +13,63 @@
                         
 
                         <ul class="navbar-nav ms-auto d-flex align-items-center">
+                            <li class="nav-item">
+                                <form action="{{ route('gym.search') }}" method="GET" class="d-flex align-items-center flex-grow-10 mb-0">
+                                    <div class="input-group me-3">
+                                        <span class="bg-white input-group-text border-end-0"><i class="fas fa-search text-dark"></i></span>
+                                        <input type="search" 
+                                               name="query" 
+                                               class="form-control" 
+                                               placeholder="Cari gym" 
+                                               aria-label="Search"
+                                               value="{{ request('query') }}" 
+                                               style="padding-left: 10px;">
+                                    </div>
+                                </form>
+                            </li>
                             
-                            <form action="{{ route('gym.search') }}" method="GET" class="d-flex align-items-center flex-grow-10">
-                                <div class="input-group me-3 w-100">
-                                    <span class="bg-white input-group-text border-end-0"><i class="fas fa-search"></i></span>
-                                    <input type="search" 
-                                           name="query" 
-                                           class="form-control" 
-                                           placeholder="Cari gym" 
-                                           aria-label="Search"
-                                           value="{{ request('query') }}" 
-                                           style="padding-left: 10px;">
-                                </div>
-                            </form>
-                        <!-- Form Pencarian dengan Filter -->
-                      
-                            <a class="text-sm navbar-brand font-weight-bolder ms-sm-3" data-bs-toggle="modal" data-bs-target="#searchModal" href="#" rel="tooltip">
-                                Cari GYM
-                            </a>
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bolder" data-bs-toggle="modal" data-bs-target="#searchModal" href="#">
+                                    Cari GYM
+                                </a>
+                            </li>
                             
-                            <a class="text-sm navbar-brand font-weight-bolder ms-sm-3" href="{{route('gym.list')}}" rel="tooltip">
-                                Daftar Gym
-                            </a>
-                            <a class="text-sm navbar-brand font-weight-bolder ms-sm-3" href="{{route('about.index')}}" rel="tooltip">
-                                Tentang Kami
-                            </a>
-                            <li class="nav-item ms-2 d-flex align-items-center">
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bolder" href="{{route('gym.list')}}">
+                                    Daftar Gym
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link font-weight-bolder" href="{{route('about.index')}}">
+                                    Tentang Kami
+                                </a>
+                            </li>
+
+                            <li class="nav-item ms-2">
                                 @if (Auth::check())
                                     <div class="dropdown">
-                                        <a href="#" class="navbar-brand font-weight-bolder ms-sm-2 rounded-circle me-1" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <a href="#" class="nav-link font-weight-bolder p-0 d-flex align-items-center" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                             @if (Auth::user()->profile_photo)
-                                                <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="profile" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
+                                                <img src="{{ asset('storage/' . Auth::user()->profile_photo) }}" alt="profile" class="rounded-circle me-2" width="35" height="35" style="object-fit: cover;">
                                             @else
-                                                <img src="{{ asset('assets/images/faces/default.jpg') }}" class="rounded-circle me-2" width="40" height="40" style="object-fit: cover;">
+                                                <img src="{{ asset('assets/images/faces/default.jpg') }}" class="rounded-circle me-2" width="35" height="35" style="object-fit: cover;">
                                             @endif
-                                            <span class="text-sm">{{ Auth::user()->name }}</span> <!-- Tambahkan span dengan kelas text-sm -->
+                                            <span class="text-sm">{{ Auth::user()->name }}</span>
                                         </a>
-                                        <ul class="dropdown-menu navbar-brand font-weight-bolder ms-sm-3" aria-labelledby="userDropdown">
-                                            <li><a class="text-sm dropdown-item navbar-brand font-weight-bolder ms-sm-3" href="{{ route('profile.index') }}">Profil Saya</a></li>
+                                        <ul class="dropdown-menu dropdown-menu-end shadow-lg" aria-labelledby="userDropdown">
+                                            <li><a class="dropdown-item font-weight-bold" href="{{ route('profile.index') }}">Profil Saya</a></li>
                                             <li><hr class="dropdown-divider"></li>
                                             <li>
-                                                <form action="/logout" method="POST" class="dropdown-item">
+                                                <form action="/logout" method="POST" class="m-0">
                                                     @csrf
-                                                    <button type="submit" class="p-0 m-0 btn btn-link">Logout</button>
+                                                    <button type="submit" class="dropdown-item text-danger font-weight-bold">Logout</button>
                                                 </form>
                                             </li>
                                         </ul>
                                     </div>
                                 @else
-                                    <a href="/login" class="btn btn-sm btn-outline-primary">Login</a>
+                                    <a href="/login" class="nav-link font-weight-bolder">Login</a>
                                 @endif
                             </li>
                         </ul>
